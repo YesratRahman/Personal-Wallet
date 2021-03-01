@@ -1,0 +1,127 @@
+
+
+
+				User Money Manager Story 
+ 
+
+User: 
+As a user, I should be able to define a new user with first name and last name and add it to the user collection. 
+As a user, I should be able to get a list of all users. 
+As a user, I should be able to get a list of all users with a given first name. 
+As a user, I should be able to get a list of all users with a given last name. 
+As a user, I should be able to look up information for a user by user ID.
+As a user, I should be able to remove user (by ID) from my collection.
+As a user, I should be able to edit all attributes of a user other than its ID.
+
+Expenses: 
+
+As a user, I should be able to define expense with source, amount, date, description, category and add it to the expense collection. 
+As a user, I should be able to get a list of all expenses. 
+As a user, I should be able to get a list of all expenses with a given source. 
+As a user, I should be able to get a list of all expenses with a given amount range. 
+As a user, I should be able to get a list of all expenses with a given date. 
+As a user, I should be able to get a list of all expenses with a given category. 
+As a user, I should be able to look up information for a expense by expense ID.
+As a user, I should be able to remove expense (by ID) from my collection.
+As a user, I should be able to edit all attributes of a expense other than its ID.
+
+Income: 
+
+As a user, I should be able to define income with job, amount, date, description, category(parttime/fulltime/investment...) and add it to the income collection. 
+As a user, I should be able to get a list of all income. 
+As a user, I should be able to get a list of all income with a given source. 
+As a user, I should be able to get a list of all income with a given amount range. 
+As a user, I should be able to get a list of all income with a given date. 
+As a user, I should be able to get a list of all income with a given category. 
+As a user, I should be able to look up information for a income by income ID.
+As a user, I should be able to remove income (by ID) from my collection.
+As a user, I should be able to edit all attributes of a income other than its ID.
+
+Report: 
+
+As a user, I should be able to should be able to see a report of my savings (Graph / table), but can't edit or make any direct update on that (upadate actual income/expense table).
+As a user, I should be able to get a report of their expenses by a source.
+As a user, I should be able to get a report of their expenses by date (year, month, week).
+As a user, I should be able to get a report of their expenses by category. 
+As a user, I should be able to get a report of their expenses by amount range. 
+
+As a user, I should be able to get a report of their income by a source.
+As a user, I should be able to get a report of their income by date (year, month, week).
+As a user, I should be able to get a report of their income by category. 
+As a user, I should be able to get a report of their income by amount range. 
+
+As a user, I should be able to set a goal (desired total income - total expense) within a time frame.  
+As a user, I should be able to view the goal progress with the graph/table of the report. 
+
+
+
+
+
+
+User Story: 
+1. As a user, you should be able to add your first and last name 
+2. As a user, you should be able to 
+	- add
+	- edit 
+	- delete 
+	- get 
+	   - expenses by 
+	   			- expense source  (Ex: Grocery store)
+	   			- expense amount 
+	   			- date 
+	   			- description 
+	   			- expense category  (Ex: food, entertainment)
+3. As a user, you should be able to 
+	- add
+	- edit 
+	- delete 
+	- get 
+	   - income by 
+	   			- income source  
+	   				- job (Category)
+	   			- income amount 
+	   			- date 
+	   			- description 
+4. User should be able to see a report of their savings (Graph / table), but they can't edit or make any update on that. 
+5. User should be able to get a report of their expenses by date (year, month, week), category, amount. (Table)
+6. User should be able to get a report of their income by date (year, month, week), category, amount, job. (Table)
+7. User should not be able to do any operation on the Id. 
+
+Extra: 
+8. User should be able to set a goal for each month, with the graph/table they can view their progress
+ 	   			
+
+	   			
+
+
+
+1. User
+2. Income 
+3. Expense 
+
+
+1,2   1-M 
+1,3   1-M 
+2,3   M-M 
+
+User: 
+	userId         serial     	PK
+	firstName 	   varChar    	Not NULL 
+	lastName       varChar    	Not NULL 
+
+Income: 
+	incomeId        serial    	pk 
+	incomeSource    varChar   	Not null
+	incomeAmount    numeric   	Not NUll 
+	unit ($)        varChar   	Not null 
+	earnedDate      timestamp 	Not null 
+	description     text      	Not null 
+
+Expense: 
+	expenseId       serial      pk 
+	expenseAmount   numeric     Not null 
+	unit ($)        varChar     Not null 
+	expenseDate     timeStamp   Not null 
+	dscription      text        Not null 
+
+
