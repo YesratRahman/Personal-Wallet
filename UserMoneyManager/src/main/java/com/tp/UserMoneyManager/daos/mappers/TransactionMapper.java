@@ -21,7 +21,7 @@ public class TransactionMapper implements RowMapper<User> {
         associatedExpense.setSpentDate(resultSet.getDate("spentDate").toLocalDate());
         associatedExpense.setDescription(resultSet.getString("description"));
         associatedExpense.setUserId(resultSet.getInt("userId"));
-        mappedUser.setAssociatedExpense(associatedExpense);
+        //mappedUser.setAssociatedExpense(associatedExpense);
 
         Income associatedIncome = new Income();
         associatedIncome.setIncomeId(resultSet.getInt("incomeId"));
@@ -30,7 +30,7 @@ public class TransactionMapper implements RowMapper<User> {
         associatedIncome.setDescription(resultSet.getString("description"));
         associatedIncome.setUserId(resultSet.getInt("userId"));
 
-        mappedUser.setAssociatedIncome(associatedIncome);
+       // mappedUser.setAssociatedIncome(associatedIncome);
 
         return mappedUser;
     }
