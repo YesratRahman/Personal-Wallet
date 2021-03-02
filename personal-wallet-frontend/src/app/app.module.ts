@@ -6,7 +6,7 @@ import { UserComponent } from './userComp/user/user.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { AddUserComponent } from './userComp/add-user/add-user.component';
-import { EditUserComponent } from './userComp/all-user/edit-user/edit-user.component';
+import { EditUserComponent } from './userComp/edit-user/edit-user.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,7 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
-import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
+import { GetUserComponent } from './userComp/get-user/get-user.component';
 
 
 
@@ -31,7 +32,8 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
     AddUserComponent,
     EditUserComponent,
     AllUserComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    GetUserComponent
   ],
   imports: [
     BrowserModule,

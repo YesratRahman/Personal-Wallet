@@ -22,9 +22,14 @@ public class IncomeController {
     MoneyManagerService service;
 
     @PostMapping("/income")
-    public ResponseEntity addIncome(@RequestBody Income toAdd) throws InvalidUserIdException, InvalidIncomeException, InvalidIncomeIdException {
-        Income completed = service.addIncome(toAdd);
-        return ResponseEntity.ok(completed);
+    public ResponseEntity addIncome(@RequestBody Income toAdd) {
+        Income completed = null;
+        try{
+            completed = service.addIncome(toAdd);
+            return ResponseEntity.ok(completed);
+        }catch(InvalidUserIdException | InvalidIncomeException | InvalidIncomeIdException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/incomes")

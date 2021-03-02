@@ -27,15 +27,13 @@ export class WalletService {
       tap(x => console.log(x)),
       catchError(err => {
         console.log(err);
-        
-        
         return of(null);
       })
     );
   }
 
   getAllUsers() : Observable<User[]> {
-    return this.http.get<User[]>(this.baseURL + "/users")
+    return this.http.get<User[]>(this.baseURL + "/users", this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
@@ -58,7 +56,7 @@ export class WalletService {
       );
   }
 
-  
+
 
 editUser(userId:number):Observable<User>{
   return this.http.put<User>(this.baseURL+`/editUser/${userId}`,this.httpOptions);
