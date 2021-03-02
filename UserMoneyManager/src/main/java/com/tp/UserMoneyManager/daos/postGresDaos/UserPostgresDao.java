@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,6 +22,14 @@ public class UserPostgresDao implements UserDao {
     @Autowired
     private JdbcTemplate template;
 
+//    private List<User> allUser = new ArrayList<>();
+//    public UserPostgresDao(){
+//        User user = new User();
+//        user.setUserName("RahaRahman");
+//        user.setUserId(5);
+//        allUser.add(user);
+//
+//    }
     @Override
     public User addUser(User toAdd) throws NullUserException, InvalidUserNameException {
         if(toAdd == null ){
@@ -77,18 +87,19 @@ public class UserPostgresDao implements UserDao {
 
 
     @Override
-    public int updateUser(Integer userId, User user) throws InvalidUserIdException, NullUserException {
-        if(userId == null){
-            throw new InvalidUserIdException("User id can not be null!");
-        }
+    public int updateUser( User user) throws InvalidUserIdException, NullUserException {
+
         if(user == null){
             throw new NullUserException("User can not be null!");
+        }
+        if(user.getUserId() == null){
+            throw new InvalidUserIdException("User id can not be null!");
         }
 
         int userUpdate = template.update("UPDATE \"Users\" " +
                 "SET \"userName\" =?\n" +
                 "WHERE \"userId\" = ?;",
-                user.getUserName(), userId);
+                user.getUserName(), user.getUserId());
             return userUpdate;
     }
 
@@ -111,10 +122,8 @@ public class UserPostgresDao implements UserDao {
     }
 
     @Override
-    public int getReport(Integer userId, User user) throws NullUserException, InvalidUserIdException {
-        if(user == null){
-            throw new NullUserException("user object can not be null!");
-        }
+    public int getReport(Integer userId) throws NullUserException, InvalidUserIdException {
+
         if(userId == null){
             throw new InvalidUserIdException("User Id can not be null");
         }

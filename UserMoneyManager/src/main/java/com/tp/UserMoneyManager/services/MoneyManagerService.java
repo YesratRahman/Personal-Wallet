@@ -57,17 +57,18 @@ public class MoneyManagerService {
     }
 
 
-    public int updateUser(Integer userId, User user) throws InvalidUserIdException, NullUserException, InvalidUserNameException {
-        if(userId == null){
-            throw new InvalidUserIdException("User Id can not be null!");
-        }
+    public int updateUser( User user) throws InvalidUserIdException, NullUserException, InvalidUserNameException {
+
         if(user == null){
             throw new IllegalArgumentException("User can not be null!");
+        }
+        if(user.getUserId() == null){
+            throw new InvalidUserIdException("User Id can not be null!");
         }
         if(user.getUserName() == null || user.getUserName().isEmpty() || user.getUserName().isBlank()){
             throw new InvalidUserNameException("User name can not be invalid!");
         }
-        return userDao.updateUser(userId, user);
+        return userDao.updateUser( user);
     }
 
 
@@ -283,11 +284,9 @@ public class MoneyManagerService {
         return incomeDao.getIncomeReport(income);
     }
 
-    public int getReport(Integer userId, User user) throws NullUserException, InvalidUserIdException {
+    public int getReport(Integer userId) throws NullUserException, InvalidUserIdException {
 
-        if(user == null){
-            throw new NullUserException("user object can not be null!");
-        }
+
         if(userId == null){
             throw new InvalidUserIdException("User Id can not be null");
         }
@@ -299,6 +298,6 @@ public class MoneyManagerService {
 //            throw new InvalidUserIdException("User id can not be null");
 //
 //        }
-        return userDao.getReport(userId, user);
+        return userDao.getReport(userId);
     }
 }

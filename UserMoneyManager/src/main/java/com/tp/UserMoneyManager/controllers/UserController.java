@@ -13,16 +13,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 public class UserController {
 
     @Autowired
     MoneyManagerService service;
 
-    @PostMapping("/user")
-    public ResponseEntity addUser(@RequestBody User toAdd) throws InvalidUserNameException, NullUserException {
-        User completed = service.addUser(toAdd);
-        return ResponseEntity.ok(completed);
+    @PostMapping("/addUser")
+    public ResponseEntity addUser(@RequestBody User toAdd)  {
+        User completed = null;
+        try{
+            completed =  service.addUser(toAdd);
+            return ResponseEntity.ok(completed);
+        }catch(InvalidUserNameException | NullUserException e ){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/users")
@@ -49,9 +55,9 @@ public class UserController {
     }
 
     @PutMapping("/user/update/{userId}")
-    public ResponseEntity updateUser(@PathVariable Integer userId, @RequestBody User user){
+    public ResponseEntity updateUser( @RequestBody User user){
         try {
-            return ResponseEntity.ok(service.updateUser(userId, user));
+            return ResponseEntity.ok(service.updateUser( user));
         } catch (InvalidUserIdException | NullUserException | InvalidUserNameException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -68,9 +74,9 @@ public class UserController {
     }
 
     @GetMapping("/user/transactionReport/{userId}")
-    public ResponseEntity getReport(@PathVariable Integer userId,  User user){
+    public ResponseEntity getReport(@PathVariable Integer userId){
         try{
-            return ResponseEntity.ok(service.getReport(userId, user));
+            return ResponseEntity.ok(service.getReport(userId));
         }catch (NullUserException | InvalidUserIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

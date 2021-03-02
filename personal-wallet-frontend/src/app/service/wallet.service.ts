@@ -1,10 +1,11 @@
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {tap, catchError} from 'rxjs/operators';
-import {of} from 'rxjs';
 import { User } from '../interfaces/User';
+import {tap, catchError} from 'rxjs/operators';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,29 @@ import { User } from '../interfaces/User';
 export class WalletService {
 
   baseURL : string = "http://localhost:8080/api";
-  httpOptions = {headers: new HttpHeaders({"Content-Type": "application/json"})}
+  httpOptions = {headers: new HttpHeaders(
+               {"Content-Type": "application/json"}
+               )}
 
-  constructor(private http : HttpClient) { 
+  constructor(private http: HttpClient) { }
 
+
+  addUser(toAdd : User) : Observable<User> {
+    console.log(toAdd);
+    return this.http.post<User>(this.baseURL + "/addUser", toAdd, this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        
+        
+        return of(null);
+      })
+    );
   }
 
   getAllUsers() : Observable<User[]> {
-    return this.http.get<User[]>(this.baseURL + "/user")
+    return this.http.get<User[]>(this.baseURL + "/users")
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
@@ -30,14 +46,26 @@ export class WalletService {
       );
   }
 
-  addUser(toAdd : User) : Observable<User> {
-    return this.http.post<User>(this.baseURL + "/add", toAdd, this.httpOptions)
+    getUserById(userId : number) : Observable<User> {
+    return this.http.get<User>(this.baseURL + "/user/" + "userId")
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
         console.log(err);
-        return of(null);
+        let empty = null;
+        return of(empty);
       })
-    );
+      );
   }
+
+  
+
+editUser(userId:number):Observable<User>{
+  return this.http.put<User>(this.baseURL+`/editUser/${userId}`,this.httpOptions);
+}
+
+deleteUser(userId:number){
+  console.log(userId);
+  return this.http.delete(this.baseURL+ `/deleteUser/${userId}`);
+}
 }

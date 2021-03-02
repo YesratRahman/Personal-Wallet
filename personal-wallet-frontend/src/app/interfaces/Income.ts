@@ -3,4 +3,5 @@ export interface Income{
     incomeAmount : number; 
     description : string; 
     earnedDate : Date; 
+
 }

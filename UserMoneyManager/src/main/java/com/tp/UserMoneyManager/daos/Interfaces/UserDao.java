@@ -13,8 +13,8 @@ public interface UserDao {
     List<User> getAllUsers();
     User getAllUsersById(Integer userId) throws InvalidUserIdException;
     List<User> getUsersByUserName(String userName) throws InvalidUserNameException;
-    int updateUser(Integer userId, User user) throws InvalidUserIdException, NullUserException, InvalidUserNameException;
+    int updateUser( User user) throws InvalidUserIdException, NullUserException, InvalidUserNameException;
     int deleteUser(Integer userId) throws InvalidUserIdException;
 
-    int getReport(Integer userId, User user) throws NullUserException, InvalidUserIdException;
+    int getReport(Integer userId) throws NullUserException, InvalidUserIdException;
 }
