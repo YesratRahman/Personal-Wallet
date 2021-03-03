@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: "addUser", component: AddUserComponent },
   { path: "users", component: UserComponent }, 
-  { path: "editUser/:id", component: EditUserComponent },
+  { path: "updateUser/:id", component: EditUserComponent },
   { path: "expense", component: ExpenseComponent}, 
   { path: "income", component: IncomeComponent}
 ];

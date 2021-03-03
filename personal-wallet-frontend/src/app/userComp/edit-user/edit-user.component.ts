@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
+import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -8,18 +11,27 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 })
 export class EditUserComponent implements OnInit {
 
-  userName = new FormControl('', [Validators.required]);
-  getErrorStatus(){
-    if(this.userName.hasError('required')){
-      return 'Enter a valid name'; 
-    }
-    return this.userName.hasError('userName') ? 'Not a valid name' : ''; 
-  }
-  
+  userId : number; 
+  userName : string; 
 
-  constructor() { }
+
+  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
+    console.log(this.userId); 
+    this.service.getUserById(this.userId).subscribe(newD => {
+      this.userName = newD.userName; 
+    });
+  }
+
+  
+  updateUser(){
+    let toUpdate : User = {userId : this.userId, userName : this.userName};
+    this.service.updateUser(toUpdate).subscribe(_ => {
+      //console.log(toUpdate);
+      this.router.navigate([''])
+    }); 
   }
 
 }

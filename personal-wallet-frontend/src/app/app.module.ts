@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
 import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
 import { GetUserComponent } from './userComp/get-user/get-user.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -45,7 +46,8 @@ import { GetUserComponent } from './userComp/get-user/get-user.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatCardModule
 
   ],
   providers: [],

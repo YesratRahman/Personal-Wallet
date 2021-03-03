@@ -45,25 +45,48 @@ export class WalletService {
   }
 
     getUserById(userId : number) : Observable<User> {
-    return this.http.get<User>(this.baseURL + "/user/" + "userId")
+    return this.http.get<User>(this.baseURL + "/user/" + "userId", this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
         console.log(err);
-        let empty = null;
-        return of(empty);
+        return of(null);
+      })
+      );
+  }
+
+  getUserByUserName(userName : string) : Observable<User> {
+    return this.http.get<User>(this.baseURL + "/user/" + "userName", this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
       })
       );
   }
 
 
 
-editUser(userId:number):Observable<User>{
-  return this.http.put<User>(this.baseURL+`/editUser/${userId}`,this.httpOptions);
+updateUser(user: User):Observable<User>{
+  return this.http.put<User>(this.baseURL+ "/updateUser/" + user.userId, user , this.httpOptions)
+  .pipe(
+    tap(x => console.log(x)),
+    catchError(err => {
+      console.log(err);
+      return of(null);
+    })
+    );
 }
 
 deleteUser(userId:number){
-  console.log(userId);
-  return this.http.delete(this.baseURL+ `/deleteUser/${userId}`);
+  return this.http.delete(this.baseURL+ "/deleteUser/" + "userId", this.httpOptions )
+  .pipe(
+    tap(x => console.log(x)),
+    catchError(err => {
+      console.log(err);
+      return of(null);
+    })
+    );
 }
 }

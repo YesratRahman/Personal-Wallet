@@ -54,8 +54,9 @@ public class UserController {
         }
     }
 
-    @PutMapping("/user/update/{userId}")
+    @PutMapping("/updateUser/{userId}")
     public ResponseEntity updateUser( @RequestBody User user){
+
         try {
             return ResponseEntity.ok(service.updateUser( user));
         } catch (InvalidUserIdException | NullUserException | InvalidUserNameException e) {
@@ -63,7 +64,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/user/delete/{userId}")
+    @DeleteMapping("/deleteUser/{userId}")
     public String deleteUser(@PathVariable Integer userId){
         try{
             service.deleteUser(userId);
