@@ -19,7 +19,6 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
-    console.log(this.userId); 
     this.service.getUserById(this.userId).subscribe(newD => {
       this.userName = newD.userName; 
     });
@@ -29,8 +28,7 @@ export class EditUserComponent implements OnInit {
   updateUser(){
     let toUpdate : User = {userId : this.userId, userName : this.userName};
     this.service.updateUser(toUpdate).subscribe(_ => {
-      //console.log(toUpdate);
-      this.router.navigate([''])
+      this.router.navigate(['users'])
     }); 
   }
 

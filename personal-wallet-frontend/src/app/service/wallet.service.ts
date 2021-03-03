@@ -32,6 +32,28 @@ export class WalletService {
     );
   }
 
+  getUserById(userId : number) : Observable<User> {
+    return this.http.get<User>(this.baseURL + "/user/" + "userId", this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+      );
+  }
+  
+  updateUser(user: User):Observable<User>{
+    return this.http.put<User>(this.baseURL+ "/updateUser/" + user.userId, user , this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+      );
+  }
+
   getAllUsers() : Observable<User[]> {
     return this.http.get<User[]>(this.baseURL + "/users", this.httpOptions)
     .pipe(
@@ -44,16 +66,7 @@ export class WalletService {
       );
   }
 
-    getUserById(userId : number) : Observable<User> {
-    return this.http.get<User>(this.baseURL + "/user/" + "userId", this.httpOptions)
-    .pipe(
-      tap(x => console.log(x)),
-      catchError(err => {
-        console.log(err);
-        return of(null);
-      })
-      );
-  }
+    
 
   getUserByUserName(userName : string) : Observable<User> {
     return this.http.get<User>(this.baseURL + "/user/" + "userName", this.httpOptions)
@@ -68,16 +81,7 @@ export class WalletService {
 
 
 
-updateUser(user: User):Observable<User>{
-  return this.http.put<User>(this.baseURL+ "/updateUser/" + user.userId, user , this.httpOptions)
-  .pipe(
-    tap(x => console.log(x)),
-    catchError(err => {
-      console.log(err);
-      return of(null);
-    })
-    );
-}
+
 
 deleteUser(userId:number){
   return this.http.delete(this.baseURL+ "/deleteUser/" + "userId", this.httpOptions )
