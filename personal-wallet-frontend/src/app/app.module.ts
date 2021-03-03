@@ -19,7 +19,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
 import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
-import { GetUserComponent } from './userComp/get-user/get-user.component';
 import { MatCardModule } from '@angular/material/card';
 
 
@@ -33,9 +32,8 @@ import { MatCardModule } from '@angular/material/card';
     AddUserComponent,
     EditUserComponent,
     AllUserComponent,
-    AddExpenseComponent,
-    GetUserComponent
-  ],
+    AddExpenseComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

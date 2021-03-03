@@ -1,6 +1,8 @@
 package com.tp.UserMoneyManager.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Income {
     Integer incomeId;
@@ -8,6 +10,8 @@ public class Income {
     Double incomeAmount;
     String description;
     LocalDate earnedDate;
+    List<User> user;
+
 
     public Income(){
 
@@ -19,6 +23,25 @@ public class Income {
         this.incomeAmount = incomeAmount;
         this.description = description;
         this.earnedDate = earnedDate;
+    }
+
+    public Income(Income that){
+        this.incomeId = incomeId;
+        this.incomeAmount = incomeAmount;
+        this.description = description;
+        this.earnedDate = earnedDate;
+        this.user =new ArrayList<>();
+        for(User toCopy : that.user){
+            this.user.add(toCopy);
+        }
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
     }
 
     public LocalDate getEarnedDate() {

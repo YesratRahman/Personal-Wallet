@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../interfaces/User';
 import {tap, catchError} from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Expense } from '../interfaces/Expense';
 
 
 @Injectable({
@@ -66,8 +67,7 @@ export class WalletService {
       );
   }
 
-    
-
+  
   getUserByUserName(userName : string) : Observable<User> {
     return this.http.get<User>(this.baseURL + "/user/" + "userName", this.httpOptions)
     .pipe(
@@ -79,10 +79,6 @@ export class WalletService {
       );
   }
 
-
-
-
-
 deleteUser(userId:number){
   return this.http.delete(this.baseURL+ "/deleteUser/" + "userId", this.httpOptions )
   .pipe(
@@ -93,4 +89,8 @@ deleteUser(userId:number){
     })
     );
 }
+
+
+
+
 }
