@@ -1,5 +1,6 @@
 package com.tp.UserMoneyManager.daos.Interfaces;
 
+import com.tp.UserMoneyManager.exceptions.InvalidCategoryException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseDao {
-    Expense addExpense(Expense toAdd) throws InvalidExpenseException, InvalidExpenseIdException, InvalidUserIdException;
+    Expense addExpense(Expense toAdd) throws InvalidExpenseException, InvalidExpenseIdException, InvalidUserIdException, InvalidCategoryException;
 
     List<Expense> getAllExpenses();
 

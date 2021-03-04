@@ -11,18 +11,21 @@ public class Income {
     String description;
     LocalDate earnedDate;
     List<User> user;
+    String category;
+
 
 
     public Income(){
 
     }
 
-    public Income(Integer incomeId, Integer userId, Double incomeAmount, String description, LocalDate earnedDate) {
+    public Income(Integer incomeId, Integer userId, Double incomeAmount, String description, LocalDate earnedDate, String category) {
         this.incomeId = incomeId;
         this.userId = userId;
         this.incomeAmount = incomeAmount;
         this.description = description;
         this.earnedDate = earnedDate;
+        this.category = category;
     }
 
     public Income(Income that){
@@ -30,10 +33,19 @@ public class Income {
         this.incomeAmount = incomeAmount;
         this.description = description;
         this.earnedDate = earnedDate;
+        this.category = that.category;;
         this.user =new ArrayList<>();
         for(User toCopy : that.user){
             this.user.add(toCopy);
         }
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public List<User> getUser() {

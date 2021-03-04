@@ -19,12 +19,12 @@ public class ExpenseController {
     @Autowired
     MoneyManagerService service;
 
-    @PostMapping("/expense")
+    @PostMapping("/addExpense")
     public ResponseEntity addExpense(@RequestBody Expense toAdd) {
         Expense toReturn = null;
         try{
             toReturn = service.addExpense(toAdd);
-        }catch(InvalidExpenseException|  InvalidExpenseIdException|  InvalidUserIdException e){
+        }catch(InvalidExpenseException|  InvalidExpenseIdException|  InvalidUserIdException | InvalidCategoryException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.ok(toReturn);

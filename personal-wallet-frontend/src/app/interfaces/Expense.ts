@@ -1,3 +1,4 @@
+import { User } from "./User";
 
 
 export interface Expense{
@@ -5,4 +6,6 @@ export interface Expense{
     expenseAmount : number; 
     description : string; 
     spentDate : Date; 
+    category : string; 
+    user? : User[]; 
 }

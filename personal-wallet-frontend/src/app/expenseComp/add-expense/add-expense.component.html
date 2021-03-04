@@ -1,1 +1,55 @@
-<p>add-expense works!</p>
+<div class="mat-card">
+  <div class="mat-card-content">
+    <div >
+      <h2>Add Expense</h2>
+
+      <label for="expenseAmount" class="col-md-4"> Enter Expense Amount </label>
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="Enter Expense Amount"
+          [(ngModel)]="expenseAmount">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <br />
+
+      <label for="category" class="col-md-4"> Enter Expense Category </label>
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <input matInput type="text" class="example-right-align" placeholder="Enter Expense Category"
+          [(ngModel)]="category">
+      </mat-form-field>
+      <br />
+      <label for="description" class="col-md-4"> Enter Description </label>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" class="example-right-align" matInput placeholder="Enter Description" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+
+      <br />
+      <label for="spentDate" class="col-md-4"> Enter Date </label>
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>Choose a Date</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="spentDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+      </mat-form-field>
+
+      <!-- <div class="form-group">
+        <label for="spentDate" class="col-md-4"> Enter Date</label>
+        <input type="text" class="form-control" placeholder="Enter Date" [(ngModel)]="spentDate" />
+      </div> -->
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Integer expenseId;
+    Double expenseAmount;
+    String description;
+    LocalDate spentDate;
+    Integer userId;
+    List<User> user; -->

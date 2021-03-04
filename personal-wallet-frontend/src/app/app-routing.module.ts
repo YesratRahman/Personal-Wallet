@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { IncomeComponent } from './income/income.component';
 import { UserComponent } from './userComp/user/user.component';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
+import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: "addUser", component: AddUserComponent },
   { path: "users", component: AllUserComponent }, 
   { path: "updateUser/:id", component: EditUserComponent },
-  { path: "expense", component: ExpenseComponent}, 
+  { path: "addExpense", component: AddExpenseComponent}, 
   { path: "income", component: IncomeComponent}
 ];
 

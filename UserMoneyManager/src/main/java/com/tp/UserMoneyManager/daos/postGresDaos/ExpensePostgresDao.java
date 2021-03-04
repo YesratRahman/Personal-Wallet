@@ -34,12 +34,13 @@ public class ExpensePostgresDao implements ExpenseDao {
         if (userCount == 1) {
 
             expenseId = template.query(
-                    "INSERT INTO \"Expenses\" (\"expenseAmount\", \"spentDate\", " +
+                    "INSERT INTO \"Expenses\" (\"expenseAmount\", \"spentDate\", \"category\", " +
                             "\"description\", \"userId\") " +
-                            "VALUES(?, ?, ?,?) RETURNING \"expenseId\";",
+                            "VALUES(?, ?, ?,?,?) RETURNING \"expenseId\";",
                     new IntegerMapper("expenseId"),
                     toAdd.getExpenseAmount(),
                     toAdd.getSpentDate(),
+                    toAdd.getCategory(),
                     toAdd.getDescription(),
                     toAdd.getUserId());
             if (expenseId.size() == 0) {
@@ -75,7 +76,7 @@ public class ExpensePostgresDao implements ExpenseDao {
 
         if (userCount == 1) {
             getExpense = template.queryForObject(
-                    "SELECT \"expenseId\", \"expenseAmount\",\"spentDate\",\"description\", \"userId\" " +
+                    "SELECT \"expenseId\", \"expenseAmount\",\"spentDate\",\"category\",\"description\", \"userId\" " +
                             "FROM \"Expenses\" WHERE \"expenseId\" ='" + expenseId + "'", new ExpenseMapper());
         } else {
             throw new InvalidExpenseIdException("Expense id does not exist");
@@ -96,7 +97,7 @@ public class ExpensePostgresDao implements ExpenseDao {
         List<Expense> expenses;
         if (dateCount == 1) {
             expenses = template.query(
-                    "select \"expenseId\", \"expenseAmount\", \"description\", \"spentDate\" , \"userId\"" +
+                    "select \"expenseId\", \"expenseAmount\", \"description\", \"category\", \"spentDate\" , \"userId\"" +
                             "from \"Expenses\" " +
                             "where \"spentDate\" = ?;\n",
                     new ExpenseMapper(), date);
@@ -123,9 +124,10 @@ public class ExpensePostgresDao implements ExpenseDao {
                     "Update \"Expenses\" " +
                             "Set \"expenseAmount\"=?," +
                             " \"spentDate\"=?, " +
+                            " \"category\"=?, " +
                             "\"description\"=? " +
                             "Where \"expenseId\" =?; \n",
-                    expense.getExpenseAmount(), expense.getSpentDate(), expense.getDescription(), expenseId);
+                    expense.getExpenseAmount(), expense.getSpentDate(),expense.getCategory(), expense.getDescription(), expenseId);
         } else {
             throw new InvalidUserIdException("The user whose expense tried to be updated, doesn't exist.");
        }

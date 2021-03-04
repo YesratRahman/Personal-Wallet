@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './userComp/user/user.component';
 import { HomeComponent } from './home/home.component';
-import { NavComponent } from './nav/nav.component';
 import { AddUserComponent } from './userComp/add-user/add-user.component';
 import { EditUserComponent } from './userComp/edit-user/edit-user.component';
 
@@ -20,7 +19,14 @@ import { MatInputModule } from '@angular/material/input';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
 import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
 import { MatCardModule } from '@angular/material/card';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatMenuModule} from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -28,12 +34,11 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     UserComponent,
     HomeComponent,
-    NavComponent,
     AddUserComponent,
     EditUserComponent,
     AllUserComponent,
     AddExpenseComponent
-    ],
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +50,16 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     ReactiveFormsModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    NgbModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatButtonModule, 
+    MatSidenavModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
 
   ],
   providers: [],

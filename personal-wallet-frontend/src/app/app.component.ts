@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'personal-wallet-frontend';
+
+onClickLinked()
+{
+  window.open("https://www.linkedin.com/in/yesrat-rahman-84743717a/");
+
 }
+
+onClickedGit()
+{
+  window.open("https://github.com/YesratRahman");
+
+}
+}
+

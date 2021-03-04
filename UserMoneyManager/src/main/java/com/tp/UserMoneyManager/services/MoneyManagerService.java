@@ -37,7 +37,6 @@ public class MoneyManagerService {
             throw new InvalidUserNameException("User name can not be Invalid");
         }
 
-
         return userDao.addUser(toAdd);
     }
 
@@ -79,7 +78,7 @@ public class MoneyManagerService {
          return userDao.deleteUser(userId);
     }
 
-    public Expense addExpense(Expense toAdd) throws InvalidUserIdException, InvalidExpenseException, InvalidExpenseIdException {
+    public Expense addExpense(Expense toAdd) throws InvalidUserIdException, InvalidExpenseException, InvalidExpenseIdException, InvalidCategoryException {
         if(toAdd == null){
             throw new InvalidExpenseException("Expense can not be null!");
         }
@@ -101,6 +100,10 @@ public class MoneyManagerService {
         if(toAdd.getDescription() == null || toAdd.getDescription().isBlank() || toAdd.getDescription().isEmpty())
         {
             throw new InvalidExpenseException("Expense description can not be null, empty or blank");
+        }
+        if(toAdd.getCategory() == null || toAdd.getCategory().isBlank() || toAdd.getCategory().isEmpty())
+        {
+            throw new InvalidCategoryException("Expense category can not be null, empty or blank");
         }
         if(toAdd.getUserId() == null){
             throw new InvalidUserIdException("User id can not be null!");

@@ -34,10 +34,10 @@ export class AddUserComponent implements OnInit {
     // alert("User is Added");
       let toAdd : User =  {userName : this.userName};
       console.log(toAdd); 
-      this.service.addUser(toAdd).subscribe(); 
-    
-
-    //console.log(this.userForm.value.userName); 
-    
+      this.service.addUser(toAdd).subscribe(_ => {
+        this.router.navigate(['users'])
+      }); 
+    }
+  
   }
-}
+  

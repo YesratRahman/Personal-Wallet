@@ -14,6 +14,7 @@ public class ExpenseMapper implements RowMapper<Expense> {
         mappedExpense.setExpenseAmount(resultSet.getDouble("expenseAmount"));
         mappedExpense.setSpentDate(resultSet.getDate("spentDate").toLocalDate());
         mappedExpense.setDescription(resultSet.getString("description"));
+        mappedExpense.setCategory(resultSet.getString("category"));
         mappedExpense.setUserId(resultSet.getInt("userId"));
         return mappedExpense;
     }

@@ -90,6 +90,17 @@ deleteUser(userId:number){
     );
 }
 
+addExpense(toAdd : Expense) : Observable<Expense> {
+  console.log(toAdd);
+  return this.http.post<Expense>(this.baseURL + "/addExpense", toAdd, this.httpOptions)
+  .pipe(
+    tap(x => console.log(x)),
+    catchError(err => {
+      console.log(err);
+      return of(null);
+    })
+  );
+}
 
 
 
