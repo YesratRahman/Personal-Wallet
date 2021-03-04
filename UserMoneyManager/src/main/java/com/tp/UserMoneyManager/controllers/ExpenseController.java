@@ -63,7 +63,7 @@ public class ExpenseController {
         }
     }
 
-    @DeleteMapping("/delete/expense/{expenseId}")
+    @DeleteMapping("/deleteExpense/{expenseId}")
     public String deleteExpense(@PathVariable Integer expenseId){
         try{
             service.deleteExpense(expenseId);

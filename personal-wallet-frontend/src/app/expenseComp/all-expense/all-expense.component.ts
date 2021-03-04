@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Expense } from 'src/app/interfaces/Expense';
+import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
@@ -10,12 +11,16 @@ import { WalletService } from 'src/app/service/wallet.service';
 export class AllExpenseComponent implements OnInit {
   expenses : Expense[];
 
-  constructor(private service : WalletService) { }
+  constructor(private service : WalletService, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    if(this.loginService.getUser() == this.loginService.currentUser) {
+
+   
     this.service.getAllExpenses().subscribe(list => {
       this.expenses = list
     });
   }
+} 
 
 }

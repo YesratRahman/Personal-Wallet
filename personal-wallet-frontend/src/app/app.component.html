@@ -32,6 +32,8 @@
                         <button mat-button routerLink='/users'>Users</button>
                         <button mat-button routerLink='/income'>Add Income</button>
                         <button mat-button routerLink='/addExpense'>Add Expense</button>
+                        <button mat-button routerLink='/expenses'> Expenses</button>
+
                         <button mat-button [matMenuTriggerFor]="menu">Contact</button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="onClickLinked()">LinkedIn</button>
@@ -56,7 +58,10 @@
                             <button mat-button routerLink='/users'>Users</button>
                             <button mat-button routerLink='/income'>Add Income</button>
                             <button mat-button routerLink='/addExpense'>Add Expense</button>
+                            <button mat-button routerLink='/expenses'> Expenses</button>
+
                             <button mat-button [matMenuTriggerFor]="menu">Contact</button>
+
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="onClickLinked()">LinkedIn</button>
                                 <button mat-menu-item (click)="onClickedGit()">Github</button>

@@ -10,7 +10,7 @@ import { WalletService } from '../../service/wallet.service';
 })
 export class AllUserComponent implements OnInit {
   users :User[];
-  currentUser : User = {userId : 1, userName : "Raha"}; 
+  // currentUser : User = {userId : 1, userName : "Raha"}; 
 
   constructor(private service : WalletService, private loginService : LoginService) { }
 
@@ -20,7 +20,7 @@ export class AllUserComponent implements OnInit {
     });
   }
 
-  getUser() : void{
-    this.currentUser = this.loginService.getUser(); 
-  }
+  // getUser() : void{
+  //   this.currentUser = this.loginService.getUser(); 
+  // }
 }

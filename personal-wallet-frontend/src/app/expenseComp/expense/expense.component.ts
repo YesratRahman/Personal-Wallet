@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Expense } from 'src/app/interfaces/Expense';
+import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
@@ -11,19 +15,45 @@ export class ExpenseComponent implements OnInit {
 
 
 
-@Input()expense : Expense;
+  @Input() expense: Expense;
+  expenses: Expense[] = [];
 
-  //users : User[]; 
-  constructor(private walletSer : WalletService) { 
-  }
+  displayedColumns: string[] = ['expenseId', 'expenseAmount', 'category', 'description', 'spentDate'];
+  dataSource: MatTableDataSource<Expense>;
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(): void {
-    // this.walletSer.getAllUsers().subscribe(list => {
-    //   this.users = list
-    // });
-  }
+
+  constructor(private walletSer: WalletService, private loginService : LoginService) {
+    if(this.loginService.getUser() == this.loginService.currentUser){
+      walletSer.getAllExpenses().subscribe(
+        expenses => {
+          this.dataSource = new MatTableDataSource(expenses);
+          this.dataSource.sort = this.sort;
   
-  // deleteuser(userId){
-  //   this.walletSer.deleteUser(userId).subscribe(res=>{this.users.splice(1,userId)});
-  //   }
+        
+      });
+    }
+    
 }
+
+ngOnInit(): void {
+}
+
+  applyFilter(event: Event) {
+    const fiter = (event.target as HTMLInputElement).value; 
+    this.dataSource.filter = fiter.trim().toLowerCase();
+  }
+
+
+  deleteExpense(expense : Expense){
+    const index = this.dataSource.data.indexOf(expense); 
+    this.walletSer.deleteExpense(expense.expenseId).subscribe(
+      () => { 
+        this.dataSource.data.splice(index, 1);
+        this.dataSource._updateChangeSubscription(); 
+      }
+    ); 
+    }
+}
+
+
