@@ -3,27 +3,32 @@
 <p>{{userName}}</p>
  -->
 
- <div class="mat-card">
-    <div class="mat-card-content">
-        <div>
-            <h2>Add User</h2>
-            <div class="form-group">  
-                <label for="userName"class="col-md-4"> Enter Your Name</label>  
-                <input type="text" class="form-control" placeholder="Enter Your Name" [(ngModel)]="userName" />  
-              </div>  
+<div class="mat-card">
+  <div class="mat-card-content">
+    <div>
+      <h2>Add User</h2>
+      <div class="form-group">
+        <label for="userName" class="col-md-4"> Enter Your Name  </label>
+        <input type="text" class="form-control" placeholder="First name, Last name" [(ngModel)]="userName" />
+      </div>
 
-            
 
-              <!-- <div *ngIf="userForm.controls['userName'].invalid "  class="alert-danger">
+
+      <br/> 
+      <br/> 
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div *ngIf="userForm.controls['userName'].invalid "  class="alert-danger">
                 <div *ngIf="userForm.controls['userName'].errors.required">  
                   User name is required
                 </div>  
               </div> -->
-                  <div class="form-group">  
-                    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" >Submit</button>
-                    </div> 
-                    
-                  </div>
-    </div>
-</div>
-

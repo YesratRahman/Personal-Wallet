@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/User';
 import { WalletService } from '../../service/wallet.service';
@@ -13,11 +13,16 @@ export class AddUserComponent implements OnInit {
 
   userName : string;
   isSubmitted=false;
+  firstFormGroup: FormGroup;
+  // secondFormGroup: FormGroup;
+  isEditable = false;
 
-
-  constructor( private service : WalletService, private router : Router) {}
+  constructor( private service : WalletService, private router : Router, private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
   }
 
   // userForm = this.form.group({

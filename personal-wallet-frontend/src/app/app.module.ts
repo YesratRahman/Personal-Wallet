@@ -27,7 +27,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import {MatSelectModule} from '@angular/material/select';
+import { ExpenseComponent } from './expenseComp/expense/expense.component';
+import { AllExpenseComponent } from './expenseComp/all-expense/all-expense.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     AddUserComponent,
     EditUserComponent,
     AllUserComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    ExpenseComponent,
+    AllExpenseComponent
       ],
   imports: [
     BrowserModule,
@@ -58,7 +64,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSidenavModule,
     MatMenuModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatTableModule
 
 
   ],

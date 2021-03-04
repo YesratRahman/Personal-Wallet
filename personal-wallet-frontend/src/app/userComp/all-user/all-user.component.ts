@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/service/login.service';
 import { User } from '../../interfaces/User';
 import { WalletService } from '../../service/wallet.service';
 
@@ -9,8 +10,9 @@ import { WalletService } from '../../service/wallet.service';
 })
 export class AllUserComponent implements OnInit {
   users :User[];
+  currentUser : User = {userId : 1, userName : "Raha"}; 
 
-  constructor(private service : WalletService) { }
+  constructor(private service : WalletService, private loginService : LoginService) { }
 
   ngOnInit(): void {
     this.service.getAllUsers().subscribe(list => {
@@ -18,4 +20,7 @@ export class AllUserComponent implements OnInit {
     });
   }
 
+  getUser() : void{
+    this.currentUser = this.loginService.getUser(); 
+  }
 }

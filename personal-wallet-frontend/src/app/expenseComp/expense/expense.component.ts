@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Expense } from 'src/app/interfaces/Expense';
+import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
   selector: 'app-expense',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpenseComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+
+@Input()expense : Expense;
+
+  //users : User[]; 
+  constructor(private walletSer : WalletService) { 
   }
 
+  ngOnInit(): void {
+    // this.walletSer.getAllUsers().subscribe(list => {
+    //   this.users = list
+    // });
+  }
+  
+  // deleteuser(userId){
+  //   this.walletSer.deleteUser(userId).subscribe(res=>{this.users.splice(1,userId)});
+  //   }
 }

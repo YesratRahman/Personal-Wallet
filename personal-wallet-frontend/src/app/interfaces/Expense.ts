@@ -7,5 +7,6 @@ export interface Expense{
     description : string; 
     spentDate : Date; 
     category : string; 
+    userId? : number; 
     user? : User[]; 
 }

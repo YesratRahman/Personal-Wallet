@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
 import { User } from '../../interfaces/User';
 import { WalletService } from '../../service/wallet.service';
 
@@ -13,7 +14,7 @@ export class UserComponent implements OnInit {
   @Input()user : User;
 
   //users : User[]; 
-  constructor(private walletSer : WalletService) { 
+  constructor(private walletSer : WalletService, private loginService : LoginService) { 
   }
 
   ngOnInit(): void {
@@ -25,4 +26,8 @@ export class UserComponent implements OnInit {
   // deleteuser(userId){
   //   this.walletSer.deleteUser(userId).subscribe(res=>{this.users.splice(1,userId)});
   //   }
+
+  login() : void{
+    this.loginService.login(this.user);
+  }
 }

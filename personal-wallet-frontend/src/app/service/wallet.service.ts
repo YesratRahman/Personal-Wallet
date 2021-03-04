@@ -102,6 +102,18 @@ addExpense(toAdd : Expense) : Observable<Expense> {
   );
 }
 
+getAllExpenses() : Observable<Expense[]> {
+  return this.http.get<Expense[]>(this.baseURL + "/expenses", this.httpOptions)
+  .pipe(
+    tap(x => console.log(x)),
+    catchError(err => {
+      console.log(err);
+      let empty : Expense[] = [];
+      return of(empty);
+    })
+    );
+}
+
 
 
 }
