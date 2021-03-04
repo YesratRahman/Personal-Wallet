@@ -29,10 +29,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ExpenseComponent } from './expenseComp/expense/expense.component';
-import { AllExpenseComponent } from './expenseComp/all-expense/all-expense.component';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTableModule} from '@angular/material/table';
-
+import {MatTableModule} from '@angular/material/table'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,9 +39,8 @@ import {MatTableModule} from '@angular/material/table';
     EditUserComponent,
     AllUserComponent,
     AddExpenseComponent,
-    ExpenseComponent,
-    AllExpenseComponent
-      ],
+    ExpenseComponent
+        ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -66,7 +62,6 @@ import {MatTableModule} from '@angular/material/table';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatStepperModule,
     MatTableModule
 
 
