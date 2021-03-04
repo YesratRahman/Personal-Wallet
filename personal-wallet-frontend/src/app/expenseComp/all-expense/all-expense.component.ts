@@ -14,9 +14,12 @@ export class AllExpenseComponent implements OnInit {
   constructor(private service : WalletService, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    // if(this.loginService.currentUser.userId == this.service.getAllExpenses().user) {
+
+    
     if(this.loginService.getUser() == this.loginService.currentUser) {
 
-   
+   console.log(this.loginService.currentUser);
     this.service.getAllExpenses().subscribe(list => {
       this.expenses = list
     });

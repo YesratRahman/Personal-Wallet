@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
     // this.isSubmitted=true;
     // alert("User is Added");
       let toAdd : User =  {userName : this.userName};
-      console.log(toAdd); 
+      // console.log(toAdd); 
       this.service.addUser(toAdd).subscribe(_ => {
         this.router.navigate(['users'])
       }); 
