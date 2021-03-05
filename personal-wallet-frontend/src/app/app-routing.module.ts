@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "users", component: AllUserComponent }, 
   { path: "updateUser/:id", component: EditUserComponent },
   { path: "addExpense", component: AddExpenseComponent}, 
-  { path: "expenses", component: ExpenseComponent}, 
+  { path: "userExpense/:userId", component: ExpenseComponent}, 
   { path: "income", component: IncomeComponent}
 ];
 

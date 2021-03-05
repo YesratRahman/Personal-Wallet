@@ -62,6 +62,15 @@ public class ExpenseController {
         }
     }
 
+    @GetMapping("/expense/year/{userId}/{spentDate}")
+    public ResponseEntity getExpenseByYear( @PathVariable Integer userId, @PathVariable Integer spentDate){
+        try{
+            return ResponseEntity.ok(service.getExpenseByYear(userId, spentDate));
+        }catch(InvalidExpenseException | InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PutMapping("/updateExpense/{expenseId}")
     public ResponseEntity updateExpense(@PathVariable Integer expenseId, @RequestBody Expense expense){
         try {
@@ -81,26 +90,29 @@ public class ExpenseController {
         }
     }
 
-    @GetMapping("expense/report")
-    public ResponseEntity getExpenseReport(@RequestBody Expense expense){
+
+
+    @GetMapping("expenseReport/{userId}")
+    public ResponseEntity getExpenseReport(@PathVariable Integer userId){
         try {
-            return ResponseEntity.ok(service.getExpenseReport(expense));
+            return ResponseEntity.ok(service.getExpenseReport(userId));
         }
-        catch (InvalidUserIdException | InvalidExpenseException e){
+        catch (InvalidUserIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-//    @GetMapping("expenseReport/{userId}")
-//    public ResponseEntity getExpenseReport(@PathVariable Integer userId){
+
+
+    //    @GetMapping("expense/report")
+//    public ResponseEntity getExpenseReport(@RequestBody Expense expense){
 //        try {
-//            return ResponseEntity.ok(service.getExpenseReport(userId));
+//            return ResponseEntity.ok(service.getExpenseReport(expense));
 //        }
-//        catch (InvalidUserIdException e){
+//        catch (InvalidUserIdException | InvalidExpenseException e){
 //            return ResponseEntity.badRequest().body(e.getMessage());
 //        }
 //    }
-
 
     //    @GetMapping("/expense/amount/{expenseAmount}")
 //    public ResponseEntity getExpenseByAmount(@PathVariable Double expenseAmount) {

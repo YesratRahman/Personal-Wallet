@@ -37,7 +37,7 @@ export class WalletService {
   }
 
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.baseURL + "/user/" + "userId", this.httpOptions)
+    return this.http.get<User>(this.baseURL + "/user/" + "/userId" + userId, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
         catchError(err => {
@@ -58,6 +58,16 @@ export class WalletService {
       );
   }
 
+  getExpenseByUserId(userId : number): Observable<Expense[]> { 
+    return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+}
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseURL + "/users", this.httpOptions)
       .pipe(
@@ -117,6 +127,8 @@ export class WalletService {
       );
   }
 
+  
+
   deleteExpense(userId: number) {
     return this.http.delete(this.baseURL + "/deleteExpense/" + "expenseId", this.httpOptions)
       .pipe(
@@ -128,5 +140,6 @@ export class WalletService {
       );
   }
 
+  
 
 }

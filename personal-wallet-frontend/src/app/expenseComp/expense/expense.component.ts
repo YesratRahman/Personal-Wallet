@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/Expense';
 import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
@@ -23,16 +24,14 @@ export class ExpenseComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private walletSer: WalletService, private loginService : LoginService) {
-    if(this.loginService.getUser() == this.loginService.currentUser){
-      walletSer.getAllExpenses().subscribe(
+  constructor(private walletSer: WalletService, private userLogin : LoginService, private router : Router, private route : ActivatedRoute) {
+      walletSer.getExpenseByUserId(this.userLogin.currentUser.userId).subscribe(
         expenses => {
           this.dataSource = new MatTableDataSource(expenses);
           this.dataSource.sort = this.sort;
   
         
       });
-    }
     
 }
 

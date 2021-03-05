@@ -119,6 +119,24 @@ public class ExpensePostgresDao implements ExpenseDao {
         return expenses;
     }
 
+    @Override
+    public List<Expense> getExpenseByYear(Integer userId, Integer date) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
+        }
+        if (date == null) {
+            throw new InvalidExpenseException("Spent date can not be null");
+        }
+        List<Expense> expenses;
+        expenses = template.query(
+                "SELECT \"expenseId\", \"expenseAmount\", \"category\", \"description\", \n" +
+                        "\"spentDate\",\"userId\"\n" +
+                        "FROM \"Expenses\" \n" +
+                        "WHERE \"userId\" = ? AND EXTRACT(YEAR FROM \"Expenses\".\"spentDate\")  = ? ",
+                new ExpenseMapper(), userId, date);
+
+        return expenses;
+    }
 
 
 
@@ -168,23 +186,48 @@ public class ExpensePostgresDao implements ExpenseDao {
             return delete;
         }
 
+
+
+
     @Override
-    public int getExpenseReport(Expense expense) throws InvalidUserIdException, InvalidExpenseException {
+    public int getExpenseReport(Integer userId) throws InvalidUserIdException {
 
-        if(expense == null){
-            throw new InvalidExpenseException("Expense object can not be null!");
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
         }
-        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + expense.getUserId() + "'", new IntegerMapper("count"));
-
         int getTotalExpense;
-        if (userCount == 1) {
+
             getTotalExpense = template.queryForObject(
-                    "SELECT sum(\"expenseAmount\") as \"totalExpense\" FROM \"Expenses\" WHERE \"userId\" = '" + expense.getUserId() +"'",  new IntegerMapper("totalExpense"));
-        } else {
-            throw new InvalidUserIdException("The user you are trying to get the total expense, does not exist.");
-        }
+                    "SELECT sum(\"expenseAmount\") as \"totalExpense\" FROM \"Expenses\" WHERE \"userId\" = '" + userId +"'",  new IntegerMapper("totalExpense"));
+
         return getTotalExpense;
     }
+
+
+
+//    @Override
+//    public int getExpenseReport(Expense expense) throws InvalidUserIdException, InvalidExpenseException {
+//
+//        if(expense == null){
+//            throw new InvalidExpenseException("Expense object can not be null!");
+//        }
+//        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + expense.getUserId() + "'", new IntegerMapper("count"));
+//
+//        int getTotalExpense;
+//        if (userCount == 1) {
+//            getTotalExpense = template.queryForObject(
+//                    "SELECT sum(\"expenseAmount\") as \"totalExpense\" FROM \"Expenses\" WHERE \"userId\" = '" + expense.getUserId() +"'",  new IntegerMapper("totalExpense"));
+//        } else {
+//            throw new InvalidUserIdException("The user you are trying to get the total expense, does not exist.");
+//        }
+//        return getTotalExpense;
+//    }
+//
+
+
+
+
+
 }
 
 

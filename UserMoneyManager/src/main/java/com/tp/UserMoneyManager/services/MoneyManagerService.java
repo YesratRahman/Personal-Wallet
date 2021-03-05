@@ -149,6 +149,27 @@ public class MoneyManagerService {
 
     }
 
+
+    public List<Expense> getExpenseByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("UserId can not be null");
+        }
+        if(spentDate == null){
+            throw new InvalidExpenseException("Date can not be null");
+        }
+
+
+        int currentDate = LocalDate.now().getYear();
+        if(spentDate > currentDate) {
+            throw new InvalidExpenseException("Date can not be a future date");
+        }
+
+        return expenseDao.getExpenseByYear( userId, spentDate);
+
+    }
+
+
+
 //    public List<Expense> getExpenseByDate(LocalDate spentDate, Expense expense) throws InvalidExpenseException, InvalidUserIdException {
 //
 //        if(spentDate == null){
@@ -298,11 +319,18 @@ public class MoneyManagerService {
     }
 
 
-    public int getExpenseReport(Expense expense) throws InvalidUserIdException, InvalidExpenseException {
-        if(expense == null){
-            throw new InvalidExpenseException("Expense object can not be null!");
+//    public int getExpenseReport(Expense expense) throws InvalidUserIdException, InvalidExpenseException {
+//        if(expense == null){
+//            throw new InvalidExpenseException("Expense object can not be null!");
+//        }
+//        return expenseDao.getExpenseReport(expense);
+//    }
+
+    public int getExpenseReport(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null!");
         }
-        return expenseDao.getExpenseReport(expense);
+        return expenseDao.getExpenseReport(userId);
     }
 
     public int getIncomeReport(Income income) throws InvalidUserIdException, InvalidIncomeException {
