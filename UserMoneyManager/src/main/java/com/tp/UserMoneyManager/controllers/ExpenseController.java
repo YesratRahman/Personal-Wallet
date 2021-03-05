@@ -44,17 +44,25 @@ public class ExpenseController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @GetMapping("/expense/date/{spentDate}")
-    public ResponseEntity getExpenseByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate spentDate){
+    @GetMapping("/userExpense/{userId}")
+    public ResponseEntity getAllExpenseByUserId(@PathVariable Integer userId){
         try{
-            return ResponseEntity.ok(service.getExpenseByDate(spentDate));
-        }catch(InvalidExpenseException e){
+            return ResponseEntity.ok(service.getExpenseByUserId(userId));
+        }catch(InvalidExpenseException | InvalidUserIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @PutMapping("/update/expense/{expenseId}")
+    @GetMapping("/expense/date/{userId}/{spentDate}")
+    public ResponseEntity getExpenseByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate spentDate, @PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getExpenseByDate(spentDate, userId));
+        }catch(InvalidExpenseException | InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/updateExpense/{expenseId}")
     public ResponseEntity updateExpense(@PathVariable Integer expenseId, @RequestBody Expense expense){
         try {
             return ResponseEntity.ok(service.updateExpense(expenseId, expense));
@@ -82,6 +90,16 @@ public class ExpenseController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("expenseReport/{userId}")
+//    public ResponseEntity getExpenseReport(@PathVariable Integer userId){
+//        try {
+//            return ResponseEntity.ok(service.getExpenseReport(userId));
+//        }
+//        catch (InvalidUserIdException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
 
     //    @GetMapping("/expense/amount/{expenseAmount}")

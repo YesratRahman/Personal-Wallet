@@ -15,10 +15,13 @@ public interface ExpenseDao {
     List<Expense> getAllExpenses();
 
     Expense getAllExpenseById(Integer expenseId) throws InvalidExpenseIdException;
+    List<Expense> getExpenseByUserId(Integer userId) throws InvalidUserIdException, InvalidExpenseException;
 
     //List<Expense> getExpenseByAmount();
 
-    List<Expense> getExpenseByDate(LocalDate date) throws InvalidExpenseException;
+    List<Expense> getExpenseByDate(LocalDate date, Integer userId) throws InvalidExpenseException, InvalidUserIdException;
+
+//        List<Expense> getExpenseByDate(LocalDate date, Expense expense) throws InvalidExpenseException, InvalidUserIdException;
 
     int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException;
 

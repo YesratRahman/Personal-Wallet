@@ -123,21 +123,46 @@ public class MoneyManagerService {
         return expenseDao.getAllExpenseById(expenseId);
     }
 
+    public List<Expense> getExpenseByUserId(Integer userId) throws InvalidUserIdException, InvalidExpenseException {
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null");
+        }
+        return expenseDao.getExpenseByUserId(userId);
 
-    public List<Expense> getExpenseByDate(LocalDate spentDate) throws InvalidExpenseException {
+    }
 
+    public List<Expense> getExpenseByDate(LocalDate spentDate, Integer userId) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("UserId can not be null");
+        }
         if(spentDate == null){
             throw new InvalidExpenseException("Date can not be null");
         }
+
 
         int currentDate = LocalDate.now().getYear();
         if(spentDate.getYear() > currentDate) {
             throw new InvalidExpenseException("Date can not be a future date");
         }
 
-        return expenseDao.getExpenseByDate(spentDate);
+        return expenseDao.getExpenseByDate(spentDate, userId);
 
     }
+
+//    public List<Expense> getExpenseByDate(LocalDate spentDate, Expense expense) throws InvalidExpenseException, InvalidUserIdException {
+//
+//        if(spentDate == null){
+//            throw new InvalidExpenseException("Date can not be null");
+//        }
+//
+//        int currentDate = LocalDate.now().getYear();
+//        if(spentDate.getYear() > currentDate) {
+//            throw new InvalidExpenseException("Date can not be a future date");
+//        }
+//
+//        return expenseDao.getExpenseByDate(spentDate, expense);
+//
+//    }
 
     public int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
         if(expenseId == null){

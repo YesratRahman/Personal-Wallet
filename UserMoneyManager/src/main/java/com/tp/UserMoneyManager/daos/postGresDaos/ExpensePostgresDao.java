@@ -3,10 +3,12 @@ package com.tp.UserMoneyManager.daos.postGresDaos;
 import com.tp.UserMoneyManager.daos.Interfaces.ExpenseDao;
 import com.tp.UserMoneyManager.daos.mappers.ExpenseMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
+import com.tp.UserMoneyManager.daos.mappers.UserMapper;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
 import com.tp.UserMoneyManager.models.Expense;
+import com.tp.UserMoneyManager.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -84,28 +86,41 @@ public class ExpensePostgresDao implements ExpenseDao {
         return getExpense;
     }
 
+    @Override
+    public List<Expense> getExpenseByUserId(Integer userId) throws InvalidUserIdException, InvalidExpenseException {
+    if(userId == null){
+        throw new InvalidUserIdException("User id can not be null");
+    }
+
+        List<Expense> expenses;
+            expenses = template.query(
+                    "select \"expenseId\", \"expenseAmount\", \"category\", \"description\", \"spentDate\"," +
+                            "\"userId\" from \"Expenses\" where \"userId\" = ?\n",
+                    new ExpenseMapper(), userId);
+        return expenses;
+    }
+
 
     @Override
-    public List<Expense> getExpenseByDate(LocalDate date) throws InvalidExpenseException {
-
+    public List<Expense> getExpenseByDate(LocalDate date, Integer userId) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
+        }
         if (date == null) {
             throw new InvalidExpenseException("Spent date can not be null");
         }
-
-        int dateCount = template.queryForObject("select count(*) from \"Expenses\" Where \"spentDate\" = '" + date + "'", new IntegerMapper("count"));
-
         List<Expense> expenses;
-        if (dateCount == 1) {
             expenses = template.query(
-                    "select \"expenseId\", \"expenseAmount\", \"description\", \"category\", \"spentDate\" , \"userId\"" +
-                            "from \"Expenses\" " +
-                            "where \"spentDate\" = ?;\n",
-                    new ExpenseMapper(), date);
-        } else {
-            throw new InvalidExpenseException("No expense is found for this date");
-        }
+                    "select \"expenseId\", \"expenseAmount\", \"category\", \"description\", \n" +
+                            "\"spentDate\",\"userId\" from \"Expenses\" " +
+                            "where \"userId\" = ? AND \"spentDate\" = ? ",
+                    new ExpenseMapper(), userId, date);
+
         return expenses;
     }
+
+
+
 
     @Override
     public int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
