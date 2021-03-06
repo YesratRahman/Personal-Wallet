@@ -1,5 +1,11 @@
-<p>{{user.userName}}
-    <!-- <button [routerLink]="['/editUser',user.userId]">Edit User</button> -->
-</p>
+<mat-card>
+    <mat-card-title>
+        <mat-card-content>
+            User Name : {{user.userName}} </mat-card-content>
+    </mat-card-title>
 
-<button (click)="login()">Login</button>
+    <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button>
+    <button class="but" mat-raised-button (click)="login()">Login</button>
+
+</mat-card>
+<br />

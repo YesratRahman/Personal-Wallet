@@ -1,13 +1,11 @@
 .sty{
-    background-color: rgb(218, 240, 231);
+    background-color: rgb(171, 241, 212);
         max-width: 400px;
+        height : 250px; 
+        width: 350px;
+
       
 }
-.mat-card-header .mat-card-title{
-    text-align: center;
-
-}
-
 .main-div{
     background-color: rgb(222, 241, 235);
     height: 100vh;
@@ -15,10 +13,6 @@
     justify-content: center;
     align-items: center;
   }
-  h1{
-      text-align: center;
-  }
-
-
+  
 
   

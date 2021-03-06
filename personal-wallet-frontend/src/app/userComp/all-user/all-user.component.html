@@ -1,5 +1,18 @@
-<app-user *ngFor="let user of users" [user]="user"></app-user>
+<!-- <app-user *ngFor="let user of users" [user]="user"></app-user> -->
 <!-- <div>
     {{currentUser.userName}}
     <button (click)="getUser()">User</button>
 </div>  -->
+
+<div class="main-div">
+    <mat-card class="sty">
+      <mat-card-title> Login Here</mat-card-title>
+    
+      <mat-card-content>
+        <app-user *ngFor="let user of users" [user]="user"></app-user>
+    </mat-card-content>
+    </mat-card>
+    
+     </div>
+    
+    

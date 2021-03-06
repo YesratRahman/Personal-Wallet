@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
+import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class EditUserComponent implements OnInit {
   userName : string; 
 
 
-  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
+  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute, loginService : LoginService) { }
 
   ngOnInit(): void {
     this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
