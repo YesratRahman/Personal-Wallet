@@ -30,7 +30,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { ExpenseComponent } from './expenseComp/expense/expense.component';
 import {MatTableModule} from '@angular/material/table';
-import { ContactComponent } from './contact/contact.component'
+import { ContactComponent } from './contact/contact.component';
+import { NavComponent } from './nav/nav.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ContactComponent } from './contact/contact.component'
     AllUserComponent,
     AddExpenseComponent,
     ExpenseComponent,
-    ContactComponent
+    ContactComponent,
+    NavComponent
         ],
   imports: [
     BrowserModule,

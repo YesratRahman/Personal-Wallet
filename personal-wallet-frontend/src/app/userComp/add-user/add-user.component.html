@@ -3,28 +3,30 @@
 <p>{{userName}}</p>
  -->
 
-<div class="mat-card">
-  <div class="mat-card-content">
-    <div>
-      <h2>Add User</h2>
-      <div class="form-group">
-        <label for="userName" class="col-md-4"> Enter Your Name  </label>
-        <input type="text" class="form-control" placeholder="First name, Last name" [(ngModel)]="userName" />
-      </div>
+ <div class="main-div">
+<mat-card class="sty">
+  <mat-card-title> Registration Form </mat-card-title>
 
-
-
-      <br/> 
-      <br/> 
-      <div class="form-group">
-        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
-      </div>
-
+    <h3> Enter Name </h3>
+  <mat-card-content>
+    <div class="form-group" [class.has-error]="userNameControl.invalid && userNameControl.touched"
+      [class.has-success]="userNameControl.valid">
+      <!-- <label for="userName" class="col-md-4" class="control-label"> Enter Name </label> -->
+      <input required id="userName" name="userName" type="text" class="form-control" placeholder="First name, Last name"
+        [(ngModel)]="userName" #userNameControl="ngModel" />
+      <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched"> Name is required</span>
     </div>
-  </div>
-</div>
+  </mat-card-content>
+  <mat-card-actions> 
+    <div class="form-group">
+    <button mat-raised-button color="primary" (click)="onSubmit()"
+      [disabled]="userNameControl.invalid">Submit</button>
+ 
+    </div>
+  </mat-card-actions>
+</mat-card>
 
-
+ </div>
 
 
 <!-- <div *ngIf="userForm.controls['userName'].invalid "  class="alert-danger">
