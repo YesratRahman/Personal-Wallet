@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
 
   @Input()user : User;
 
+  //users : User[]; 
   constructor(private walletSer : WalletService, private loginService : LoginService) { 
   }
 

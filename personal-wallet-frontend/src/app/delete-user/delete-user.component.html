@@ -1,1 +1,11 @@
-<button class="but" mat-raised-button (click)="deleteUser(userId)">Submit</button>
+<div class="main-div">
+    <mat-card class="sty">
+        <br/>
+        <br/>
+        <mat-card-title>Delete User Profile </mat-card-title>
+        <mat-card-actions>
+            <button class="but" mat-raised-button (click)="deleteUser(userId)">Delete Profile</button>
+            <button class="but" mat-raised-button routerLink='/users'>Cancel Deleting</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
