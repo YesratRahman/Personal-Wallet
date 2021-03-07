@@ -24,7 +24,10 @@ export class ExpenseComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private walletSer: WalletService, private userLogin : LoginService, private router : Router, private route : ActivatedRoute) {
+  constructor(private walletSer: WalletService, private userLogin : LoginService, 
+    private router : Router, private route : ActivatedRoute)
+     {
+
       walletSer.getExpenseByUserId(this.userLogin.currentUser.userId).subscribe(
         expenses => {
           this.dataSource = new MatTableDataSource(expenses);

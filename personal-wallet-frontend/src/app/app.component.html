@@ -31,9 +31,18 @@
                         </button>
                         <button mat-button routerLink='/addUser'>Register</button>
                         <button mat-button routerLink='/users'>Login</button>
-                        <!-- <button mat-button routerLink='/income'>Add Income</button>
-                        <button mat-button routerLink='/addExpense'>Add Expense</button>
-                        <button mat-button routerLink='/userExpense/:userId'> Expenses</button> -->
+                        <button mat-button routerLink='/addExpense'>Expense</button>
+                        <button mat-button routerLink='/income'>Income</button>
+                        <!-- <button mat-button routerLink='/userExpense/:userId'> Expenses</button> -->
+                        <button mat-button [matMenuTriggerFor]="menu">Wallet</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-button routerLink='/expense'> Expenses</button>
+
+                            <!-- <button mat-button routerLink='/addExpense'>Expense</button> -->
+                            <button mat-button routerLink='/income'>Income</button>
+
+                        </mat-menu>
+
 
                         <button mat-button [matMenuTriggerFor]="menu">Contact</button>
                         <mat-menu #menu="matMenu">
@@ -61,7 +70,12 @@
                         <!-- <button mat-button routerLink='/income'>Add Income</button>
                             <button mat-button routerLink='/addExpense'>Add Expense</button>
                             <button mat-button routerLink='/expenses'> Expenses</button> -->
+                        <button mat-button [matMenuTriggerFor]="menu">Wallet</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-button routerLink='/addExpense'>Expense</button>
+                            <button mat-button routerLink='/income'>Income</button>
 
+                        </mat-menu>
                         <button mat-button [matMenuTriggerFor]="menu">Contact</button>
 
                         <mat-menu #menu="matMenu">

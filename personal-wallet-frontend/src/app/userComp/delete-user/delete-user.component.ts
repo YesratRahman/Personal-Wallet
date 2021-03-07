@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../interfaces/User';
-import { WalletService } from '../service/wallet.service';
+import { User } from '../../interfaces/User';
+import { WalletService } from '../../service/wallet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

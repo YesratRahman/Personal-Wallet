@@ -59,8 +59,8 @@ export class WalletService {
 
 
   getExpenseByUserId(userId : number): Observable<Expense[]> { 
-   // return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
-   return this.http.get<Expense[]>(this.baseURL + "/userExpense/" + userId , this.httpOptions)
+   return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+  //  return this.http.get<Expense[]>(this.baseURL + "/userExpense/" + userId , this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
