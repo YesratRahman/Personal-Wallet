@@ -6,7 +6,6 @@ import { User } from '../interfaces/User';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Expense } from '../interfaces/Expense';
-import { ExpenseComponent } from '../expenseComp/expense/expense.component';
 
 
 @Injectable({
@@ -37,7 +36,7 @@ export class WalletService {
   }
 
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.baseURL + "/user/" + "/userId" + userId, this.httpOptions)
+    return this.http.get<User>(this.baseURL + "/user/" + userId, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
         catchError(err => {
@@ -58,8 +57,10 @@ export class WalletService {
       );
   }
 
+
   getExpenseByUserId(userId : number): Observable<Expense[]> { 
-    return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+   // return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+   return this.http.get<Expense[]>(this.baseURL + "/userExpense/" + userId , this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
@@ -80,6 +81,16 @@ export class WalletService {
       );
   }
 
+  deleteUser(userId: number) : Observable<User>{
+    return this.http.delete<User>(this.baseURL + "/deleteUser/" + userId, this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          return of(null);
+        })
+      );
+  }
 
   getUserByUserName(userName: string): Observable<User> {
     return this.http.get<User>(this.baseURL + "/user/" + "userName", this.httpOptions)
@@ -92,17 +103,7 @@ export class WalletService {
       );
   }
 
-  deleteUser(userId: number) {
-    return this.http.delete(this.baseURL + "/deleteUser/" + "userId", this.httpOptions)
-      .pipe(
-        tap(x => console.log(x)),
-        catchError(err => {
-          console.log(err);
-          return of(null);
-        })
-      );
-  }
-
+  
   addExpense(toAdd: Expense): Observable<Expense> {
     console.log(toAdd);
     return this.http.post<Expense>(this.baseURL + "/addExpense", toAdd, this.httpOptions)
@@ -141,5 +142,6 @@ export class WalletService {
   }
 
   
+
 
 }

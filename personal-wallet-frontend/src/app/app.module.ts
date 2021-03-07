@@ -31,7 +31,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ExpenseComponent } from './expenseComp/expense/expense.component';
 import {MatTableModule} from '@angular/material/table';
 import { ContactComponent } from './contact/contact.component';
-import { NavComponent } from './nav/nav.component'
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +43,8 @@ import { NavComponent } from './nav/nav.component'
     AddExpenseComponent,
     ExpenseComponent,
     ContactComponent,
-    NavComponent
-        ],
+    DeleteUserComponent
+          ],
   imports: [
     BrowserModule,
     AppRoutingModule,

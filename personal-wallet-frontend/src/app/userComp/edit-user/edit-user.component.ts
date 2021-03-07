@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
-import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
@@ -16,13 +15,11 @@ export class EditUserComponent implements OnInit {
   userName : string; 
 
 
-  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute, loginService : LoginService) { }
+  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
-    this.service.getUserById(this.userId).subscribe(newD => {
-      this.userName = newD.userName; 
-    });
+    this.service.getUserById(this.userId).subscribe(); 
   }
 
   
@@ -34,3 +31,11 @@ export class EditUserComponent implements OnInit {
   }
 
 }
+
+
+// ngOnInit(): void {
+//   this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
+//   this.service.getUserById(this.userId).subscribe(newD => {
+//     this.userName = newD.userName; 
+//   });
+// }

@@ -13,7 +13,6 @@ export class UserComponent implements OnInit {
 
   @Input()user : User;
 
-  //users : User[]; 
   constructor(private walletSer : WalletService, private loginService : LoginService) { 
   }
 
@@ -28,6 +27,7 @@ export class UserComponent implements OnInit {
   //   }
 
   login() : void{
-    this.loginService.login(this.user);
+    this.loginService.login(this.user); 
+    alert("Logged In As: " + this.user.userName);
   }
 }
