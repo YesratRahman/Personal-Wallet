@@ -1,14 +1,3 @@
-<!-- <app-nav></app-nav> -->
-
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-    <a hred="#" class="navbar-brand text-light">{{title}} Personal Wallet </a> 
-    <div class="container-fluid pt-3"> 
-        <router-outlet></router-outlet>
-    </div>
-
- -->
-
 <div>
     <header>
         <div>
@@ -31,20 +20,16 @@
                         </button>
                         <button mat-button routerLink='/addUser'>Register</button>
                         <button mat-button routerLink='/users'>Login</button>
-                        <button mat-button routerLink='/addExpense'>Expense</button>
-                        <button mat-button routerLink='/income'>Income</button>
-                        <!-- <button mat-button routerLink='/userExpense/:userId'> Expenses</button> -->
-                        <button mat-button [matMenuTriggerFor]="menu">Wallet</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-button routerLink='/expense'> Expenses</button>
 
-                            <!-- <button mat-button routerLink='/addExpense'>Expense</button> -->
+                        <button mat-button [matMenuTriggerFor]="menu1">Wallet</button>
+                        <mat-menu #menu1="matMenu">
+                            <button mat-button routerLink='/expense'> Expense</button>
                             <button mat-button routerLink='/income'>Income</button>
-
                         </mat-menu>
 
+                        <button mat-button routerLink='/contact'>Contact</button>
 
-                        <button mat-button [matMenuTriggerFor]="menu">Contact</button>
+                        <!-- <button mat-button [matMenuTriggerFor]="menu">Contact</button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="onClickLinked()">LinkedIn</button>
                             <button mat-menu-item (click)="onClickedGit()">Github</button>
@@ -54,7 +39,7 @@
                                 </address>
                             </button>
 
-                        </mat-menu>
+                        </mat-menu> -->
                     </div>
 
                 </mat-toolbar>
@@ -67,27 +52,24 @@
                         <button mat-button routerLink='/'>Home</button>
                         <button mat-button routerLink='/addUser'>Register</button>
                         <button mat-button routerLink='/users'>Login</button>
-                        <!-- <button mat-button routerLink='/income'>Add Income</button>
-                            <button mat-button routerLink='/addExpense'>Add Expense</button>
-                            <button mat-button routerLink='/expenses'> Expenses</button> -->
-                        <button mat-button [matMenuTriggerFor]="menu">Wallet</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-button routerLink='/addExpense'>Expense</button>
+
+                        <button mat-button [matMenuTriggerFor]="menu1">Wallet</button>
+                        <mat-menu #menu1="matMenu">
+                            <button mat-button routerLink='/expense'> Expense</button>
                             <button mat-button routerLink='/income'>Income</button>
-
                         </mat-menu>
-                        <button mat-button [matMenuTriggerFor]="menu">Contact</button>
+                        <button mat-button routerLink='/contact'>Contact</button>
 
+                        <!-- <button mat-button [matMenuTriggerFor]="menu">Contact</button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="onClickLinked()">LinkedIn</button>
                             <button mat-menu-item (click)="onClickedGit()">Github</button>
                             <button mat-menu-item>
-                                    <address>
-                                        <a href="mailto:yrahman@talentpath.com">Email</a><br>
-                                    </address>
-                                </button>
-
-                        </mat-menu>
+                                <address>
+                                    <a href="mailto:yrahman@talentpath.com">Email</a><br>
+                                </address>
+                            </button>
+                        </mat-menu> -->
                     </div>
                 </mat-sidenav>
                 <mat-sidenav-content fxFlexFill>
@@ -100,3 +82,15 @@
 
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+
+
+
+<!-- <button mat-button routerLink='/addExpense'>Expense</button> -->
+<!-- <button mat-button routerLink='/addExpense'>Expense</button>
+                        <button mat-button routerLink='/income'>Income</button> -->
+<!-- <button mat-button routerLink='/userExpense/:userId'> Expenses</button> -->
+
+<!-- <button mat-button routerLink='/income'>Add Income</button>
+                            <button mat-button routerLink='/addExpense'>Add Expense</button>
+                            <button mat-button routerLink='/expenses'> Expenses</button> -->

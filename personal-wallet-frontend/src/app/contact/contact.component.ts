@@ -11,5 +11,20 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onClickLinked()
+  {
+    window.open("https://www.linkedin.com/in/yesrat-rahman-84743717a/");
+  
+  }
+  
+  onClickedGit()
+  {
+    window.open("https://github.com/YesratRahman");
+  
+  }
+  onClickedGitLab()
+  {
+    window.open("https://gitlab.com/yr2818");
+  
+  }
 }
