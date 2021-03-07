@@ -1,31 +1,18 @@
-<!-- <input type="text" [(ngModel)]="userName">
-<button (click)="addUser()">Add</button>
-<p>{{userName}}</p>
- -->
+<div class="main-div">
+    <mat-card class="sty">
+        <mat-card-title style="font-size: 25px;"> Registration Form </mat-card-title>
+        <h2> Enter Name </h2>
+        <mat-card-content>
+            <div [class.has-error]="userNameControl.invalid && userNameControl.touched" [class.has-success]="userNameControl.valid">
+                <input required id="userName" name="userName" type="text" class="form-control" placeholder="First name, Last name" [(ngModel)]="userName" #userNameControl="ngModel" />
+                <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched"> Name is required</span>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="form-group">
+                <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="userNameControl.invalid">Submit</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
 
- <div class="main-div">
-<mat-card class="sty">
-  <mat-card-title> Registration Form </mat-card-title>
-
-    <h3> Enter Name </h3>
-  <mat-card-content>
-    <div class="form-group" [class.has-error]="userNameControl.invalid && userNameControl.touched"
-      [class.has-success]="userNameControl.valid">
-      <!-- <label for="userName" class="col-md-4" class="control-label"> Enter Name </label> -->
-      <input required id="userName" name="userName" type="text" class="form-control" placeholder="First name, Last name"
-        [(ngModel)]="userName" #userNameControl="ngModel" />
-      <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched"> Name is required</span>
-    </div>
-  </mat-card-content>
-  <mat-card-actions> 
-    <div class="form-group">
-    <button mat-raised-button color="primary" (click)="onSubmit()"
-      [disabled]="userNameControl.invalid">Submit</button>
- 
-    </div>
-  </mat-card-actions>
-</mat-card>
-
- </div>
-
-
+</div>

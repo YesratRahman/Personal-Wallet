@@ -3,9 +3,10 @@
         <mat-card-content>
             User Name : {{user.userName}} </mat-card-content>
     </mat-card-title>
+    <mat-card-actions>
 
-    <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button>
-    <button class="but" mat-raised-button (click)="login()">Login</button>
-
+        <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button>
+        <button class="but" mat-raised-button (click)="login()">Login</button>
+    </mat-card-actions>
 </mat-card>
 <br />
