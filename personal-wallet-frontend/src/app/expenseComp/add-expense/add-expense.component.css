@@ -1,3 +1,18 @@
 mat-form-field {
     margin-right: 12px;
-  }
+}
+
+.main-div {
+    background-color: rgb(222, 241, 235);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sty {
+    background-color: rgb(171, 241, 212);
+    max-width: 400px;
+    height: 250px;
+    width: 350px;
+}
