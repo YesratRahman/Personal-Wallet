@@ -5,11 +5,12 @@ import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
-  selector: 'app-wallet-expense',
-  templateUrl: './user-expense.component.html',
-  styleUrls: ['./user-expense.component.css']
+  selector: 'app-expense-dashboard',
+  templateUrl: './expense-dashboard.component.html',
+  styleUrls: ['./expense-dashboard.component.css']
 })
-export class UserWalletComponent implements OnInit {
+export class ExpenseDashboardComponent implements OnInit {
+
   currentUser: User;
 
   constructor(private walletSer: WalletService, private router: Router, private route: ActivatedRoute,

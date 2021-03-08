@@ -32,7 +32,11 @@ import { ExpenseComponent } from './expenseComp/expense/expense.component';
 import {MatTableModule} from '@angular/material/table';
 import { ContactComponent } from './contact/contact.component';
 import { DeleteUserComponent } from './userComp/delete-user/delete-user.component';
-import { UserWalletComponent } from './expenseComp/user-wallet/user-wallet.component';
+import { UserExpenseComponent } from './expenseComp/user-expense/user-expense.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
+
+import {MatPaginatorModule } from '@angular/material/paginator'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,9 @@ import { UserWalletComponent } from './expenseComp/user-wallet/user-wallet.compo
     ExpenseComponent,
     ContactComponent,
     DeleteUserComponent,
-    UserWalletComponent
+    UserExpenseComponent,
+    WalletComponent,
+    ExpenseDashboardComponent
           ],
   imports: [
     BrowserModule,
@@ -68,7 +74,8 @@ import { UserWalletComponent } from './expenseComp/user-wallet/user-wallet.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
 
 
   ],

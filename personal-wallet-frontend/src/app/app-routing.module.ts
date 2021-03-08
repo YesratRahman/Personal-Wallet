@@ -9,8 +9,10 @@ import { AllUserComponent } from './userComp/all-user/all-user.component';
 import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
 import { ExpenseComponent } from './expenseComp/expense/expense.component';
 import { DeleteUserComponent } from './userComp/delete-user/delete-user.component';
-import { UserWalletComponent } from './expenseComp/user-wallet/user-wallet.component';
+// import { UserExpenseComponent } from './expenseComp/user-expense/user-expense.component';
 import { ContactComponent } from './contact/contact.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,8 +24,10 @@ const routes: Routes = [
   { path: "userExpense/:userId", component: ExpenseComponent}, 
   { path: "income", component: IncomeComponent},
   { path: "deleteUser/:id", component: DeleteUserComponent }, 
-  { path: "expense", component: UserWalletComponent},
-  { path : "contact", component : ContactComponent}
+  // { path: "expense", component: UserExpenseComponent},
+  { path : "contact", component : ContactComponent}, 
+  { path : "wallet" , component: WalletComponent}, 
+  { path : "expenseDashboard", component: ExpenseDashboardComponent}
 ];
 
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,16 +12,19 @@ import { WalletService } from 'src/app/service/wallet.service';
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.css']
 })
-export class ExpenseComponent implements OnInit {
+export class ExpenseComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-  @Input() expense: Expense;
-  expenses: Expense[] = [];
+  // @Input() expense: Expense;
+  @Input() expense: Expense[] = [];
 
-  displayedColumns: string[] = ['expenseId', 'expenseAmount', 'category', 'description', 'spentDate'];
+  displayedColumns: string[] = ['category', 'expenseAmount', 'description', 'spentDate'];
   dataSource: MatTableDataSource<Expense>;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild('sorter', {static: true}) sort: MatSort;
+
+
 
 
   constructor(private walletSer: WalletService, private userLogin : LoginService, 
@@ -37,13 +40,32 @@ export class ExpenseComponent implements OnInit {
       });
     
 }
+ngAfterViewInit() {
+  this.dataSource.sort = this.sort;
+
+}
+
+ngOnChanges(changes: any) {
+  if (!changes.data.firstChange) {
+    this.dataSource = new MatTableDataSource<Expense>(this.expense);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+}
 
 ngOnInit(): void {
+  this.dataSource = new MatTableDataSource<Expense>(this.expense);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
 }
 
   applyFilter(event: Event) {
     const fiter = (event.target as HTMLInputElement).value; 
     this.dataSource.filter = fiter.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
@@ -55,6 +77,12 @@ ngOnInit(): void {
         this.dataSource._updateChangeSubscription(); 
       }
     ); 
+    }
+    getTotalCost() {
+      
+
+      return this.expense.map(t => t.expenseAmount).reduce((acc, value) => acc + value, 0);
+
     }
 }
 

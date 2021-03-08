@@ -1,18 +1,26 @@
-mat-form-field {
-    margin-right: 12px;
+#enter-expense .row {
+    padding: 20px 0 20px 0;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }
 
 .main-div {
+    padding: 16px;
     background-color: rgb(222, 241, 235);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.sty {
-    background-color: rgb(171, 241, 212);
-    max-width: 400px;
-    height: 250px;
-    width: 350px;
 }

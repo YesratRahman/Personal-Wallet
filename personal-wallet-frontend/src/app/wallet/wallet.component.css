@@ -1,0 +1,28 @@
+.sty {
+    background-color: rgb(171, 241, 212);
+    max-width: 400px;
+    height: 250px;
+    width: 350px;
+}
+
+.main-div {
+    background-color: rgb(222, 241, 235);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account {
+    font-size: 80px;
+}
+
+.info-content {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.mat-icon {
+    width: inherit;
+    color: rgb(52, 62, 201);
+}

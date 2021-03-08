@@ -21,6 +21,6 @@ export class UserComponent implements OnInit {
   
   login() : void{
     this.loginService.login(this.user); 
-    alert("Logged In As: " + this.user.userName);
+    // alert("Logged In As: " + this.user.userName);
   }
 }
