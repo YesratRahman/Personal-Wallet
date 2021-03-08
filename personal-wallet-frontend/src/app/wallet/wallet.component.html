@@ -15,9 +15,17 @@
         <mat-icon class="account">account_circle</mat-icon>
         <div class="justify-content-center">
             <span class="info-content">{{currentUser.userName}}</span>
+            <!-- <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button>
+            <button class="but" mat-raised-button [routerLink]="['/deleteUser/',user.userId]">Delete User</button> -->
         </div>
+
+
     </mat-card-content>
     <mat-card-actions>
+        <button class="but" mat-raised-button [routerLink]="['/users']">Logout</button>
+        <button class="but" mat-raised-button [routerLink]="['/deleteUser/',currentUser.userId]">Delete User</button>
+
+
     </mat-card-actions>
 </mat-card>
 

@@ -36,7 +36,9 @@ import { UserExpenseComponent } from './expenseComp/user-expense/user-expense.co
 import { WalletComponent } from './wallet/wallet.component';
 import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
 
-import {MatPaginatorModule } from '@angular/material/paginator'
+import {MatPaginatorModule } from '@angular/material/paginator';
+import { AddIncomeComponent } from './add-income/add-income.component';
+import { IncomeDashboardComponent } from './income-dashboard/income-dashboard.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import {MatPaginatorModule } from '@angular/material/paginator'
     DeleteUserComponent,
     UserExpenseComponent,
     WalletComponent,
-    ExpenseDashboardComponent
+    ExpenseDashboardComponent,
+    AddIncomeComponent,
+    IncomeDashboardComponent
           ],
   imports: [
     BrowserModule,

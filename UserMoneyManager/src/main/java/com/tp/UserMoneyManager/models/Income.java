@@ -10,7 +10,7 @@ public class Income {
     Double incomeAmount;
     String description;
     LocalDate earnedDate;
-    List<User> user;
+//    List<User> user;
     String category;
 
 
@@ -28,17 +28,17 @@ public class Income {
         this.category = category;
     }
 
-    public Income(Income that){
-        this.incomeId = incomeId;
-        this.incomeAmount = incomeAmount;
-        this.description = description;
-        this.earnedDate = earnedDate;
-        this.category = that.category;;
-        this.user =new ArrayList<>();
-        for(User toCopy : that.user){
-            this.user.add(toCopy);
-        }
-    }
+//    public Income(Income that){
+//        this.incomeId = incomeId;
+//        this.incomeAmount = incomeAmount;
+//        this.description = description;
+//        this.earnedDate = earnedDate;
+//        this.category = that.category;;
+//        this.user =new ArrayList<>();
+//        for(User toCopy : that.user){
+//            this.user.add(toCopy);
+//        }
+//    }
 
     public String getCategory() {
         return category;
@@ -48,13 +48,13 @@ public class Income {
         this.category = category;
     }
 
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
+//    public List<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(List<User> user) {
+//        this.user = user;
+//    }
 
     public LocalDate getEarnedDate() {
         return earnedDate;

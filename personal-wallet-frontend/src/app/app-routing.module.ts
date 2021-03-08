@@ -13,6 +13,8 @@ import { DeleteUserComponent } from './userComp/delete-user/delete-user.componen
 import { ContactComponent } from './contact/contact.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
+import { AddIncomeComponent } from './add-income/add-income.component';
+import { IncomeDashboardComponent } from './income-dashboard/income-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -20,14 +22,21 @@ const routes: Routes = [
   { path: "addUser", component: AddUserComponent },
   { path: "users", component: AllUserComponent }, 
   { path: "updateUser/:id", component: EditUserComponent },
+  { path: "deleteUser/:id", component: DeleteUserComponent }, 
+
   { path: "addExpense", component: AddExpenseComponent}, 
   { path: "userExpense/:userId", component: ExpenseComponent}, 
-  { path: "income", component: IncomeComponent},
-  { path: "deleteUser/:id", component: DeleteUserComponent }, 
   // { path: "expense", component: UserExpenseComponent},
   { path : "contact", component : ContactComponent}, 
   { path : "wallet" , component: WalletComponent}, 
-  { path : "expenseDashboard", component: ExpenseDashboardComponent}
+  { path : "expenseDashboard", component: ExpenseDashboardComponent},
+
+  { path: "income", component: IncomeComponent},
+  { path : "addIncome", component: AddIncomeComponent}, 
+  { path : "incomeDashboard", component: IncomeDashboardComponent},
+  { path: "userIncome/:userId", component: IncomeComponent}, 
+
+
 ];
 
 

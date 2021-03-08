@@ -1,5 +1,6 @@
 package com.tp.UserMoneyManager.controllers;
 
+import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
@@ -21,7 +22,7 @@ public class IncomeController {
     @Autowired
     MoneyManagerService service;
 
-    @PostMapping("/income")
+    @PostMapping("/addIncome")
     public ResponseEntity addIncome(@RequestBody Income toAdd) {
         Income completed = null;
         try{
@@ -57,16 +58,34 @@ public class IncomeController {
 //        }
 //    }
 
-    @GetMapping("/income/date/{earnedDate}")
-    public ResponseEntity getIncomeByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate earnedDate) {
-            try{
-            return ResponseEntity.ok(service.getIncomeByDate(earnedDate));
-        }catch(InvalidIncomeException e){
+    @GetMapping("/userIncome/{userId}")
+    public ResponseEntity getAllIncomeByUserId(@PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getAllIncomeByUserId(userId));
+        }catch(InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping("/income/date/{userId}/{earnedDate}")
+    public ResponseEntity getIncomeByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate earnedDate, @PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getIncomeByDate(earnedDate, userId));
+        }catch(InvalidIncomeException | InvalidUserIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @PutMapping("/update/income/{incomeId}")
+
+    @GetMapping("/income/year/{userId}/{earnedDate}")
+    public ResponseEntity getIncomeByYear( @PathVariable Integer userId, @PathVariable Integer earnedDate){
+        try{
+            return ResponseEntity.ok(service.getIncomeByYear(userId, earnedDate));
+        }catch(InvalidIncomeException | InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/updateIncome/{incomeId}")
     public ResponseEntity updateIncome(@PathVariable Integer incomeId, @RequestBody Income income){
         try {
             return ResponseEntity.ok(service.updateIncome(incomeId, income));
@@ -75,7 +94,7 @@ public class IncomeController {
         }
     }
 
-    @DeleteMapping("/delete/income/{incomeId}")
+    @DeleteMapping("/deleteIncome/{incomeId}")
     public String deleteIncome(@PathVariable Integer incomeId){
         try{
             service.deleteIncome(incomeId);

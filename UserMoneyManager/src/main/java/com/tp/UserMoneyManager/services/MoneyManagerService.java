@@ -272,7 +272,10 @@ public class MoneyManagerService {
 //        return incomeDao.getIncomeByAmount();
 //    }
 
-    public List<Income> getIncomeByDate(LocalDate earnedDate) throws InvalidIncomeException {
+    public List<Income> getIncomeByDate(LocalDate earnedDate, Integer userId) throws InvalidIncomeException, InvalidUserIdException {
+        if(userId==null){
+            throw new InvalidUserIdException("User id can not be null");
+        }
         if(earnedDate == null){
             throw new InvalidIncomeException("Date can not be null");
         }
@@ -282,7 +285,33 @@ public class MoneyManagerService {
             throw new InvalidIncomeException("Date can not be a future date");
         }
 
-        return incomeDao.getIncomeByDate(earnedDate);
+        return incomeDao.getIncomeByDate(earnedDate, userId);
+    }
+
+    public List<Income> getIncomeByYear(Integer userId, Integer date) throws InvalidIncomeException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("UserId can not be null");
+        }
+        if(date == null){
+            throw new InvalidIncomeException("Date can not be null");
+        }
+
+
+        int currentDate = LocalDate.now().getYear();
+        if(date > currentDate) {
+            throw new InvalidIncomeException("Date can not be a future date");
+        }
+
+        return incomeDao.getIncomeByYear( userId, date);
+
+    }
+
+    public List<Income> getAllIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null");
+        }
+        return incomeDao.getAllIncomeByUserId(userId);
+
     }
 
     public int updateIncome(Integer incomeId, Income income) throws InvalidIncomeIdException, InvalidIncomeException, InvalidUserIdException {

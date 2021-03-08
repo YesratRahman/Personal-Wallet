@@ -60,10 +60,6 @@ public class ExpensePostgresDao implements ExpenseDao {
     @Override
     public List<Expense> getAllExpenses() {
         List<Expense> allExpenses = template.query("Select * from \"Expenses\";", new ExpenseMapper());
-
-        if (allExpenses.isEmpty()) {
-            return null;
-        }
         return allExpenses;
     }
 

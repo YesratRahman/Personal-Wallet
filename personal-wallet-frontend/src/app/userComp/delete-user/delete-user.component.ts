@@ -23,6 +23,6 @@ export class DeleteUserComponent implements OnInit {
     this.walletSer.deleteUser(userId).subscribe(_ => {
       this.router.navigate(['users'])
     }); 
-    alert("user deleted" + userId);
+    // alert("user deleted" + userId);
     }
 }

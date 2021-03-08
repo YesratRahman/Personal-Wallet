@@ -1,11 +1,14 @@
 package com.tp.UserMoneyManager.daos.postGresDaos;
 
 import com.tp.UserMoneyManager.daos.Interfaces.IncomeDao;
+import com.tp.UserMoneyManager.daos.mappers.ExpenseMapper;
 import com.tp.UserMoneyManager.daos.mappers.IncomeMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
+import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
+import com.tp.UserMoneyManager.models.Expense;
 import com.tp.UserMoneyManager.models.Income;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -33,12 +36,13 @@ public class IncomePostgresDao implements IncomeDao {
         if (userCount == 1) {
 
             incomeId = template.query(
-                    "INSERT INTO \"Incomes\" (\"incomeAmount\", \"earnedDate\", " +
+                    "INSERT INTO \"Incomes\" (\"incomeAmount\", \"earnedDate\", \"category\", " +
                             "\"description\", \"userId\") " +
-                            "VALUES(?, ?, ?,?) RETURNING \"incomeId\";",
+                            "VALUES(?, ?, ?,?, ?) RETURNING \"incomeId\";",
                     new IntegerMapper("incomeId"),
                     toAdd.getIncomeAmount(),
                     toAdd.getEarnedDate(),
+                    toAdd.getCategory(),
                     toAdd.getDescription(),
                     toAdd.getUserId());
             if (incomeId.size() == 0) {
@@ -56,10 +60,6 @@ public class IncomePostgresDao implements IncomeDao {
     @Override
     public List<Income> getAllIncomes() {
         List<Income> allIncomes = template.query("Select * from \"Incomes\";", new IncomeMapper());
-
-        if (allIncomes.isEmpty()) {
-            return null;
-        }
         return allIncomes;
     }
 
@@ -74,7 +74,7 @@ public class IncomePostgresDao implements IncomeDao {
 
         if (userCount == 1) {
             getIncome = template.queryForObject(
-                    "SELECT \"incomeId\", \"incomeAmount\",\"earnedDate\",\"description\", \"userId\" " +
+                    "SELECT \"incomeId\", \"incomeAmount\",\"earnedDate\",\"category\",\"description\", \"userId\" " +
                             "FROM \"Incomes\" WHERE \"incomeId\" ='" + incomeId + "'", new IncomeMapper());
         } else {
             throw new InvalidIncomeIdException("Income id does not exist");
@@ -88,23 +88,58 @@ public class IncomePostgresDao implements IncomeDao {
 //    }
 
     @Override
-    public List<Income> getIncomeByDate(LocalDate date) throws InvalidIncomeException {
+    public List<Income> getIncomeByDate(LocalDate date, Integer userId) throws InvalidIncomeException, InvalidUserIdException {
+       if(userId==null){
+           throw new InvalidUserIdException("User id can not be null");
+       }
         if (date == null) {
             throw new InvalidIncomeException("Earned date can not be null");
         }
 
-        int dateCount = template.queryForObject("select count(*) from \"Incomes\" Where \"earnedDate\" = '" + date + "'", new IntegerMapper("count"));
+
 
         List<Income> incomes;
-        if (dateCount == 1) {
             incomes = template.query(
-                    "select \"incomeId\", \"incomeAmount\", \"description\", \"earnedDate\" , \"userId\"" +
+                    "select \"incomeId\", \"incomeAmount\" , \"category\", \"description\", \"earnedDate\" , \"userId\"" +
                             "from \"Incomes\" " +
                             "where \"earnedDate\" = ?;\n",
                     new IncomeMapper(), date);
-        } else {
-            throw new InvalidIncomeException("No income is found for this date");
+
+        return incomes;
+    }
+
+
+    @Override
+    public List<Income> getIncomeByYear(Integer userId, Integer date) throws InvalidIncomeException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
         }
+        if (date == null) {
+            throw new InvalidIncomeException("Earned date can not be null");
+        }
+        List<Income> incomes;
+        incomes = template.query(
+                "SELECT \"incomeId\", \"incomeAmount\", \"category\", \"description\", \n" +
+                        "\"earnedDate\",\"userId\"\n" +
+                        "FROM \"Incomes\" \n" +
+                        "WHERE \"userId\" = ? AND EXTRACT(YEAR FROM \"Incomes\".\"earnedDate\")  = ? ",
+                new IncomeMapper(), userId, date);
+
+        return incomes;
+    }
+
+
+    @Override
+    public List<Income> getAllIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null");
+        }
+
+        List<Income> incomes;
+        incomes = template.query(
+                "select \"incomeId\", \"incomeAmount\", \"category\", \"description\", \"earnedDate\"," +
+                        "\"userId\" from \"Incomes\" where \"userId\" = ?\n",
+                new IncomeMapper(), userId);
         return incomes;
     }
 
