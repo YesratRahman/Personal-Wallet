@@ -32,7 +32,6 @@ import { ExpenseComponent } from './expenseComp/expense/expense.component';
 import {MatTableModule} from '@angular/material/table';
 import { ContactComponent } from './contact/contact.component';
 import { DeleteUserComponent } from './userComp/delete-user/delete-user.component';
-import { UserExpenseComponent } from './expenseComp/user-expense/user-expense.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
 
@@ -45,6 +44,7 @@ import { MatSortModule} from '@angular/material/sort';
 import { EditExpenseComponent } from './expenseComp/edit-expense/edit-expense.component';
 
 import {MatDialogModule } from '@angular/material/dialog';
+import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +58,13 @@ import {MatDialogModule } from '@angular/material/dialog';
     ExpenseComponent,
     ContactComponent,
     DeleteUserComponent,
-    UserExpenseComponent,
     WalletComponent,
     ExpenseDashboardComponent,
     AddIncomeComponent,
     IncomeDashboardComponent,
     IncomeComponent,
-    EditExpenseComponent
+    EditExpenseComponent,
+    EditIncomeComponent
           ],
   imports: [
     BrowserModule,

@@ -15,9 +15,8 @@ import { EditExpenseComponent } from '../edit-expense/edit-expense.component';
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.css']
 })
-export class ExpenseComponent implements OnInit, OnChanges {
+export class ExpenseComponent implements OnInit {
   @Input() expenseAdd: Expense;
-  @Input() expense: Expense[] = [];
   displayedColumns: string[] = ['category', 'expenseAmount', 'description', 'spentDate'];
   dataSource: MatTableDataSource<Expense>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,18 +37,18 @@ export class ExpenseComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(): void {
-    if (this.expenseAdd) {
-      this.dataSource.data.push(this.expenseAdd);
-      this.dataSource._updateChangeSubscription();
-    }
+  // ngOnChanges(): void {
+  //   if (this.expenseAdd) {
+  //     this.dataSource.data.push(this.expenseAdd);
+  //     this.dataSource._updateChangeSubscription();
+  //   }
 
-    if (this.expense) {
-      this.dataSource.data = this.expense;
-      this.dataSource._updateChangeSubscription();
-    }
+  //   if (this.expenses) {
+  //     this.dataSource.data = this.expenses;
+  //     this.dataSource._updateChangeSubscription();
+  //   }
 
-  }
+  // }
 
   ngOnInit(): void {
 
@@ -65,11 +64,11 @@ export class ExpenseComponent implements OnInit, OnChanges {
   }
 
 
-  getTotalCost() {
+  // getTotalCost() {
 
-    return this.expense.map(t => t.expenseAmount).reduce((acc, value) => acc + value, 0);
+  //   return this.expenses.map(t => t.expenseAmount).reduce((acc, value) => acc + value, 0);
 
-  }
+  // }
 
   editData(expense: Expense) {
     const dialogRef = this.dialog.open(EditExpenseComponent, {
@@ -77,17 +76,37 @@ export class ExpenseComponent implements OnInit, OnChanges {
       hasBackdrop: true,
       disableClose: true,
     });
-  }
-  isDataEmpty(): boolean {
-    return this.expense.length === 0;
+    dialogRef.afterClosed().subscribe(()=>
+    {
+      this.walletSer.getExpenseByUserId(this.userLogin.currentUser.userId).subscribe(
+        expenses => {
+          this.dataSource = new MatTableDataSource(expenses);
+          this.dataSource.paginator = this.paginator;
+  
+          this.dataSource.sort = this.sort;
+  
+  
+        });
+  
+}); 
+ 
+
+}
+
+
+
+  onDeleteNotification(event: Event) {
+    // const i = this.expenses.findIndex(e => e.expenseId === event);
+    // if (i != -1) {
+    //   this.expenses.splice(i, 1);
+    // }
   }
 
-  onDeleteNotification(expenseId: number) {
-    const i = this.expense.findIndex(e => e.expenseId === expenseId);
-    if (i != -1) {
-      this.expense.splice(i, 1);
-    }
-  }
+  // isDataEmpty(): boolean {
+  //   return this.expenses.length === 0;
+  // }
+
+  
 }
 
 

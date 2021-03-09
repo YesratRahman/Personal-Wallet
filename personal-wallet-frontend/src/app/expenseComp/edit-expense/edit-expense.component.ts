@@ -25,7 +25,7 @@ export class EditExpenseComponent implements OnInit {
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: Expense,
 
-    private database: WalletService,
+    private walletService: WalletService,
     private loginService: LoginService,
     private router : Router,
     private route : ActivatedRoute    ) 
@@ -37,19 +37,22 @@ export class EditExpenseComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.loginService.getUser(); 
-    this.database.getExpenseById(this.expense.expenseId).subscribe(); 
+    this.walletService.getExpenseById(this.expense.expenseId).subscribe(); 
   } 
 
   deleteExpense(){
-    //this.database.deleteExpense(this.expense.expenseId).subscribe(() => this.getAllData());
-    this.database.deleteExpense(this.expense.expenseId); 
-    this.notifyDelete.emit(this.expense.expenseId); 
+    //this.walletService.deleteExpense(this.expense.expenseId).subscribe(() => this.getAllData());
+    this.walletService.deleteExpense(this.expense.expenseId).subscribe(() => {
+      this.notifyDelete.emit(this.expense.expenseId); 
+
+    }); 
+
 
   }
 
   
   getAllData() {
-    this.database.getAllExpenses().subscribe(data => {
+    this.walletService.getAllExpenses().subscribe(data => {
       this.expenses = data; 
     })
   } 
@@ -57,7 +60,7 @@ export class EditExpenseComponent implements OnInit {
   
   updateExpense(){
     
-    this.database.updateExpense(this.expense).subscribe(_ => {
+    this.walletService.updateExpense(this.expense).subscribe(_ => {
       this.router.navigate(['userExpense/'+this.currentUser.userId])
     }); 
   }

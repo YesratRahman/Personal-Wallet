@@ -167,7 +167,6 @@ export class WalletService {
 
   
   addIncome(toAdd: Income): Observable<Income> {
-    // console.log(toAdd);
     return this.http.post<Income>(this.baseURL + "/addIncome", toAdd, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
@@ -178,17 +177,28 @@ export class WalletService {
       );
   }
 
-  // getAllIncomes(): Observable<Income[]> {
-  //   return this.http.get<Income[]>(this.baseURL + "/incomes", this.httpOptions)
-  //     .pipe(
-  //       tap(x => console.log(x)),
-  //       catchError(err => {
-  //         console.log(err);
-  //         let empty: Income[] = [];
-  //         return of(empty);
-  //       })
-  //     );
-  // }
+  getAllIncomes(): Observable<Income[]> {
+    return this.http.get<Income[]>(this.baseURL + "/incomes", this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          let empty: Income[] = [];
+          return of(empty);
+        })
+      );
+  }
+
+  getIncomeById(expenseId: number): Observable<Income> {
+    return this.http.get<Income>(this.baseURL + "/income/" + expenseId, this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          return of(null);
+        })
+      );
+  }
 
   getIncomeByUserId(userId : number): Observable<Income[]> { 
     return this.http.get<Income[]>(this.baseURL + `/userIncome/${userId}`, this.httpOptions)
@@ -201,6 +211,16 @@ export class WalletService {
      );
  }
 
+ updateIncome(income: Income): Observable<Income> {
+  return this.http.put<Income>(this.baseURL + "/updateIncome/" + income.incomeId, income, this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+}
  deleteIncome(userId: number) {
   return this.http.delete(this.baseURL + "/deleteIncome/" + "incomeId", this.httpOptions)
     .pipe(

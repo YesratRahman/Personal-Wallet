@@ -29,7 +29,6 @@ const routes: Routes = [
   { path: "addExpense", component: AddExpenseComponent}, 
   { path: "userExpense/:userId", component: ExpenseComponent}, 
   { path : "expenseDashboard", component: ExpenseDashboardComponent},
-  { path : "updateExpense/:id", component : EditExpenseComponent}, 
   
   { path : "addIncome", component: AddIncomeComponent}, 
   { path: "userIncome/:userId", component: IncomeComponent}, 
