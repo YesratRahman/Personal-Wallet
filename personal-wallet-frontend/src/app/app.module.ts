@@ -42,6 +42,10 @@ import { IncomeDashboardComponent } from './incomeComp/income-dashboard/income-d
 import { IncomeComponent } from './incomeComp/income/income.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule} from '@angular/material/sort';
+import { EditExpenseComponent } from './expenseComp/edit-expense/edit-expense.component';
+
+import {MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +63,8 @@ import { MatSortModule} from '@angular/material/sort';
     ExpenseDashboardComponent,
     AddIncomeComponent,
     IncomeDashboardComponent,
-    IncomeComponent
+    IncomeComponent,
+    EditExpenseComponent
           ],
   imports: [
     BrowserModule,
@@ -85,7 +90,8 @@ import { MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatAutocompleteModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
 
 
   ],

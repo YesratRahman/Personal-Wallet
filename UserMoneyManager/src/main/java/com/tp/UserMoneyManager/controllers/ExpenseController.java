@@ -72,9 +72,9 @@ public class ExpenseController {
     }
 
     @PutMapping("/updateExpense/{expenseId}")
-    public ResponseEntity updateExpense(@PathVariable Integer expenseId, @RequestBody Expense expense){
+    public ResponseEntity updateExpense(@RequestBody Expense expense){
         try {
-            return ResponseEntity.ok(service.updateExpense(expenseId, expense));
+            return ResponseEntity.ok(service.updateExpense(expense));
         } catch (InvalidExpenseIdException | InvalidExpenseException | InvalidUserIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

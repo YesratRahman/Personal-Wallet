@@ -15,6 +15,7 @@ export class EditUserComponent implements OnInit {
   userName : string; 
 
 
+  
   constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit(): void {

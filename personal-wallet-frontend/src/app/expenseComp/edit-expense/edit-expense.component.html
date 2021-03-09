@@ -1,0 +1,126 @@
+<h2 mat-dialog-title>Manage Expense</h2>
+
+<form #f="ngForm" novalidate (ngSubmit)="updateExpense()">
+
+    <mat-dialog-content *ngIf="!update">
+
+        <div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Category</label>
+                    <p>{{expense.category}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Amount</label>
+                    <p>${{expense.expenseAmount}}</p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <label>Description</label>
+                    <p>{{expense.description}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Date </label>
+                    <p>{{expense.spentDate}}</p>
+                </div>
+            </div>
+
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-content *ngIf="update">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput matInput placeholder="Expense Amount" type="number" min="1" name="expenseAmount" [(ngModel)]="expense.expenseAmount" (blur)="formatAmount()" #amount="ngModel" required>
+                    <span matPrefix>$&nbsp;</span>
+                    <span matSuffix>.00</span>
+                </mat-form-field>
+                <div *ngIf="amount.errors && (amount.dirty || amount.touched)" class="alert alert-danger">
+                    <small>Amount is required (positive amount, max 2 decimal places).</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 date-picker">
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="expense.spentDate" name="spentDate" #date="ngModel" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="date.errors" class="alert alert-danger">
+                    <small>
+            Date is required.
+          </small>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Expense category</mat-label>
+                    <mat-select [(ngModel)]="expense.category" name="category" #categoryCon="ngModel" required>
+                        <mat-option value="Groceries">Groceries</mat-option>
+                        <mat-option value="Advertising">Advertising</mat-option>
+                        <mat-option value="Vehicle">Vehicle</mat-option>
+                        <mat-option value="Education">Education</mat-option>
+                        <mat-option value="Insurance">Insurance</mat-option>
+                        <mat-option value="Dinnig">Dinning</mat-option>
+                        <mat-option value="Rent">Rent</mat-option>
+                        <mat-option value="Travel">Travel</mat-option>
+                        <mat-option value="Utilities">Utilities</mat-option>
+                        <mat-option value="Office">Office</mat-option>
+                        <mat-option value="Miscellaneous">Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div *ngIf="categoryCon.errors && (categoryCon.dirty || categoryCon.touched)" class="alert alert-danger">
+                    <small>Category is required.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Expense Description</mat-label>
+                    <input matInput placeholder="Description" type="text" name="description" [(ngModel)]="expense.description" #descriptionCon="ngModel" required>
+                </mat-form-field>
+                <div *ngIf="descriptionCon.errors && (descriptionCon.dirty || descriptionCon.touched)" class="alert alert-danger">
+                    <small>Description is required.</small>
+                </div>
+            </div>
+        </div>
+
+
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button type="button" mat-button color="primary" mat-dialog-close>Close</button>
+
+        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" (click)="deleteExpense(expense.expenseId)">Delete
+    </button>
+        <button type="button" *ngIf="!update" mat-raised-button color="primary" (click)="update = true">Edit
+    </button>
+
+        <button type="button" *ngIf="update" class="delete" mat-button color="primary" (click)="reset()">Reset</button>
+        <button *ngIf="update" type="submit" [disabled]="isExpenseUntouched()" mat-raised-button color="primary">Update
+
+    </button>
+
+    </mat-dialog-actions>
+
+</form>

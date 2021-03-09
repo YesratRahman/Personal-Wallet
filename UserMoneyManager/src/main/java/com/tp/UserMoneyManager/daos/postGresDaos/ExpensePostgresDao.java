@@ -137,14 +137,14 @@ public class ExpensePostgresDao implements ExpenseDao {
 
 
     @Override
-    public int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
-        if (expenseId == null) {
-            throw new InvalidExpenseIdException("Expense Id can not be null!");
-        }
+    public int updateExpense(Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
+
         if (expense == null) {
             throw new InvalidExpenseException("Null expense can not be updated!");
         }
-
+        if (expense.getExpenseId() == null) {
+            throw new InvalidExpenseIdException("Expense Id can not be null!");
+        }
         int updatedExpense;
         int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + expense.getUserId() + "'", new IntegerMapper("count"));
 
@@ -156,7 +156,7 @@ public class ExpensePostgresDao implements ExpenseDao {
                             " \"category\"=?, " +
                             "\"description\"=? " +
                             "Where \"expenseId\" =?; \n",
-                    expense.getExpenseAmount(), expense.getSpentDate(),expense.getCategory(), expense.getDescription(), expenseId);
+                    expense.getExpenseAmount(), expense.getSpentDate(),expense.getCategory(), expense.getDescription(), expense.getExpenseId());
         } else {
             throw new InvalidUserIdException("The user whose expense tried to be updated, doesn't exist.");
        }

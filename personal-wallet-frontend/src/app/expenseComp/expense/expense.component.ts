@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EditExpenseComponent } from '../edit-expense/edit-expense.component';
 
 @Component({
   selector: 'app-expense',
@@ -101,6 +102,17 @@ ngOnInit(): void {
 
       return this.expense.map(t => t.expenseAmount).reduce((acc, value) => acc + value, 0);
 
+    }
+
+    editData(expense: Expense) {
+      const dialogRef = this.dialog.open(EditExpenseComponent, {
+        data: expense as any,
+        hasBackdrop: true,
+        disableClose: true,
+      });
+    }
+    isDataEmpty(): boolean {
+      return this.expense.length === 0;
     }
 }
 

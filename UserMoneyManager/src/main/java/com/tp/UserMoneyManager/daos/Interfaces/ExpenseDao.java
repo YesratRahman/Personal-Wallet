@@ -23,7 +23,7 @@ public interface ExpenseDao {
      List<Expense> getExpenseByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException ;
 
 
-    int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException;
+    int updateExpense(Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException;
 
     int deleteExpense(Integer expenseId) throws InvalidExpenseIdException;
 

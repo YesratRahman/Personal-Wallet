@@ -185,12 +185,13 @@ public class MoneyManagerService {
 //
 //    }
 
-    public int updateExpense(Integer expenseId, Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
-        if(expenseId == null){
-            throw new InvalidExpenseIdException("Expense Id can not be null");
-        }
+    public int updateExpense(Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
+
         if(expense == null){
             throw new InvalidExpenseException("Expense object can not be null!");
+        }
+        if(expense.getExpenseId() == null){
+            throw new InvalidExpenseIdException("Expense Id can not be null");
         }
         if(expense.getExpenseAmount() == null){
             throw new InvalidExpenseException("Expense amount can not be null.");
@@ -207,7 +208,7 @@ public class MoneyManagerService {
             throw new InvalidExpenseException("Date can not be a future date");
         }
 
-        return expenseDao.updateExpense(expenseId, expense);
+        return expenseDao.updateExpense(expense);
 
     }
 

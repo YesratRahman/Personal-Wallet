@@ -60,7 +60,9 @@ export class WalletService {
 
 
   getExpenseByUserId(userId : number): Observable<Expense[]> { 
+   //return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
    return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+
   //  return this.http.get<Expense[]>(this.baseURL + "/userExpense/" + userId , this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
@@ -129,10 +131,19 @@ export class WalletService {
       );
   }
 
+  getExpenseById(expenseId: number): Observable<Expense> {
+    return this.http.get<Expense>(this.baseURL + "/expense/" + expenseId, this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          return of(null);
+        })
+      );
+  }
   
-
-  deleteExpense(userId: number) {
-    return this.http.delete(this.baseURL + "/deleteExpense/" + "expenseId", this.httpOptions)
+  updateExpense(expense: Expense): Observable<Expense> {
+    return this.http.put<Expense>(this.baseURL + "/updateExpense/" + expense.expenseId, expense, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
         catchError(err => {
@@ -142,6 +153,18 @@ export class WalletService {
       );
   }
 
+  deleteExpense(expenseId: number): Observable<Expense>{
+    return this.http.delete<Expense>(this.baseURL + "/deleteExpense/" + expenseId, this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          return of(null);
+        })
+      );
+  }
+
+ 
 
   
   addIncome(toAdd: Income): Observable<Income> {
