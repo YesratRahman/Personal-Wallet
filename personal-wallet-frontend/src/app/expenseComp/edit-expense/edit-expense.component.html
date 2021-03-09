@@ -113,17 +113,18 @@
             <span>Are you sure you want to delete?</span>
         <button class="btn btn-danger" (click)="deleteExpense()"> Yes </button>
         <button class="btn btn-danger" (click)="confirmDelete=false"> No </button>
-
-        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" routerLink="/userExpense/:userId" (click)="deleteExpense()">Delete
-            </button>
         </span>
 
         <span *ngIf="!confirmDelete"> 
 
+        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" routerLink="/userExpense/:userId" (click)="deleteExpense()">Delete
+            </button>
+
+        </span>
+
         <button type="button" *ngIf="!update" mat-raised-button color="primary" (click)="update = true">Edit
         </button>
 
-        </span>
 
         <button type="button" *ngIf="update" class="delete" mat-button color="primary" routerLink="/userExpense/:userId" (click)="reset()">Reset</button>
         <button *ngIf="update" type="submit" [disabled]="!f.form.valid || isExpenseUntouched()" mat-raised-button color="primary">Update

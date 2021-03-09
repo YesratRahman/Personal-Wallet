@@ -48,7 +48,11 @@
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" [ngClass]="'column-width'"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editData(row)" (notifyDelete)="onDeleteNotification($event) " [ngClass]="'column-width'"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editData(row)" [ngClass]="'column-width'"></tr>
+
+
+        <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editData(row)" (notifyDelete)="onDeleteNotification($event) " [ngClass]="'column-width'"></tr> -->
         <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;" (editClickedEvent)="editData($event)" [ngClass]="'column-width'"></tr> -->
 
 
