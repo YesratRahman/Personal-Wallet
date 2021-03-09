@@ -6,6 +6,7 @@ import { User } from '../interfaces/User';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Expense } from '../interfaces/Expense';
+import { Income } from '../interfaces/Income';
 
 
 @Injectable({
@@ -141,7 +142,51 @@ export class WalletService {
       );
   }
 
+
   
+  addIncome(toAdd: Income): Observable<Income> {
+    // console.log(toAdd);
+    return this.http.post<Income>(this.baseURL + "/addIncome", toAdd, this.httpOptions)
+      .pipe(
+        tap(x => console.log(x)),
+        catchError(err => {
+          console.log(err);
+          return of(null);
+        })
+      );
+  }
 
+  // getAllIncomes(): Observable<Income[]> {
+  //   return this.http.get<Income[]>(this.baseURL + "/incomes", this.httpOptions)
+  //     .pipe(
+  //       tap(x => console.log(x)),
+  //       catchError(err => {
+  //         console.log(err);
+  //         let empty: Income[] = [];
+  //         return of(empty);
+  //       })
+  //     );
+  // }
 
+  getIncomeByUserId(userId : number): Observable<Income[]> { 
+    return this.http.get<Income[]>(this.baseURL + `/userIncome/${userId}`, this.httpOptions)
+     .pipe(
+       tap(x => console.log(x)),
+       catchError(err => {
+         console.log(err);
+         return of(null);
+       })
+     );
+ }
+
+ deleteIncome(userId: number) {
+  return this.http.delete(this.baseURL + "/deleteIncome/" + "incomeId", this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+}
 }

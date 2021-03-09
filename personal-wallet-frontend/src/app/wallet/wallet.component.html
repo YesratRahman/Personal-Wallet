@@ -57,13 +57,19 @@
     <br/>
 
     <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Income Manager</mat-card-title>
+        <mat-card-title style="font-size: 25px;">Income Manager </mat-card-title>
+        <button mat-button routerLink='/addIncome' color="primary">
+            <i class="fa fa-plus" aria-hidden="true"></i>Add Income</button>
 
-        <!-- <button mat-button routerLink='/userExpense/:userId' color="primary"> Get Expense</button> -->
-        <button mat-button color="primary">Add Income</button>
-        <button mat-button color="primary">Get Income</button>
+        <button mat-button routerLink='/userIncome/:userId' color="primary">Get Income</button>
+        <button mat-button routerLink="/incomeDashboard" color="primary">        
+            <i class="fa fa-1x fa-fw fa-bar-chart"></i> View Incomes
+        </button>
         <button mat-button color="primary">Edit Income</button>
         <button mat-button color="primary">Income Report</button>
+
+
+
 
         <mat-card-content>
 

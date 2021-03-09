@@ -1,0 +1,53 @@
+<div>
+
+
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef mat-sort-heade> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                <td mat-footer-cell *matFooterCellDef> Total </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="incomeAmount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-heade> Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.incomeAmount | currency}} </td>
+                <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-heade> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="earnedDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-heade> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.earnedDate}} </td>
+
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
+</div>

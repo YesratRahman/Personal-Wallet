@@ -37,8 +37,10 @@ import { WalletComponent } from './wallet/wallet.component';
 import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
 
 import {MatPaginatorModule } from '@angular/material/paginator';
-import { AddIncomeComponent } from './add-income/add-income.component';
-import { IncomeDashboardComponent } from './income-dashboard/income-dashboard.component'
+import { AddIncomeComponent } from './incomeComp/add-income/add-income.component';
+import { IncomeDashboardComponent } from './incomeComp/income-dashboard/income-dashboard.component'
+import { IncomeComponent } from './incomeComp/income/income.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { IncomeDashboardComponent } from './income-dashboard/income-dashboard.co
     WalletComponent,
     ExpenseDashboardComponent,
     AddIncomeComponent,
-    IncomeDashboardComponent
+    IncomeDashboardComponent,
+    IncomeComponent
           ],
   imports: [
     BrowserModule,

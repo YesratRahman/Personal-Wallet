@@ -5,6 +5,8 @@ export interface Income{
     incomeAmount : number; 
     description : string; 
     earnedDate : Date; 
-    usser : User[]; 
+    category : string;
+    usser? : User[];  
+    userId? : number; 
 
 }

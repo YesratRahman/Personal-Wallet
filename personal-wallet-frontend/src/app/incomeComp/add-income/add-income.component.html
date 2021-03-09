@@ -1,0 +1,85 @@
+<mat-card class="main-div">
+
+    <div id="enter-income">
+        <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid, f)">
+            <div *ngIf="isLoading">
+            </div>
+            <mat-card>
+                <mat-card-title>Enter Income</mat-card-title>
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        Enter required fields to save a new income
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+
+
+                        <div class="col-sm-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput matInput placeholder="Income Amount" type="number" min="1" name="incomeAmount" [(ngModel)]="incomeAmount" (blur)="formatAmount()" #amount="ngModel" required>
+                                <span matPrefix>$&nbsp;</span>
+                                <span matSuffix>.00</span>
+                            </mat-form-field>
+                            <div *ngIf="amount.errors && (amount.dirty || amount.touched)" class="alert alert-danger">
+                                <small>Amount is required (positive amount, max 2 decimal places).</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Income date" [(ngModel)]="earnedDate" name="earnedDate" #date="ngModel" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #picker></mat-datepicker>
+                            </mat-form-field>
+                            <div *ngIf="dateError" class="alert alert-danger">
+                                <small> Date is required. </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Income category</mat-label>
+                                <mat-select [(ngModel)]="category" name="category" #categoryCon="ngModel" required>
+                                    <mat-option value="Gift">Gift</mat-option>
+                                    <mat-option value="Salary">Salary</mat-option>
+                                    <mat-option value="Business">Business</mat-option>
+                                    <mat-option value="Stock">Stock</mat-option>
+                                    <mat-option value="Rental Income">Rental Income</mat-option>
+                                    <mat-option value="Miscellaneous">Other</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div *ngIf="categoryCon.errors && (categoryCon.dirty || categoryCon.touched)" class="alert alert-danger">
+                                <small>Category is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Income Description</mat-label>
+                                <input matInput placeholder="Description" type="text" name="description" [(ngModel)]="description" #descriptionCon="ngModel" required>
+                            </mat-form-field>
+                            <div *ngIf="descriptionCon.errors && (descriptionCon.dirty || descriptionCon.touched)" class="alert alert-danger">
+                                <small>Description is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" mat-button color="primary" (click)="clearForm(f)">Reset</button>
+                        <button type="button" mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.form.valid">
+                          <mat-icon>save</mat-icon>Save
+                        </button>
+                    </div>
+                </mat-card-actions>
+
+            </mat-card>
+        </form>
+    </div>
+</mat-card>

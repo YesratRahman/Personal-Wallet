@@ -3,25 +3,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Expense } from 'src/app/interfaces/Expense';
+import { Income } from 'src/app/interfaces/Income';
 import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 
 @Component({
-  selector: 'app-expense',
-  templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.css']
+  selector: 'app-income',
+  templateUrl: './income.component.html',
+  styleUrls: ['./income.component.css']
 })
-export class ExpenseComponent implements OnInit, AfterViewInit, OnChanges {
+export class IncomeComponent implements OnInit {
 
+  
+  @Input() income: Income[] = [];
 
-
-  // @Input() expense: Expense;
-  @Input() expense: Expense[] = [];
-
-  displayedColumns: string[] = ['category', 'expenseAmount', 'description', 'spentDate'];
-  dataSource: MatTableDataSource<Expense>;
+  displayedColumns: string[] = ['category', 'incomeAmount', 'description', 'earnedDate'];
+  dataSource: MatTableDataSource<Income>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('sorter', {static: true}) sort: MatSort;
 
@@ -32,9 +30,9 @@ export class ExpenseComponent implements OnInit, AfterViewInit, OnChanges {
     private router : Router, private route : ActivatedRoute)
      {
 
-      walletSer.getExpenseByUserId(this.userLogin.currentUser.userId).subscribe(
-        expenses => {
-          this.dataSource = new MatTableDataSource(expenses);
+      walletSer.getIncomeByUserId(this.userLogin.currentUser.userId).subscribe(
+        incomes => {
+          this.dataSource = new MatTableDataSource(incomes);
           this.dataSource.sort = this.sort;
   
         
@@ -48,14 +46,14 @@ ngAfterViewInit() {
 
 ngOnChanges(changes: any) {
   if (!changes.data.firstChange) {
-    this.dataSource = new MatTableDataSource<Expense>(this.expense);
+    this.dataSource = new MatTableDataSource<Income>(this.income);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 }
 
 ngOnInit(): void {
-  this.dataSource = new MatTableDataSource<Expense>(this.expense);
+  this.dataSource = new MatTableDataSource<Income>(this.income);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
@@ -70,9 +68,9 @@ ngOnInit(): void {
   }
 
 
-  deleteExpense(expense : Expense){
-    const index = this.dataSource.data.indexOf(expense); 
-    this.walletSer.deleteExpense(expense.expenseId).subscribe(
+  deleteIncome(income : Income){
+    const index = this.dataSource.data.indexOf(income); 
+    this.walletSer.deleteIncome(income.incomeId).subscribe(
       () => { 
         this.dataSource.data.splice(index, 1);
         this.dataSource._updateChangeSubscription(); 
@@ -82,7 +80,7 @@ ngOnInit(): void {
     getTotalCost() {
       
 
-      return this.expense.map(t => t.expenseAmount).reduce((acc, value) => acc + value, 0);
+      return this.income.map(t => t.incomeAmount).reduce((acc, value) => acc + value, 0);
 
     }
 }
