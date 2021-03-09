@@ -153,12 +153,11 @@ export class WalletService {
       );
   }
 
-  deleteExpense(expenseId: number): Observable<Expense>{
+  deleteExpense(expenseId: number){
     return this.http.delete<Expense>(this.baseURL + "/deleteExpense/" + expenseId, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
         catchError(err => {
-          console.log(err);
           return of(null);
         })
       );

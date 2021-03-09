@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Manage Expense</h2>
 
-<form #f="ngForm" novalidate (ngSubmit)="updateExpense()">
+<form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid, f)">
+
 
     <mat-dialog-content *ngIf="!update">
 
@@ -103,24 +104,30 @@
                 </div>
             </div>
         </div>
-
-
-
     </mat-dialog-content>
 
     <mat-dialog-actions>
         <button type="button" mat-button color="primary" mat-dialog-close>Close</button>
 
-        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" (click)="deleteExpense(expense.expenseId)">Delete
-    </button>
+        <span *ngIf="confirmDelete"> 
+            <span>Are you sure you want to delete?</span>
+        <button class="btn btn-danger" (click)="deleteExpense()"> Yes </button>
+        <button class="btn btn-danger" (click)="confirmDelete=false"> No </button>
+
+        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" routerLink="/userExpense/:userId" (click)="deleteExpense()">Delete
+            </button>
+        </span>
+
+        <span *ngIf="!confirmDelete"> 
+
         <button type="button" *ngIf="!update" mat-raised-button color="primary" (click)="update = true">Edit
-    </button>
+        </button>
 
-        <button type="button" *ngIf="update" class="delete" mat-button color="primary" (click)="reset()">Reset</button>
-        <button *ngIf="update" type="submit" [disabled]="isExpenseUntouched()" mat-raised-button color="primary">Update
+        </span>
 
-    </button>
+        <button type="button" *ngIf="update" class="delete" mat-button color="primary" routerLink="/userExpense/:userId" (click)="reset()">Reset</button>
+        <button *ngIf="update" type="submit" [disabled]="!f.form.valid || isExpenseUntouched()" mat-raised-button color="primary">Update
+        </button>
 
     </mat-dialog-actions>
-
 </form>
