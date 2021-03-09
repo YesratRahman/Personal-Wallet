@@ -5,3 +5,29 @@ table {
 th.mat-header-cell {
     text-align: center;
 }
+
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mat-paginator {
+    width: 100vw;
+}
+
+.mat-paginator {
+    width: 100vw;
+}
+
+td,
+th {
+    width: 15%;
+}
+
+@media only screen and (max-width: 750px) {
+    .mat-cell {
+        font-size: 10px;
+    }
+}

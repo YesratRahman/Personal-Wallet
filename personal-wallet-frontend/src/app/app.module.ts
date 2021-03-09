@@ -40,7 +40,8 @@ import {MatPaginatorModule } from '@angular/material/paginator';
 import { AddIncomeComponent } from './incomeComp/add-income/add-income.component';
 import { IncomeDashboardComponent } from './incomeComp/income-dashboard/income-dashboard.component'
 import { IncomeComponent } from './incomeComp/income/income.component';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +83,9 @@ import { IncomeComponent } from './incomeComp/income/income.component';
     MatNativeDateModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule,
+    MatSortModule
 
 
   ],
