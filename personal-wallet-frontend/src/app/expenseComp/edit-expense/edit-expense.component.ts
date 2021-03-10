@@ -46,8 +46,6 @@ export class EditExpenseComponent implements OnInit {
       this.notifyDelete.emit(this.expense.expenseId); 
 
     }); 
-
-
   }
 
   
@@ -58,14 +56,19 @@ export class EditExpenseComponent implements OnInit {
   } 
 
   
+  // updateExpense(){
+    
+  //   this.walletService.updateExpense(this.expense).subscribe(_ => {
+  //     this.router.navigate(['userExpense/'+this.currentUser.userId])
+  //   }); 
+  // }
+
   updateExpense(){
     
-    this.walletService.updateExpense(this.expense).subscribe(_ => {
-      this.router.navigate(['userExpense/'+this.currentUser.userId])
-    }); 
-  }
-
-  
+      this.walletService.updateExpense(this.expense).subscribe(() => {
+        this.notifyDelete.emit(this.expense.expenseId); 
+      }); 
+    }
 
   formatAmount() {
     if (this.expense.expenseAmount !== null) {

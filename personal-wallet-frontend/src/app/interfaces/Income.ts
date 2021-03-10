@@ -2,11 +2,11 @@ import { User } from "./User";
 
 export interface Income{
     incomeId? : number;
-    incomeAmount : number; 
+    incomeAmount : number | string; 
     description : string; 
-    earnedDate : Date; 
+    earnedDate : Date | string; 
     category : string;
-    usser? : User[];  
+    user? : User[];  
     userId? : number; 
 
 }

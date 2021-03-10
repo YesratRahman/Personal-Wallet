@@ -126,7 +126,7 @@
         </button>
 
 
-        <button type="button" *ngIf="update" class="delete" mat-button color="primary" routerLink="/userExpense/:userId" (click)="reset()">Reset</button>
+        <button type="button" *ngIf="update" class="delete" mat-button color="primary" (click)="reset()">Reset</button>
         <button *ngIf="update" type="submit" [disabled]="!f.form.valid || isExpenseUntouched()" mat-raised-button color="primary">Update
         </button>
 

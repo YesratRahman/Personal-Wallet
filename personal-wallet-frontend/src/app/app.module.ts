@@ -45,6 +45,14 @@ import { EditExpenseComponent } from './expenseComp/edit-expense/edit-expense.co
 
 import {MatDialogModule } from '@angular/material/dialog';
 import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.component';
+ import { ChartsModule } from 'ng2-charts';
+//  import { ChartModule } from 'angular2-highcharts';
+import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
+import { NumberCardsComponent } from './number-cards/number-cards.component';
+import { ExpenseCategorySummaryChartComponent } from './expenseComp/add-expense/expense-category-summary-chart/expense-category-summary-chart.component';
+
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'Highcharts';
 
 @NgModule({
   declarations: [
@@ -64,7 +72,10 @@ import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.compon
     IncomeDashboardComponent,
     IncomeComponent,
     EditExpenseComponent,
-    EditIncomeComponent
+    EditIncomeComponent,
+    ExpenseMonthlySummaryComponent,
+    NumberCardsComponent,
+    ExpenseCategorySummaryChartComponent
           ],
   imports: [
     BrowserModule,
@@ -91,7 +102,12 @@ import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.compon
     MatPaginatorModule,
     MatAutocompleteModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+     ChartsModule,
+     ChartModule.forRoot(highcharts)
+        
+
+
 
 
   ],

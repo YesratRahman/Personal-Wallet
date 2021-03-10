@@ -58,3 +58,45 @@ export class LoginService {
 
   }
 }
+
+
+
+// currentUser : User; 
+//   private categories: string[];
+//   private userIdSet = new Subject<string>();
+//   private userId: number;
+//   userIdSetAnnounced$: any;
+
+
+//   constructor(private http: HttpClient) { }
+//   login(user : User) : void { 
+
+//     this.currentUser =  user; 
+
+
+//   }
+//   getUser() :  User {
+//      return this.currentUser; 
+
+//   }
+
+//   setCategories(originalCategories: string[]) {
+//     this.categories = originalCategories;
+//   }
+
+//   getCurrentCategories(): string[] {
+//     return this.categories;
+//   }
+
+//   announceUserIdCreated(message: string) {
+//     this.userIdSet.next(message);
+//   }
+
+//   setUserId(key: number) {
+//     this.userId = key;
+//   }
+
+//   getUserId(): number {
+//     return this.userId;
+//   }
+// }
