@@ -231,4 +231,29 @@ export class WalletService {
       })
     );
 }
+
+
+getExpenseReport(userId : number): Observable<Expense> { 
+  return this.http.get<Expense>(this.baseURL + `/expenseReport/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+getIncomeReport(userId : number): Observable<Income[]> { 
+  return this.http.get<Income[]>(this.baseURL + `/incomeReport/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+
 }

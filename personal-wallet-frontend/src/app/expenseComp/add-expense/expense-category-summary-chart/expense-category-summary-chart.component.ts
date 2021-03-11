@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class ExpenseCategorySummaryChartComponent implements OnInit {
 
-  @Input() data: Expense[];
+  @Input() expenseData: Expense[];
   @Input() date: Date;
   @Input() categories: string[];
   currentUser : User; 
@@ -54,7 +54,7 @@ export class ExpenseCategorySummaryChartComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.data && !changes.data.firstChange) {
+    if (changes.expenseData && !changes.expenseData.firstChange) {
       if (this.chart) {
         this.setCategoriesData(true);
       }
@@ -74,14 +74,14 @@ export class ExpenseCategorySummaryChartComponent implements OnInit {
     ];
     for (const category of this.categories) {
       let categorySumByMonth = monthNames.map(e => 0);
-      const matchingExpenses = this.data.filter(c => c.category === category);
+      const matchingExpenses = this.expenseData.filter(c => c.category === category);
       matchingExpenses.forEach(e => {
         const expenseDate = new Date(e.spentDate);
         if (expenseDate.getFullYear() === this.date.getFullYear()) {
           categorySumByMonth[expenseDate.getMonth()] = categorySumByMonth[expenseDate.getMonth()] + <number>e.expenseAmount;
         }
       });
-      const dataObj = {name: category, data: categorySumByMonth, type:'line'};
+      const dataObj = {name: category, expenseData: categorySumByMonth, type:'line'};
       totals.push(dataObj);
     }
     this.options.series = totals;

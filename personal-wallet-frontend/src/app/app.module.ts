@@ -53,6 +53,7 @@ import { ExpenseCategorySummaryChartComponent } from './expenseComp/add-expense/
 
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'Highcharts';
+import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import * as highcharts from 'Highcharts';
     EditIncomeComponent,
     ExpenseMonthlySummaryComponent,
     NumberCardsComponent,
-    ExpenseCategorySummaryChartComponent
+    ExpenseCategorySummaryChartComponent,
+    ExpenseSummaryComponent
           ],
   imports: [
     BrowserModule,
