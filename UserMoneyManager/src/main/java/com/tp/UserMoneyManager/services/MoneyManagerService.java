@@ -170,6 +170,36 @@ public class MoneyManagerService {
 
 
 
+    public int getExpenseTotalByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("UserId can not be null");
+        }
+        if(spentDate == null){
+            throw new InvalidExpenseException("Date can not be null");
+        }
+
+
+        int currentDate = LocalDate.now().getYear();
+        if(spentDate > currentDate) {
+            throw new InvalidExpenseException("Date can not be a future date");
+        }
+
+        return expenseDao.getExpenseTotalByYear( userId, spentDate);
+
+    }
+
+
+    public List<Integer> getTotalExpenseWithYear(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("UserId can not be null");
+        }
+
+        return expenseDao.getTotalExpenseWithYear( userId);
+
+    }
+
+
+
 //    public List<Expense> getExpenseByDate(LocalDate spentDate, Expense expense) throws InvalidExpenseException, InvalidUserIdException {
 //
 //        if(spentDate == null){

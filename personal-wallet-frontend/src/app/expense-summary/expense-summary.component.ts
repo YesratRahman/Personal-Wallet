@@ -14,24 +14,35 @@ export class ExpenseSummaryComponent implements OnInit {
   currentUser : User; 
   @Input() expense : Expense; 
   @Input() total : Expense; 
+  @Input() totalByYear : Expense; 
+
 
 
   constructor(private walletService: WalletService, private loginService : LoginService) { }
 
   ngOnInit(): void {
     this.currentUser = this.loginService.getUser(); 
-    this.walletService.getExpenseByUserId(this.currentUser.userId).subscribe(); 
-    console.log(this.currentUser); 
-
-  }
-
-  getExpenseReport(){
+    // this.walletService.getExpenseByUserId(this.currentUser.userId).subscribe(); 
     this.walletService.getExpenseReport(this.currentUser.userId).subscribe(
       newTotal => {
         this.total = newTotal ; 
 
       }
     ); 
+
+
+  }
+
+
+
+  getExpenseReportByYear(){
+    this.walletService.getExpenseReportByYear(this.currentUser.userId, 2021).subscribe(
+      newTotalByYear => {
+        this.totalByYear = newTotalByYear ; 
+
+      }
+    ); 
   } 
+
  
 }

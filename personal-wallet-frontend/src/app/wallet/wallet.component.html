@@ -2,30 +2,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
-<!-- <div class="name">
-    <i class="fa fa-user" aria-hidden="true"><br></i>
-    <a style="font-family: 'Lucida Sans';">{{currentUser.userName}}</a>
-
-</div> -->
-
-
 <mat-card>
     <mat-card-title>User Info</mat-card-title>
     <mat-card-content>
         <mat-icon class="account">account_circle</mat-icon>
         <div class="justify-content-center">
             <span class="info-content">{{currentUser.userName}}</span>
-            <!-- <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button>
-            <button class="but" mat-raised-button [routerLink]="['/deleteUser/',user.userId]">Delete User</button> -->
         </div>
-
-
     </mat-card-content>
     <mat-card-actions>
         <button class="but" mat-raised-button [routerLink]="['/users']">Logout</button>
         <button class="but" mat-raised-button [routerLink]="['/deleteUser/',currentUser.userId]">Delete User</button>
-
-
     </mat-card-actions>
 </mat-card>
 
@@ -36,22 +23,13 @@
         <mat-card-title style="font-size: 25px;">Expense Manager </mat-card-title>
         <button mat-button routerLink='/addExpense' color="primary">
             <i class="fa fa-plus" aria-hidden="true"></i>Add Expense</button>
-
-        <button mat-button routerLink='/userExpense/:userId' color="primary">Get Expense</button>
+        <!-- <button mat-button [routerLink]="['/userExpense/',currentUser.userId]" color="primary">Get Expense</button> -->
         <button mat-button routerLink="/expenseDashboard" color="primary">        
             <i class="fa fa-1x fa-fw fa-bar-chart"></i> View Expenses
         </button>
-        <button mat-button color="primary">Edit Expense</button>
-        <button mat-button color="primary">Expense Report</button>
-
-
-
-
         <mat-card-content>
-
         </mat-card-content>
         <mat-card-actions>
-
         </mat-card-actions>
     </mat-card>
     <br/>
@@ -61,37 +39,22 @@
         <button mat-button routerLink='/addIncome' color="primary">
             <i class="fa fa-plus" aria-hidden="true"></i>Add Income</button>
 
-        <button mat-button routerLink='/userIncome/:userId' color="primary">Get Income</button>
+        <!-- <button mat-button [routerLink]="['/userIncome/',currentUser.userId]" color="primary">Get Income</button> -->
         <button mat-button routerLink="/incomeDashboard" color="primary">        
             <i class="fa fa-1x fa-fw fa-bar-chart"></i> View Incomes
         </button>
-        <button mat-button color="primary">Edit Income</button>
-        <button mat-button color="primary">Income Report</button>
-
-
-
-
         <mat-card-content>
-
         </mat-card-content>
         <mat-card-actions>
-
         </mat-card-actions>
     </mat-card>
     <br/>
     <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Savings Report</mat-card-title>
-
-
+        <mat-card-title style="font-size: 25px;">Summary</mat-card-title>
+        <button mat-button routerLink='/expenseChart' color="primary">Get Report</button>
+        <mat-card-content>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
     </mat-card>
-    <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Expense Total</mat-card-title>
-        <!-- <button class="but" mat-raised-button [routerLink]="['/expenseSum']"> Expense Sum</button> -->
-
-        <app-expense-summary> </app-expense-summary>
-    </mat-card>
-
-
-
-
 </div>

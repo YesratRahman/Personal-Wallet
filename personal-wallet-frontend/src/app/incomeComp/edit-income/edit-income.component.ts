@@ -55,8 +55,7 @@ export class EditIncomeComponent implements OnInit {
     })
   } 
 
-  
-  
+
 
   updateIncome(){
     
@@ -88,8 +87,6 @@ export class EditIncomeComponent implements OnInit {
   }
   
 } 
-
-
 
 
 

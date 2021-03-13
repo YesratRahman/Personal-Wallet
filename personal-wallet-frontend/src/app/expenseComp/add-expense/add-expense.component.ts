@@ -31,7 +31,8 @@ export class AddExpenseComponent implements OnInit {
    
       let toAdd : Expense =  {expenseAmount : this.expenseAmount, description : this.description, spentDate : this.spentDate, category : this.category, userId: this.currentUser.userId};
       this.service.addExpense(toAdd).subscribe(_ => {
-        this.router.navigate(['userExpense/'+this.currentUser.userId])
+        this.router.navigate(['expenseDashboard'])
+
       }); 
     }
     formatAmount() {

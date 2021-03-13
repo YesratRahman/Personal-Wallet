@@ -59,11 +59,9 @@ export class WalletService {
   }
 
 
-  getExpenseByUserId(userId : number): Observable<Expense[]> { 
-   //return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
+  getExpenseByUserId(userId: number): Observable<Expense[]> { 
    return this.http.get<Expense[]>(this.baseURL + `/userExpense/${userId}`, this.httpOptions)
 
-  //  return this.http.get<Expense[]>(this.baseURL + "/userExpense/" + userId , this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
@@ -189,8 +187,8 @@ export class WalletService {
       );
   }
 
-  getIncomeById(expenseId: number): Observable<Income> {
-    return this.http.get<Income>(this.baseURL + "/income/" + expenseId, this.httpOptions)
+  getIncomeById(incomeId: number): Observable<Income> {
+    return this.http.get<Income>(this.baseURL + "/income/" + incomeId, this.httpOptions)
       .pipe(
         tap(x => console.log(x)),
         catchError(err => {
@@ -199,6 +197,8 @@ export class WalletService {
         })
       );
   }
+
+  
 
   getIncomeByUserId(userId : number): Observable<Income[]> { 
     return this.http.get<Income[]>(this.baseURL + `/userIncome/${userId}`, this.httpOptions)
@@ -211,6 +211,9 @@ export class WalletService {
      );
  }
 
+
+
+
  updateIncome(income: Income): Observable<Income> {
   return this.http.put<Income>(this.baseURL + "/updateIncome/" + income.incomeId, income, this.httpOptions)
     .pipe(
@@ -221,8 +224,11 @@ export class WalletService {
       })
     );
 }
- deleteIncome(userId: number) {
-  return this.http.delete(this.baseURL + "/deleteIncome/" + "incomeId", this.httpOptions)
+
+
+
+ deleteIncome(incomeId: number) {
+  return this.http.delete<Income>(this.baseURL + "/deleteIncome/" + incomeId, this.httpOptions)
     .pipe(
       tap(x => console.log(x)),
       catchError(err => {
@@ -246,6 +252,17 @@ getExpenseReport(userId : number): Observable<Expense> {
 
 getIncomeReport(userId : number): Observable<Income[]> { 
   return this.http.get<Income[]>(this.baseURL + `/incomeReport/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+getExpenseReportByYear(userId : number, spentDate : number): Observable<Expense> { 
+  return this.http.get<Expense>(this.baseURL + `/expenseTotalYear/${userId}/${spentDate}`, this.httpOptions)
    .pipe(
      tap(x => console.log(x)),
      catchError(err => {

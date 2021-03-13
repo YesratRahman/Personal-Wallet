@@ -17,8 +17,6 @@ public interface ExpenseDao {
     Expense getAllExpenseById(Integer expenseId) throws InvalidExpenseIdException;
     List<Expense> getExpenseByUserId(Integer userId) throws InvalidUserIdException, InvalidExpenseException;
 
-    //List<Expense> getExpenseByAmount();
-
     List<Expense> getExpenseByDate(LocalDate date, Integer userId) throws InvalidExpenseException, InvalidUserIdException;
      List<Expense> getExpenseByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException ;
 
@@ -28,6 +26,11 @@ public interface ExpenseDao {
     int deleteExpense(Integer expenseId) throws InvalidExpenseIdException;
 
     int getExpenseReport(Integer userId) throws InvalidUserIdException;
+     List<Integer> getTotalExpenseWithYear(Integer userId) throws InvalidUserIdException;
 
-    //int getExpenseReport(Expense expenseId) throws InvalidExpenseException, InvalidUserIdException;
+     int getExpenseTotalByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException;
+
+
+
+        //int getExpenseReport(Expense expenseId) throws InvalidExpenseException, InvalidUserIdException;
 }

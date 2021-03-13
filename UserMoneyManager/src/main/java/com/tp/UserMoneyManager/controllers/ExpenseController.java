@@ -102,7 +102,25 @@ public class ExpenseController {
         }
     }
 
+    //returns only total
+    @GetMapping("/expenseTotalYear/{userId}/{spentDate}")
+    public ResponseEntity getExpenseTotalByYear( @PathVariable Integer userId, @PathVariable Integer spentDate){
+        try{
+            return ResponseEntity.ok(service.getExpenseTotalByYear(userId, spentDate));
+        }catch(InvalidExpenseException | InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
+    //    //returns total with date
+    @GetMapping("/totalExpenseYear/{userId}")
+    public ResponseEntity getTotalExpenseWithYear( @PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getTotalExpenseWithYear(userId));
+        }catch(InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     //    @GetMapping("expense/report")
 //    public ResponseEntity getExpenseReport(@RequestBody Expense expense){

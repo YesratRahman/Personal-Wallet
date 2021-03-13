@@ -14,63 +14,84 @@ import { WalletComponent } from '../wallet/wallet.component';
   styleUrls: ['./expense-monthly-summary.component.css']
 })
 export class ExpenseMonthlySummaryComponent implements OnInit {
-  currentUser : User; 
-  expenseData: Expense[];  
-  date = [];  
-  expenseAmount = [];  
-  barchart :any = [];  
 
-  constructor(private walletService : WalletService, private router : Router, private loginService : LoginService) { }
-  ngOnInit() {
-    this.currentUser = this.loginService.getUser(); 
-     this.walletService.getAllExpenses().subscribe((result: Expense[]) => {  
-      result.forEach(x => {  
-        this.date.push(x.spentDate);  
-        this.expenseAmount.push(x.expenseAmount);  
-      });  
-      this  
-      this.barchart = new Chart('canvas', {  
-        type: 'bar',  
-        data: {  
-          labels: this.date,  
-          datasets: [  
-            {  
-              data: this.expenseAmount,  
-              borderColor: '#3cba9f',  
-              backgroundColor: [  
-                "#3cb371",  
-                "#0000FF",  
-                "#9966FF",  
-                "#4C4CFF",  
-                "#00FFFF",  
-                "#f990a7",  
-                "#aad2ed",  
-                "#FF00FF",  
-                "Blue",  
-                "Red",  
-                "Blue"  
-              ],  
-              fill: true  
-            }  
-          ]  
-        },  
-        options: {  
-          legend: {  
-            display: false  
-          },  
-          scales: {  
-            xAxes: [{  
-              display: true  
-            }],  
-            yAxes: [{  
-              display: true  
-            }],  
-          }  
-        }  
-      });  
-    });  
-  }  
-}  
+
+  
+
+      constructor() { }
+      public barChartOptions = {
+        scaleShowVerticalLines: false, //scalse showing the vertical lines 
+        responsive: true  //so the chart is displayed in a responsive way 
+      };
+      public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+      public barChartType : ChartType = 'bar';
+      public barChartLegend = true;
+      public barChartData = [
+        {data: [500, 2000, 2000, 1300, 0, 5000, 12, 600], label: 'Income'},
+        {data: [1100], label: 'Expense'}
+      ];
+      ngOnInit() {
+      }
+    }
+    
+    
+//   currentUser : User; 
+//   expenseData: Expense[];  
+//   date = [];  
+//   expenseAmount = [];  
+//   barchart :any = [];  
+
+//   constructor(private walletService : WalletService, private router : Router, private loginService : LoginService) { }
+//   ngOnInit() {
+//     this.currentUser = this.loginService.getUser(); 
+//      this.walletService.getAllExpenses().subscribe((result: Expense[]) => {  
+//       result.forEach(x => {  
+//         this.date.push(x.spentDate);  
+//         this.expenseAmount.push(x.expenseAmount);  
+//       });  
+//       this  
+//       this.barchart = new Chart('canvas', {  
+//         type: 'bar',  
+//         data: {  
+//           labels: this.date,  
+//           datasets: [  
+//             {  
+//               data: this.expenseAmount,  
+//               borderColor: '#3cba9f',  
+//               backgroundColor: [  
+//                 "#3cb371",  
+//                 "#0000FF",  
+//                 "#9966FF",  
+//                 "#4C4CFF",  
+//                 "#00FFFF",  
+//                 "#f990a7",  
+//                 "#aad2ed",  
+//                 "#FF00FF",  
+//                 "Blue",  
+//                 "Red",  
+//                 "Blue"  
+//               ],  
+//               fill: true  
+//             }  
+//           ]  
+//         },  
+//         options: {  
+//           legend: {  
+//             display: false  
+//           },  
+//           scales: {  
+//             xAxes: [{  
+//               display: true  
+//             }],  
+//             yAxes: [{  
+//               display: true  
+//             }],  
+//           }  
+//         }  
+//       });  
+//     });  
+//   }  
+// }  
 
 
 

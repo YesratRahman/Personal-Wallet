@@ -15,6 +15,7 @@ import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expen
 import { IncomeDashboardComponent } from './incomeComp/income-dashboard/income-dashboard.component';
 import { AddIncomeComponent } from './incomeComp/add-income/add-income.component';
 import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
+import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -33,7 +34,9 @@ const routes: Routes = [
   { path : "addIncome", component: AddIncomeComponent}, 
   { path: "userIncome/:userId", component: IncomeComponent}, 
   { path : "incomeDashboard", component: IncomeDashboardComponent},
-   { path : "expenseSum", component: ExpenseSummaryComponent}
+  
+   { path : "expenseSum", component: ExpenseSummaryComponent}, 
+   { path : "expenseChart", component: ExpenseMonthlySummaryComponent}
 
 
 ];

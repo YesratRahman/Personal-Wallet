@@ -135,6 +135,39 @@ public class ExpensePostgresDao implements ExpenseDao {
     }
 
 
+    @Override
+    public int getExpenseTotalByYear(Integer userId, Integer date) throws InvalidExpenseException, InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
+        }
+        if (date == null) {
+            throw new InvalidExpenseException("Spent date can not be null");
+        }
+        int total;
+        total = template.queryForObject(
+                "SELECT sum(\"expenseAmount\") as \"totalExpenseByYear\" FROM \"Expenses\" WHERE \"userId\" = ? AND EXTRACT(YEAR FROM \"Expenses\".\"spentDate\")  = ? \n",
+                new IntegerMapper("totalExpenseByYear"), userId, date);
+
+        return total;
+    }
+
+
+    @Override
+
+    public List<Integer> getTotalExpenseWithYear(Integer userId) throws InvalidUserIdException{
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
+        }
+        List<Integer> totalExpeYear;
+//        List<Integer> a, b;
+        totalExpeYear = template.query("SELECT EXTRACT(YEAR FROM \"Expenses\".\"spentDate\") as \"ME\"," +
+                " sum(\"expenseAmount\") as \"totalExpenseByYear\" FROM \"Expenses\" " +
+                        "WHERE \"userId\" = ?  GROUP BY \"ME\"\n", new IntegerMapper("totalExpenseByYear"),userId,
+                new IntegerMapper("ME"));
+        return totalExpeYear;
+
+    }
+
 
     @Override
     public int updateExpense(Expense expense) throws InvalidExpenseIdException, InvalidExpenseException, InvalidUserIdException {
