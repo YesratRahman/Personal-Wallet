@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Expense } from '../interfaces/Expense';
 import { User } from '../interfaces/User';
 import { LoginService } from '../service/login.service';
@@ -15,6 +15,7 @@ export class ExpenseSummaryComponent implements OnInit {
   @Input() expense : Expense; 
   @Input() total : Expense; 
   @Input() totalByYear : Expense; 
+  @Output() notifySum : EventEmitter<number> = new EventEmitter<number>(); 
 
 
 
@@ -22,21 +23,21 @@ export class ExpenseSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.loginService.getUser(); 
-    // this.walletService.getExpenseByUserId(this.currentUser.userId).subscribe(); 
     this.walletService.getExpenseReport(this.currentUser.userId).subscribe(
       newTotal => {
         this.total = newTotal ; 
 
       }
-    ); 
 
+    ); 
+      //this.notifySum.emit(this.expense.expenseAmount); 
 
   }
 
 
 
-  getExpenseReportByYear(){
-    this.walletService.getExpenseReportByYear(this.currentUser.userId, 2021).subscribe(
+  getExpenseReportByYear(expense : Expense){
+    this.walletService.getExpenseReportByYear(this.currentUser.userId, expense.spentDate.getFullYear() ).subscribe(
       newTotalByYear => {
         this.totalByYear = newTotalByYear ; 
 

@@ -55,13 +55,6 @@ export class EditExpenseComponent implements OnInit {
     })
   } 
 
-  
-  // updateExpense(){
-    
-  //   this.walletService.updateExpense(this.expense).subscribe(_ => {
-  //     this.router.navigate(['userExpense/'+this.currentUser.userId])
-  //   }); 
-  // }
 
   updateExpense(){
     

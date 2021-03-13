@@ -27,8 +27,8 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
       public barChartType : ChartType = 'bar';
       public barChartLegend = true;
       public barChartData = [
-        {data: [500, 2000, 2000, 1300, 0, 5000, 12, 600], label: 'Income'},
-        {data: [1100], label: 'Expense'}
+        {data: [500, 2000, 2000, 1300, 0, 5000, 12, 600], label: 'Expense'},
+        {data: [1100], label: 'Income'}
       ];
       ngOnInit() {
       }

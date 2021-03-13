@@ -58,7 +58,6 @@ export class ExpenseDashboardComponent implements OnInit {
   //   //     this.getUserExpenses();
   //   //   });
   // }
-
   // ngOnInit() {
   //   this.getUserExpenses();
   //   setTimeout(() => this.scrollTop());

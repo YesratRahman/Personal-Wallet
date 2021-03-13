@@ -393,11 +393,11 @@ public class MoneyManagerService {
         return expenseDao.getExpenseReport(userId);
     }
 
-    public int getIncomeReport(Income income) throws InvalidUserIdException, InvalidIncomeException {
-        if(income == null){
-            throw new InvalidIncomeException("Income object can not be null!");
+    public int getIncomeReport(Integer userId) throws InvalidUserIdException{
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
         }
-        return incomeDao.getIncomeReport(income);
+        return incomeDao.getIncomeReport(userId);
     }
 
     public int getReport(Integer userId) throws NullUserException, InvalidUserIdException {
@@ -415,5 +415,13 @@ public class MoneyManagerService {
 //
 //        }
         return userDao.getReport(userId);
+    }
+
+    public List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException{
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null!");
+        }
+        return expenseDao.getExpenseByCategory(userId);
+
     }
 }

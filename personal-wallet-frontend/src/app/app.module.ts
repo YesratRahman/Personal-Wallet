@@ -48,12 +48,12 @@ import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.compon
  import { ChartsModule } from 'ng2-charts';
 //  import { ChartModule } from 'angular2-highcharts';
 import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
-import { NumberCardsComponent } from './number-cards/number-cards.component';
-import { ExpenseCategorySummaryChartComponent } from './expenseComp/add-expense/expense-category-summary-chart/expense-category-summary-chart.component';
 
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'Highcharts';
 import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
+import { ExpenseCategorySummaryChartComponent } from './expenseComp/expense-category-summary-chart/expense-category-summary-chart.component';
+import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
 
 @NgModule({
   declarations: [
@@ -75,9 +75,9 @@ import { ExpenseSummaryComponent } from './expense-summary/expense-summary.compo
     EditExpenseComponent,
     EditIncomeComponent,
     ExpenseMonthlySummaryComponent,
-    NumberCardsComponent,
     ExpenseCategorySummaryChartComponent,
-    ExpenseSummaryComponent
+    ExpenseSummaryComponent,
+    IncomeSummaryComponent
           ],
   imports: [
     BrowserModule,

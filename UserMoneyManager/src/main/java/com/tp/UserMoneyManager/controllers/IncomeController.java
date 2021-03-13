@@ -104,12 +104,13 @@ public class IncomeController {
         }
     }
 
-    @GetMapping("income/report")
-    public ResponseEntity getIncomeReport(@RequestBody Income income){
+
+    @GetMapping("incomeReport/{userId}")
+    public ResponseEntity getIncome(@PathVariable Integer userId){
         try {
-            return ResponseEntity.ok(service.getIncomeReport(income));
+            return ResponseEntity.ok(service.getIncomeReport(userId));
         }
-        catch (InvalidUserIdException | InvalidIncomeException e){
+        catch (InvalidUserIdException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

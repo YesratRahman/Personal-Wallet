@@ -30,7 +30,8 @@ public interface ExpenseDao {
 
      int getExpenseTotalByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException;
 
+    List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException ;
 
 
-        //int getExpenseReport(Expense expenseId) throws InvalidExpenseException, InvalidUserIdException;
+    //int getExpenseReport(Expense expenseId) throws InvalidExpenseException, InvalidUserIdException;
 }

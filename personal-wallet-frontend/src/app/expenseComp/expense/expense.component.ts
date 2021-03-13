@@ -101,7 +101,12 @@ export class ExpenseComponent implements OnInit {
     //   this.expenses.splice(i, 1);
     // }
   }
-
+  onSumNotification(event: Event) {
+    // const i = this.expenses.findIndex(e => e.expenseId === event);
+    // if (i != -1) {
+    //   this.expenses.splice(i, 1);
+    // }
+  }
   // isDataEmpty(): boolean {
   //   return this.expenses.length === 0;
   // }

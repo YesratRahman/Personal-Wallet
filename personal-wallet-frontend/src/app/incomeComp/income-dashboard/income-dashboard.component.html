@@ -1,45 +1,61 @@
 <div class="container-fluid" id="view-income">
 
-    <mat-card>
-        <mat-card-title>Total Income</mat-card-title>
-        <mat-card-content>
-            <div>
-
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-    </mat-card>
-
-
     <div class="row">
         <div class="mb-5 col-md-6 col-sm-12">
-            <mat-card class="h-100">
-                <mat-card-title>Category summary
-                </mat-card-title>
-                <mat-card-header>
-                </mat-card-header>
-                <mat-card-content>
-                </mat-card-content>
-                <mat-card-actions>
-                </mat-card-actions>
+            <mat-card class="sty">
+                <mat-card-title style="font-size: 25px;">Income Total</mat-card-title>
+                <app-income-summary> </app-income-summary>
             </mat-card>
+
         </div>
 
 
         <div class="row">
-            <div class="col-12">
-                <mat-card>
-                    <mat-card-title>Detail summary
-                    </mat-card-title>
-                    <mat-card-subtitle style="text-align: center;">Click on row to edit income</mat-card-subtitle>
-                    <mat-card-content>
-                        <app-income> </app-income>
-                    </mat-card-content>
-                    <mat-card-actions>
-                    </mat-card-actions>
-                </mat-card>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <mat-card>
+                        <mat-card-title>Detail summary
+                        </mat-card-title>
+                        <mat-card-subtitle style="text-align: center;">Click on row to edit income</mat-card-subtitle>
+                        <mat-card-content>
+                            <app-income> </app-income>
+                        </mat-card-content>
+                        <mat-card-actions>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
             </div>
         </div>
+        <ng-template #noData>
 
+            <ng-container *ngTemplateOutlet="isLoadingIncomes ? loading: noData"></ng-container>
+
+            <ng-template #loading>
+            </ng-template>
+            <ng-template #noData>
+                <div class="no-data">
+                    <div class="col-12 justify-content-center">
+                        <div class="icon justify-content-center">
+                            <mat-icon class="icon-alert">assessment</mat-icon>
+                        </div>
+                        <div>
+                            <h2>No income data</h2>
+                            <h6>Please enter an Income.</h6>
+                            <div class="alert-action">
+                                <button mat-raised-button color="primary" routerLink="/home">Enter
+                    income
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+        </ng-template>
+
+        <button mat-fab class="fab" routerLink="/wallet">
+            <mat-icon>note_add</mat-icon>
+        </button>
     </div>

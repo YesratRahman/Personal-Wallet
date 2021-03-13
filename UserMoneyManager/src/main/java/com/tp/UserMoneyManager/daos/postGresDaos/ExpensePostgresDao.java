@@ -3,12 +3,10 @@ package com.tp.UserMoneyManager.daos.postGresDaos;
 import com.tp.UserMoneyManager.daos.Interfaces.ExpenseDao;
 import com.tp.UserMoneyManager.daos.mappers.ExpenseMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
-import com.tp.UserMoneyManager.daos.mappers.UserMapper;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
 import com.tp.UserMoneyManager.models.Expense;
-import com.tp.UserMoneyManager.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -159,13 +157,12 @@ public class ExpensePostgresDao implements ExpenseDao {
             throw new InvalidUserIdException("userId can not be null");
         }
         List<Integer> totalExpeYear;
-//        List<Integer> a, b;
-        totalExpeYear = template.query("SELECT EXTRACT(YEAR FROM \"Expenses\".\"spentDate\") as \"ME\"," +
-                " sum(\"expenseAmount\") as \"totalExpenseByYear\" FROM \"Expenses\" " +
-                        "WHERE \"userId\" = ?  GROUP BY \"ME\"\n", new IntegerMapper("totalExpenseByYear"),userId,
-                new IntegerMapper("ME"));
-        return totalExpeYear;
 
+        totalExpeYear = template.query("SELECT EXTRACT(YEAR FROM \"Expenses\".\"spentDate\") as \"Year\", " +
+                "sum(\"expenseAmount\") as \"totalExpenseByYear\" FROM \"Expenses\" " +
+                "WHERE \"userId\" = ?  GROUP BY \"Year\"\n",
+                new IntegerMapper("Year"),new IntegerMapper("totalExpenseByYear"), userId);
+        return totalExpeYear;
     }
 
 
@@ -231,6 +228,38 @@ public class ExpensePostgresDao implements ExpenseDao {
 
         return getTotalExpense;
     }
+
+    @Override
+    public List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
+        }
+
+        List<Integer> totalExpenseByCategory;
+
+//        totalExpenseByCategory = template.query("SELECT \"category\" as \"Category\", sum(\"expenseAmount\") as " +
+//                        "\"totalExpenseByCategory\" FROM \"Expenses\" \n" +
+//                        "WHERE \"userId\" = ?  GROUP BY \"Category\";", new IntegerMapper("Category"),
+//                new IntegerMapper("totalExpenseByCategory"), userId);
+
+
+        totalExpenseByCategory = template.query("\n" +
+                        "SELECT \"category\", sum(\"expenseAmount\") as \"totalExpenseByCategory\" FROM \"Expenses\" \n" +
+                        "WHERE \"userId\" = ?  GROUP BY \"category\";", new IntegerMapper("totalExpenseByCategory"), userId);
+        return totalExpenseByCategory;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -250,8 +250,8 @@ getExpenseReport(userId : number): Observable<Expense> {
    );
 }
 
-getIncomeReport(userId : number): Observable<Income[]> { 
-  return this.http.get<Income[]>(this.baseURL + `/incomeReport/${userId}`, this.httpOptions)
+getIncomeReport(userId : number): Observable<Income> { 
+  return this.http.get<Income>(this.baseURL + `/incomeReport/${userId}`, this.httpOptions)
    .pipe(
      tap(x => console.log(x)),
      catchError(err => {
@@ -263,6 +263,17 @@ getIncomeReport(userId : number): Observable<Income[]> {
 
 getExpenseReportByYear(userId : number, spentDate : number): Observable<Expense> { 
   return this.http.get<Expense>(this.baseURL + `/expenseTotalYear/${userId}/${spentDate}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+getIncomeReportByYear(userId : number, earnedDate : number): Observable<Income> { 
+  return this.http.get<Income>(this.baseURL + `/incomeTotalYear/${userId}/${earnedDate}`, this.httpOptions)
    .pipe(
      tap(x => console.log(x)),
      catchError(err => {

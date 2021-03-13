@@ -32,7 +32,7 @@ export class AddIncomeComponent implements OnInit {
    
       let toAdd : Income =  {incomeAmount : this.incomeAmount, description : this.description, earnedDate : this.earnedDate, category : this.category, userId: this.currentUser.userId};
       this.service.addIncome(toAdd).subscribe(_ => {
-        this.router.navigate(['userIncome/'+this.currentUser.userId])
+        this.router.navigate(['incomeDashboard'])
       }); 
     }
     formatAmount() {

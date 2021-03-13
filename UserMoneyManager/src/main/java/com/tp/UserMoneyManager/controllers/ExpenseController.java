@@ -113,7 +113,7 @@ public class ExpenseController {
     }
 
     //    //returns total with date
-    @GetMapping("/totalExpenseYear/{userId}")
+    @GetMapping("/expenseByYear/{userId}")
     public ResponseEntity getTotalExpenseWithYear( @PathVariable Integer userId){
         try{
             return ResponseEntity.ok(service.getTotalExpenseWithYear(userId));
@@ -121,6 +121,20 @@ public class ExpenseController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
+    @GetMapping("/totalExpenseByCategory/{userId}")
+    public ResponseEntity getExpenseByCategory( @PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getExpenseByCategory(userId));
+        }catch(InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
+
+
 
     //    @GetMapping("expense/report")
 //    public ResponseEntity getExpenseReport(@RequestBody Expense expense){

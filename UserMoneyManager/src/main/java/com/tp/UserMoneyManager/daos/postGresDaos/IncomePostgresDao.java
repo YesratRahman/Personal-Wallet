@@ -187,21 +187,17 @@ public class IncomePostgresDao implements IncomeDao {
         }
         return delete;
     }
-
     @Override
-    public int getIncomeReport(Income income) throws InvalidIncomeException, InvalidUserIdException {
-        if(income == null){
-            throw new InvalidIncomeException("Income object can not be null!");
-        }
-        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + income.getUserId() + "'", new IntegerMapper("count"));
+    public int getIncomeReport(Integer userId) throws InvalidUserIdException {
 
-        int getTotalIncome;
-        if (userCount == 1) {
-            getTotalIncome = template.queryForObject(
-                    "SELECT sum(\"incomeAmount\") as \"totalIncome\" FROM \"Incomes\" WHERE \"userId\" = '" + income.getUserId() +"'",  new IntegerMapper("totalIncome"));
-        } else {
-            throw new InvalidUserIdException("The user you are trying to get the total income, does not exist.");
+        if(userId == null){
+            throw new InvalidUserIdException("userId can not be null");
         }
+        int getTotalIncome;
+
+        getTotalIncome = template.queryForObject(
+                "SELECT sum(\"incomeAmount\") as \"totalIncome\" FROM \"Incomes\" WHERE \"userId\" = '" + userId +"'",  new IntegerMapper("totalIncome"));
+
         return getTotalIncome;
     }
 }
