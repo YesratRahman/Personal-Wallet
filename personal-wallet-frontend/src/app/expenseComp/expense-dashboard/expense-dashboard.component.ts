@@ -31,7 +31,6 @@ export class ExpenseDashboardComponent implements OnInit {
 
 
     this.currentUser = this.loginService.getUser();
-    console.log(this.currentUser);
   }
   
 

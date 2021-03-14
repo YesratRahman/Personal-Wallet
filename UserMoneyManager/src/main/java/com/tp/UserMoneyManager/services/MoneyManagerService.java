@@ -429,4 +429,12 @@ public class MoneyManagerService {
         return userDao.getAllExpenseAndIncome();
     }
 
+
+    public User getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("User Id can not be null!");
+        }
+        return userDao.getAllUsersById(userId);
+
+    }
 }

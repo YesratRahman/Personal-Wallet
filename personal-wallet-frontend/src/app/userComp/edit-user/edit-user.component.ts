@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Expense } from 'src/app/interfaces/Expense';
+import { Income } from 'src/app/interfaces/Income';
 import { User } from 'src/app/interfaces/User';
 import { WalletService } from 'src/app/service/wallet.service';
 
@@ -14,6 +16,8 @@ export class EditUserComponent implements OnInit {
   userId : number; 
   userName : string; 
 
+associatedExpense : Expense; 
+associatedIncome : Income; 
 
   
   constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
@@ -25,7 +29,7 @@ export class EditUserComponent implements OnInit {
 
   
   updateUser(){
-    let toUpdate : User = {userId : this.userId, userName : this.userName};
+    let toUpdate : User = {userId : this.userId, userName : this.userName, associatedExpense: this.associatedExpense, associatedIncome: this.associatedIncome};
     this.service.updateUser(toUpdate).subscribe(_ => {
       this.router.navigate(['users'])
     }); 

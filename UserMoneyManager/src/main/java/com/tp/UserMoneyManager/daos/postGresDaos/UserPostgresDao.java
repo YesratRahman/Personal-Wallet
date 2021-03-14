@@ -3,6 +3,7 @@ package com.tp.UserMoneyManager.daos.postGresDaos;
 import com.tp.UserMoneyManager.daos.Interfaces.UserDao;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
 import com.tp.UserMoneyManager.daos.mappers.UserMapper;
+import com.tp.UserMoneyManager.daos.mappers.fullUserMapper;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserNameException;
 import com.tp.UserMoneyManager.exceptions.NullUserException;
@@ -142,6 +143,30 @@ public class UserPostgresDao implements UserDao {
             throw new InvalidUserIdException("User with this id does not exist.");
         }
         return savings;
+    }
+
+    @Override
+
+    public List<User> getAllExpenseAndIncome(){
+        List<User> allUsers = template.query("Select * From \"Expenses\" as \"Ex\", \"Incomes\" as \"In\" " +
+                "where \"Ex\".\"userId\" = \"In\".\"userId\"", new fullUserMapper());
+
+        return allUsers;
+    }
+
+
+
+    @Override
+    public User getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null!");
+        }
+
+        User getUser;
+
+            getUser = template.queryForObject("Select \"expenseAmount\", \"incomeAmount\", \"spentDate\", \"earnedDate\" From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\" = '" + userId + "'", new fullUserMapper());
+
+        return getUser;
     }
 
 

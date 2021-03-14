@@ -287,4 +287,16 @@ getIncomeReportByYear(userId : number, earnedDate : number): Observable<Income> 
 }
 
 
+getUserExpenseAndIncome(): Observable<User[]> {
+  return this.http.get<User[]>(this.baseURL + "/expenseAndIncome", this.httpOptions)
+    .pipe(
+      tap(x => console.log(x)),
+      catchError(err => {
+        console.log(err);
+        let empty: User[] = [];
+        return of(empty);
+      })
+    );
+}
+
 }

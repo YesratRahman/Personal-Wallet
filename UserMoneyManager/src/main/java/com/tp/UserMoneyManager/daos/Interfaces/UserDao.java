@@ -17,4 +17,8 @@ public interface UserDao {
     int deleteUser(Integer userId) throws InvalidUserIdException;
 
     int getReport(Integer userId) throws NullUserException, InvalidUserIdException;
-}
+
+    List<User> getAllExpenseAndIncome();
+     User getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException;
+
+    }

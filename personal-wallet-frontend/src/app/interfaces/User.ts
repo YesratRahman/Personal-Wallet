@@ -4,6 +4,8 @@ import { Income } from "./Income";
 export interface User {
     userId? : number;
     userName : string; 
+    associatedExpense : Expense ;
+    associatedIncome : Income;
 }
 
 export interface ExpensesInfo {

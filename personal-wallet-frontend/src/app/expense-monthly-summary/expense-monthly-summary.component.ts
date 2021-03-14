@@ -20,52 +20,102 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
   currentUser : User; 
 
   chart = []; 
-  constructor(private walletService : WalletService, private router : Router, private loginService : LoginService ) { }
+  constructor(private walletService : WalletService, private router : Router, private loginService : LoginService ) { 
 
-  ngOnInit() {
-    // this.currentUser = this.loginService.getUser(); 
-    
-    this.walletService.getExpenseByUserId(this.loginService.currentUser.userId).subscribe(
+  }
+
+  ngOnInit() : void{
+    this.currentUser = this.loginService.getUser(); 
+    console.log( this.currentUser);
+
+    this.walletService.getUserExpenseAndIncome().subscribe(
       res=> {
-        console.log(res)
-         let temp_category = res.map(res => res.category)
-         let temp_amount = res.map(res => res.expenseAmount)
-         let alldates = res.map(res => res.spentDate)
+         let temp_category = res.map(res => res.associatedExpense.category)
+         let expense_amount = res.map(res => res.associatedExpense.expenseAmount)
+         let income_amount = res.map(res => res.associatedIncome.incomeAmount)
 
-         let expenseDates = [] 
+         let alldates = res.map(res => res.associatedExpense.spentDate)
+
+         let dates = [] 
          alldates.forEach((res)=> {
             let justDate = new Date(res)
-            expenseDates.push(justDate.toLocaleDateString('en', {year: 'numeric', month : 'short'}))
+            dates.push(justDate.toLocaleDateString('en', {year: 'numeric', month : 'short'}))
          }) 
-         //console.log(expenseDates); 
+         console.log(expense_amount ); 
          this.chart.push(new Chart('canvas',
          {
-            type: 'line', 
+            type: 'bar', 
             data: {
-              labels: expenseDates,
+              labels: dates,
               datasets: [
+                
                 {
-                  data: temp_amount, 
+                  data: expense_amount, 
                   borderColor: '#3cba9f',
-                  fill: false 
+                  backgroundColor: "rgba(10,150,132,1)",
+                  fill: false,
+                  label: 'Expense', 
+                  barPercentage: 0.7
+                   
+                          }, 
+                {
+                  data: income_amount, 
+                  borderColor: '#ffcc00',
+                  backgroundColor:'rgb(235, 104, 104)',
+
+                  fill: false ,
+                  label: 'Income',
+                  barPercentage: 0.7
+      
+
                 }, 
+                
 
               ]
 
             },
+            
+            
             options: {
               legend: {
-                display: false
+                display: true, 
+                labels: {
+                  boxWidth: 50, 
+                  fontSize: 20
+
+            }
               },
+              title: {
+                display: true,
+                text: 'Expense, Income VS Date',
+                position: 'bottom',
+                fontSize: 22,
+                fontColor: 'black'
+            },
               scales: {
                 xAxes : [{
-                  display : true
-                }], 
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Date',
+                    fontSize: 20,
+                    fontColor: 'rgb(17, 72, 192)'
+
+                  }
+                }
+              
+              ], 
                 yAxes : [{
-                  display: true
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Amount',
+                    fontSize: 20,
+                    fontColor: 'rgb(17, 72, 192)'
+
+                  }
                 }]
               }
             }
+            
          })) 
 
       });
@@ -76,6 +126,10 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
   }
 
   
+  // ngOnInit(){ 
+  //   this.walletService.getUserExpenseAndIncome().subscribe(res=> 
+  //     console.log(res)); 
+  // }
 }
 
 

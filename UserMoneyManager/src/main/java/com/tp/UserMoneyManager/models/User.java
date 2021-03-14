@@ -3,24 +3,25 @@ package com.tp.UserMoneyManager.models;
 public class User {
     Integer userId;
     String userName;
-//     Expense associatedExpense;
-//     Income associatedIncome;
-//
-//    public Expense getAssociatedExpense() {
-//        return associatedExpense;
-//    }
-//
-//    public void setAssociatedExpense(Expense associatedExpense) {
-//        this.associatedExpense = associatedExpense;
-//    }
-//
-//    public Income getAssociatedIncome() {
-//        return associatedIncome;
-//    }
-//
-//    public void setAssociatedIncome(Income associatedIncome) {
-//        this.associatedIncome = associatedIncome;
-//    }
+
+     Expense associatedExpense;
+     Income associatedIncome;
+
+    public Expense getAssociatedExpense() {
+        return associatedExpense;
+    }
+
+    public void setAssociatedExpense(Expense associatedExpense) {
+        this.associatedExpense = associatedExpense;
+    }
+
+    public Income getAssociatedIncome() {
+        return associatedIncome;
+    }
+
+    public void setAssociatedIncome(Income associatedIncome) {
+        this.associatedIncome = associatedIncome;
+    }
 
     public Integer getUserId() {
         return userId;
