@@ -424,4 +424,9 @@ public class MoneyManagerService {
         return expenseDao.getExpenseByCategory(userId);
 
     }
+
+    public List<User> getAllExpenseAndIncome() {
+        return userDao.getAllExpenseAndIncome();
+    }
+
 }

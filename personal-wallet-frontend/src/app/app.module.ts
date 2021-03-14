@@ -78,7 +78,7 @@ import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summa
     ExpenseCategorySummaryChartComponent,
     ExpenseSummaryComponent,
     IncomeSummaryComponent
-          ],
+            ],
   imports: [
     BrowserModule,
     AppRoutingModule,

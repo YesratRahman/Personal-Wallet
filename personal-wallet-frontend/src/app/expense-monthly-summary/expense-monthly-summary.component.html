@@ -1,9 +1,31 @@
-<div>
+<!-- <p> Works</p> -->
+
+<div *ngIf="chart">
+    <canvas id="canvas"> {{chart}}</canvas>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
     <div style="display: block">
         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
       </canvas>
     </div>
-</div>
+</div> -->
 
 <!-- <div>
     <chart [options]="options" (load)="saveInstance($event.context)"></chart>

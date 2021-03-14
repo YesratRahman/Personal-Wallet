@@ -272,6 +272,9 @@ getExpenseReportByYear(userId : number, spentDate : number): Observable<Expense>
    );
 }
 
+
+
+
 getIncomeReportByYear(userId : number, earnedDate : number): Observable<Income> { 
   return this.http.get<Income>(this.baseURL + `/incomeTotalYear/${userId}/${earnedDate}`, this.httpOptions)
    .pipe(

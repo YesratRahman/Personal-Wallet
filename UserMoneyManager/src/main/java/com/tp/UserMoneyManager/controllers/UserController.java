@@ -83,4 +83,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/expenseAndIncome")
+    public ResponseEntity getAllExpenseAndIncome(){
+
+            return ResponseEntity.ok(service.getAllExpenseAndIncome());
+
+    }
+
 }

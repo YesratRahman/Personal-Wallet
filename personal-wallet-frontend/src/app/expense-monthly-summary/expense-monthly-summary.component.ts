@@ -13,26 +13,99 @@ import { WalletComponent } from '../wallet/wallet.component';
   templateUrl: './expense-monthly-summary.component.html',
   styleUrls: ['./expense-monthly-summary.component.css']
 })
+
 export class ExpenseMonthlySummaryComponent implements OnInit {
+
+
+  currentUser : User; 
+
+  chart = []; 
+  constructor(private walletService : WalletService, private router : Router, private loginService : LoginService ) { }
+
+  ngOnInit() {
+    // this.currentUser = this.loginService.getUser(); 
+    
+    this.walletService.getExpenseByUserId(this.loginService.currentUser.userId).subscribe(
+      res=> {
+        console.log(res)
+         let temp_category = res.map(res => res.category)
+         let temp_amount = res.map(res => res.expenseAmount)
+         let alldates = res.map(res => res.spentDate)
+
+         let expenseDates = [] 
+         alldates.forEach((res)=> {
+            let justDate = new Date(res)
+            expenseDates.push(justDate.toLocaleDateString('en', {year: 'numeric', month : 'short'}))
+         }) 
+         //console.log(expenseDates); 
+         this.chart.push(new Chart('canvas',
+         {
+            type: 'line', 
+            data: {
+              labels: expenseDates,
+              datasets: [
+                {
+                  data: temp_amount, 
+                  borderColor: '#3cba9f',
+                  fill: false 
+                }, 
+
+              ]
+
+            },
+            options: {
+              legend: {
+                display: false
+              },
+              scales: {
+                xAxes : [{
+                  display : true
+                }], 
+                yAxes : [{
+                  display: true
+                }]
+              }
+            }
+         })) 
+
+      });
+
+      
+
+
+  }
+
+  
+}
+
+
+
+
+
+
+
+
+
+// export class ExpenseMonthlySummaryComponent implements OnInit {
 
 
   
 
-      constructor() { }
-      public barChartOptions = {
-        scaleShowVerticalLines: false, //scalse showing the vertical lines 
-        responsive: true  //so the chart is displayed in a responsive way 
-      };
-      public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-      public barChartType : ChartType = 'bar';
-      public barChartLegend = true;
-      public barChartData = [
-        {data: [500, 2000, 2000, 1300, 0, 5000, 12, 600], label: 'Expense'},
-        {data: [1100], label: 'Income'}
-      ];
-      ngOnInit() {
-      }
-    }
+//       constructor() { }
+//       public barChartOptions = {
+//         scaleShowVerticalLines: false, //scalse showing the vertical lines 
+//         responsive: true  //so the chart is displayed in a responsive way 
+//       };
+//       public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+//       public barChartType : ChartType = 'bar';
+//       public barChartLegend = true;
+//       public barChartData = [
+//         {data: [500, 2000, 2000, 1300, 0, 5000, 12, 600], label: 'Expense'},
+//         {data: [1100], label: 'Income'}
+//       ];
+//       ngOnInit() {
+//       }
+//     }
     
     
 //   currentUser : User; 
