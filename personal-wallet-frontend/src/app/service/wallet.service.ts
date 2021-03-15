@@ -299,4 +299,26 @@ getUserExpenseAndIncome(): Observable<User[]> {
     );
 }
 
+getAllExpenseAndIncomeByUserId(userId : number): Observable<User[]> { 
+  return this.http.get<User[]>(this.baseURL + `/expenseAndIncomeByUserId/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+getTotalExpenseAndIncomeByUserId(userId : number): Observable<User[]> { 
+  return this.http.get<User[]>(this.baseURL + `/expenseAndIncomeByUserId/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
 }

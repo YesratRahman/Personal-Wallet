@@ -99,4 +99,12 @@ public class UserController {
         }
     }
 
+    @GetMapping("/totalExpenseAndIncomeByUserId/{userId}")
+    public ResponseEntity getTotalExpenseAndIncomeByUserId(@PathVariable Integer userId){
+        try{
+            return ResponseEntity.ok(service.getTotalExpenseAndIncomeByUserId(userId));
+        }catch(InvalidUserIdException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

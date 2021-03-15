@@ -157,15 +157,42 @@ public class UserPostgresDao implements UserDao {
 
 
     @Override
-    public User getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
-        if(userId == null){
+    public List<User> getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if (userId == null) {
             throw new InvalidUserIdException("User id can not be null!");
         }
+        List<User> getUser;
+        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
+        if (userCount == 1) {
+                        getUser = template.query("Select *  From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"= '" + userId + "' AND \"Incomes\".\"userId\"= '" + userId +"' ", new fullUserMapper());
+        } else {
 
-        User getUser;
+            throw new InvalidUserIdException("User id does not exist or invalid");
+        }
+        return getUser;
+    }
 
-            getUser = template.queryForObject("Select \"expenseAmount\", \"incomeAmount\", \"spentDate\", \"earnedDate\" From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\" = '" + userId + "'", new fullUserMapper());
+    @Override
+    public List<User> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+        if (userId == null) {
+            throw new InvalidUserIdException("User id can not be null!");
+        }
+        List<User> getUser;
+        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
+        if (userCount == 1) {
+            getUser = template.query(
 
+"Select sum(\"incomeAmount\"), sum(\"expenseAmount\"), \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\n" +
+        "\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\n" +
+        "\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"\n" +
+        "From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"='"+userId+"' AND \"Incomes\".\"userId\"='"+userId+"' \n" +
+        "Group by \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\n" +
+        "\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"",
+                    new fullUserMapper());
+        } else {
+
+            throw new InvalidUserIdException("User id does not exist or invalid");
+        }
         return getUser;
     }
 
