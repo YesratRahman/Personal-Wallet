@@ -132,8 +132,8 @@ public class UserPostgresDao implements UserDao {
         int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
         if(userCount == 1 ) {
             savings = template.queryForObject("SELECT COALESCE(sum(\"incomeAmount\"), 0) - (SELECT COALESCE(SUM(\"expenseAmount\"), 0) " +
-                    "FROM \"Expenses\" WHERE \"userId\" = ?)" +
-                    "FROM \"Incomes\" WHERE \"userId\" = ?; \n",
+                            "FROM \"Expenses\" WHERE \"userId\" = ?) AS total \n" +
+                            "FROM \"Incomes\" WHERE \"userId\" = ?",
                     new IntegerMapper("total"),
                     userId,
                     userId);
@@ -182,7 +182,7 @@ public class UserPostgresDao implements UserDao {
         if (userCount == 1) {
             getUser = template.query(
 
-"Select sum(\"incomeAmount\"), sum(\"expenseAmount\"), \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\n" +
+"Select sum(\"incomeAmount\") as \"incomeSum\", sum(\"expenseAmount\"), \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\n" +
         "\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\n" +
         "\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"\n" +
         "From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"='"+userId+"' AND \"Incomes\".\"userId\"='"+userId+"' \n" +

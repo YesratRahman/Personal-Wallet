@@ -74,7 +74,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/transactionReport/{userId}")
+    @GetMapping("/userTransactionReport/{userId}")
     public ResponseEntity getReport(@PathVariable Integer userId){
         try{
             return ResponseEntity.ok(service.getReport(userId));

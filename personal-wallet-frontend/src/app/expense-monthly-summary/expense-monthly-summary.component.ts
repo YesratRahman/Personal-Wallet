@@ -25,10 +25,7 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
   }
 
   ngOnInit() : void{
-    // this.currentUser = this.loginService.getUser(); 
-    // console.log( this.currentUser);
-
-  //  / this.walletService.getUserExpenseAndIncome().subscribe(
+    
     this.walletService.getAllExpenseAndIncomeByUserId(this.loginService.currentUser.userId).subscribe(
       res=> {
          let temp_category = res.map(res => res.associatedExpense.category)

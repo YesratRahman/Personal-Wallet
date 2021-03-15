@@ -18,6 +18,7 @@ import { ExpenseSummaryComponent } from './expense-summary/expense-summary.compo
 import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
 import { ChartComponent } from 'angular2-highcharts';
+import { OverallSavingComponent } from './overall-saving/overall-saving.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -38,8 +39,9 @@ const routes: Routes = [
   { path : "incomeDashboard", component: IncomeDashboardComponent},
   
    { path : "expenseSum", component: ExpenseSummaryComponent}, 
-   { path : "expenseChart", component: ExpenseMonthlySummaryComponent},
-   { path : "incomeSum", component: IncomeSummaryComponent}
+   { path : "expenseIncomeChart", component: ExpenseMonthlySummaryComponent},
+   { path : "incomeSum", component: IncomeSummaryComponent}, 
+   { path : "userTransactionReport", component: OverallSavingComponent}
 
 
 ];

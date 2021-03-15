@@ -321,4 +321,15 @@ getTotalExpenseAndIncomeByUserId(userId : number): Observable<User[]> {
    );
 }
 
+
+getReport(userId : number): Observable<User> { 
+  return this.http.get<User>(this.baseURL + `/userTransactionReport/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
 }

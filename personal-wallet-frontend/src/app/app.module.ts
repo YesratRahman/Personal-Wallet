@@ -54,6 +54,7 @@ import * as highcharts from 'Highcharts';
 import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
 import { ExpenseCategorySummaryChartComponent } from './expenseComp/expense-category-summary-chart/expense-category-summary-chart.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
+import { OverallSavingComponent } from './overall-saving/overall-saving.component';
 
 @NgModule({
   declarations: [
@@ -77,8 +78,8 @@ import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summa
     ExpenseMonthlySummaryComponent,
     ExpenseCategorySummaryChartComponent,
     ExpenseSummaryComponent,
-    IncomeSummaryComponent
-            ],
+    IncomeSummaryComponent,
+    OverallSavingComponent            ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,31 +1,32 @@
-<!-- <div>
-    <div *ngIf="chart">
-        <canvas id="canvas"> {{chart}}</canvas>
+<div>
 
-    </div>
+    <mat-card>
+        <br>
+        <mat-card-title>Overall Savings</mat-card-title><br><br>
+        <mat-card-content>
+            <app-overall-saving></app-overall-saving>
+        </mat-card-content>
+        <mat-card-actions>
+
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+        <br>
+        <mat-card-title>Expense and Income Report Chart</mat-card-title><br><br>
+        <mat-card-content>
+            <div *ngIf="chart">
+                <canvas id="canvas"> {{chart}}</canvas>
+
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+
+        </mat-card-actions>
+    </mat-card>
+
+
 </div>
- -->
-
-<!-- reference : chartjs.org/docs/latest/charts/bar.html -->
-
-<mat-card>
-    <br>
-    <mat-card-title>Expense and Income Report</mat-card-title><br><br>
-    <mat-card-content>
-        <div *ngIf="chart">
-            <canvas id="canvas"> {{chart}}</canvas>
-
-        </div>
-    </mat-card-content>
-    <mat-card-actions>
-
-    </mat-card-actions>
-</mat-card>
-
-<!-- <div>
-    <app-expense-category-summary-chart> </app-expense-category-summary-chart>
-</div> -->
-
 
 
 
