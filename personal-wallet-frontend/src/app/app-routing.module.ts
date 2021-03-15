@@ -14,11 +14,12 @@ import { WalletComponent } from './wallet/wallet.component';
 import { ExpenseDashboardComponent } from './expenseComp/expense-dashboard/expense-dashboard.component';
 import { IncomeDashboardComponent } from './incomeComp/income-dashboard/income-dashboard.component';
 import { AddIncomeComponent } from './incomeComp/add-income/add-income.component';
-import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
-import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
+import { ExpenseSummaryComponent } from './expenseComp/expense-summary/expense-summary.component';
+import { ExpenseMonthlySummaryComponent } from './expenseComp/expense-monthly-summary/expense-monthly-summary.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
 import { ChartComponent } from 'angular2-highcharts';
 import { OverallSavingComponent } from './overall-saving/overall-saving.component';
+import { ExpenseCategoryChartComponent } from './expenseComp/expense-category-chart/expense-category-chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -41,7 +42,8 @@ const routes: Routes = [
    { path : "expenseSum", component: ExpenseSummaryComponent}, 
    { path : "expenseIncomeChart", component: ExpenseMonthlySummaryComponent},
    { path : "incomeSum", component: IncomeSummaryComponent}, 
-   { path : "userTransactionReport", component: OverallSavingComponent}
+   { path : "userTransactionReport", component: OverallSavingComponent}, 
+   { path: "totalExpenseByCategory", component: ExpenseCategoryChartComponent}
 
 
 ];

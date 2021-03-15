@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Expense } from '../interfaces/Expense';
-import { User } from '../interfaces/User';
-import { LoginService } from '../service/login.service';
-import { WalletService } from '../service/wallet.service';
+import { Expense } from '../../interfaces/Expense';
+import { User } from '../../interfaces/User';
+import { LoginService } from '../../service/login.service';
+import { WalletService } from '../../service/wallet.service';
 
 @Component({
   selector: 'app-expense-summary',

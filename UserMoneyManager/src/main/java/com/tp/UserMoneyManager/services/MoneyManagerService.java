@@ -4,6 +4,7 @@ import com.tp.UserMoneyManager.daos.Interfaces.ExpenseDao;
 import com.tp.UserMoneyManager.daos.Interfaces.IncomeDao;
 import com.tp.UserMoneyManager.daos.Interfaces.UserDao;
 import com.tp.UserMoneyManager.exceptions.*;
+import com.tp.UserMoneyManager.models.Category;
 import com.tp.UserMoneyManager.models.Expense;
 import com.tp.UserMoneyManager.models.Income;
 import com.tp.UserMoneyManager.models.User;
@@ -417,7 +418,7 @@ public class MoneyManagerService {
         return userDao.getReport(userId);
     }
 
-    public List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException{
+    public List<Category> getExpenseByCategory(Integer userId) throws InvalidUserIdException{
         if(userId == null){
             throw new InvalidUserIdException("User id can not be null!");
         }

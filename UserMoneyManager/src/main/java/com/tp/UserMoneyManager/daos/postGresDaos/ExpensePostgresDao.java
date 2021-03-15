@@ -1,11 +1,13 @@
 package com.tp.UserMoneyManager.daos.postGresDaos;
 
 import com.tp.UserMoneyManager.daos.Interfaces.ExpenseDao;
+import com.tp.UserMoneyManager.daos.mappers.CategoryMapper;
 import com.tp.UserMoneyManager.daos.mappers.ExpenseMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
+import com.tp.UserMoneyManager.models.Category;
 import com.tp.UserMoneyManager.models.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -230,22 +232,17 @@ public class ExpensePostgresDao implements ExpenseDao {
     }
 
     @Override
-    public List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException {
+    public List<Category> getExpenseByCategory(Integer userId) throws InvalidUserIdException {
         if(userId == null){
             throw new InvalidUserIdException("userId can not be null");
         }
 
-        List<Integer> totalExpenseByCategory;
+        List<Category> totalExpenseByCategory;
 
-//        totalExpenseByCategory = template.query("SELECT \"category\" as \"Category\", sum(\"expenseAmount\") as " +
-//                        "\"totalExpenseByCategory\" FROM \"Expenses\" \n" +
-//                        "WHERE \"userId\" = ?  GROUP BY \"Category\";", new IntegerMapper("Category"),
-//                new IntegerMapper("totalExpenseByCategory"), userId);
-
-
-        totalExpenseByCategory = template.query("\n" +
-                        "SELECT \"category\", sum(\"expenseAmount\") as \"totalExpenseByCategory\" FROM \"Expenses\" \n" +
-                        "WHERE \"userId\" = ?  GROUP BY \"category\";", new IntegerMapper("totalExpenseByCategory"), userId);
+        totalExpenseByCategory = template.query("" +
+                "SELECT \"category\", sum(\"expenseAmount\") as \"totalExpenseByCategory\" FROM \"Expenses\" \n" +
+                "WHERE \"userId\" = ?  GROUP BY \"category\";",
+                new CategoryMapper(), userId);
         return totalExpenseByCategory;
     }
 
@@ -290,6 +287,10 @@ public class ExpensePostgresDao implements ExpenseDao {
 
 
 
+//        totalExpenseByCategory = template.query("SELECT \"category\" as \"Category\", sum(\"expenseAmount\") as " +
+//                        "\"totalExpenseByCategory\" FROM \"Expenses\" \n" +
+//                        "WHERE \"userId\" = ?  GROUP BY \"Category\";", new IntegerMapper("Category"),
+//                new IntegerMapper("totalExpenseByCategory"), userId);
 
 
         //    @Override

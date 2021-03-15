@@ -4,6 +4,7 @@ import com.tp.UserMoneyManager.exceptions.InvalidCategoryException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidExpenseIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
+import com.tp.UserMoneyManager.models.Category;
 import com.tp.UserMoneyManager.models.Expense;
 
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public interface ExpenseDao {
 
      int getExpenseTotalByYear(Integer userId, Integer spentDate) throws InvalidExpenseException, InvalidUserIdException;
 
-    List<Integer> getExpenseByCategory(Integer userId) throws InvalidUserIdException ;
+    List<Category> getExpenseByCategory(Integer userId) throws InvalidUserIdException ;
 
 
     //int getExpenseReport(Expense expenseId) throws InvalidExpenseException, InvalidUserIdException;

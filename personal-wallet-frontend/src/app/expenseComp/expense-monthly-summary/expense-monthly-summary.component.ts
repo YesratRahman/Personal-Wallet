@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import * as Chart from 'chart.js';
 import { ChartType } from 'chart.js';
 import { Expense } from 'src/app/interfaces/Expense';
-import { User } from '../interfaces/User';
-import { LoginService } from '../service/login.service';
-import { WalletService } from '../service/wallet.service';
-import { WalletComponent } from '../wallet/wallet.component';
+import { User } from '../../interfaces/User';
+import { LoginService } from '../../service/login.service';
+import { WalletService } from '../../service/wallet.service';
+import { WalletComponent } from '../../wallet/wallet.component';
 
 @Component({
   selector: 'app-expense-monthly-summary',
@@ -28,6 +28,8 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
     
     this.walletService.getAllExpenseAndIncomeByUserId(this.loginService.currentUser.userId).subscribe(
       res=> {
+        // console.log(res); 
+        
          let temp_category = res.map(res => res.associatedExpense.category)
          let expense_amount = res.map(res => res.associatedExpense.expenseAmount)
          let income_amount = res.map(res => res.associatedIncome.incomeAmount)

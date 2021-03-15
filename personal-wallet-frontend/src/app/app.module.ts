@@ -47,14 +47,17 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.component';
  import { ChartsModule } from 'ng2-charts';
 //  import { ChartModule } from 'angular2-highcharts';
-import { ExpenseMonthlySummaryComponent } from './expense-monthly-summary/expense-monthly-summary.component';
+import { ExpenseMonthlySummaryComponent } from './expenseComp/expense-monthly-summary/expense-monthly-summary.component';
 
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'Highcharts';
-import { ExpenseSummaryComponent } from './expense-summary/expense-summary.component';
+import { ExpenseSummaryComponent } from './expenseComp/expense-summary/expense-summary.component';
 import { ExpenseCategorySummaryChartComponent } from './expenseComp/expense-category-summary-chart/expense-category-summary-chart.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
 import { OverallSavingComponent } from './overall-saving/overall-saving.component';
+import { ExpenseCategoryChartComponent } from './expenseComp/expense-category-chart/expense-category-chart.component';
+import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart/income-category-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -79,7 +82,9 @@ import { OverallSavingComponent } from './overall-saving/overall-saving.componen
     ExpenseCategorySummaryChartComponent,
     ExpenseSummaryComponent,
     IncomeSummaryComponent,
-    OverallSavingComponent            ],
+    OverallSavingComponent,
+    ExpenseCategoryChartComponent,
+    IncomeCategoryChartComponent            ],
   imports: [
     BrowserModule,
     AppRoutingModule,
