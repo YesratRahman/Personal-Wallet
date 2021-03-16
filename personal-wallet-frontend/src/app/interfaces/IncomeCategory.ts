@@ -2,9 +2,9 @@ import { Expense } from "./Expense";
 import { Income } from "./Income";
 import { User } from "./User";
 
-export interface Category {
+export interface IncomeCategory {
     category : string; 
-    totalExpenseByCategory : number;
+    totalIncomeByCategory : number;
     associatedExpense? : Expense ;
     associatedIncome? : Income;
     associatedUser? : User; 

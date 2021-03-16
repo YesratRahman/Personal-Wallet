@@ -7,7 +7,8 @@ import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Expense } from '../interfaces/Expense';
 import { Income } from '../interfaces/Income';
-import { Category } from '../interfaces/Category';
+import { ExpenseCategory } from '../interfaces/ExpenseCategory';
+import { IncomeCategory } from '../interfaces/IncomeCategory';
 
 
 @Injectable({
@@ -334,8 +335,19 @@ getReport(userId : number): Observable<User> {
    );
 }
 
-getExpenseByCategory(userId : number): Observable<Category[]> { 
-  return this.http.get<Category[]>(this.baseURL + `/totalExpenseByCategory/${userId}`, this.httpOptions)
+getExpenseByCategory(userId : number): Observable<ExpenseCategory[]> { 
+  return this.http.get<ExpenseCategory[]>(this.baseURL + `/totalExpenseByCategory/${userId}`, this.httpOptions)
+   .pipe(
+     tap(x => console.log(x)),
+     catchError(err => {
+       console.log(err);
+       return of(null);
+     })
+   );
+}
+
+getIncomeByCategory(userId : number): Observable<IncomeCategory[]> { 
+  return this.http.get<IncomeCategory[]>(this.baseURL + `/totalIncomeByCategory/${userId}`, this.httpOptions)
    .pipe(
      tap(x => console.log(x)),
      catchError(err => {

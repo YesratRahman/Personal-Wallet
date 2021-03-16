@@ -92,7 +92,7 @@ public class ExpenseController {
 
 
 
-    @GetMapping("expenseReport/{userId}")
+    @GetMapping("/expenseReport/{userId}")
     public ResponseEntity getExpenseReport(@PathVariable Integer userId){
         try {
             return ResponseEntity.ok(service.getExpenseReport(userId));

@@ -2,11 +2,11 @@ package com.tp.UserMoneyManager.models;
 
 import java.time.LocalDate;
 
-public class Category {
+public class ExpenseCategory {
 
     String category;
     int totalExpenseByCategory;
-    public Category(){
+    public ExpenseCategory(){
 
     }
 

@@ -1,15 +1,16 @@
 package com.tp.UserMoneyManager.daos.postGresDaos;
 
 import com.tp.UserMoneyManager.daos.Interfaces.IncomeDao;
-import com.tp.UserMoneyManager.daos.mappers.ExpenseMapper;
+import com.tp.UserMoneyManager.daos.mappers.ExpenseCategoryMapper;
+import com.tp.UserMoneyManager.daos.mappers.IncomeCategoryMapper;
 import com.tp.UserMoneyManager.daos.mappers.IncomeMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
-import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
-import com.tp.UserMoneyManager.models.Expense;
+import com.tp.UserMoneyManager.models.ExpenseCategory;
 import com.tp.UserMoneyManager.models.Income;
+import com.tp.UserMoneyManager.models.IncomeCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -199,5 +200,20 @@ public class IncomePostgresDao implements IncomeDao {
                 "SELECT sum(\"incomeAmount\") as \"totalIncome\" FROM \"Incomes\" WHERE \"userId\" = '" + userId +"'",  new IntegerMapper("totalIncome"));
 
         return getTotalIncome;
+    }
+
+    @Override
+    public List<IncomeCategory> getIncomeByCategory(Integer userId) throws InvalidUserIdException {
+        if (userId == null) {
+            throw new InvalidUserIdException("userId can not be null");
+        }
+
+        List<IncomeCategory> totalIncomeByCategory;
+
+        totalIncomeByCategory = template.query("" +
+                        "SELECT \"category\", sum(\"incomeAmount\") as \"totalIncomeByCategory\" FROM \"Incomes\" \n" +
+                        "WHERE \"userId\" = ?  GROUP BY \"category\";",
+                new IncomeCategoryMapper(), userId);
+        return totalIncomeByCategory;
     }
 }

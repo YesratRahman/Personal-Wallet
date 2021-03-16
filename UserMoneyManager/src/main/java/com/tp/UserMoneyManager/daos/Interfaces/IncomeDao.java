@@ -1,12 +1,12 @@
 package com.tp.UserMoneyManager.daos.Interfaces;
 
 
-import com.tp.UserMoneyManager.exceptions.InvalidExpenseException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeException;
 import com.tp.UserMoneyManager.exceptions.InvalidIncomeIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
-import com.tp.UserMoneyManager.models.Expense;
+import com.tp.UserMoneyManager.models.ExpenseCategory;
 import com.tp.UserMoneyManager.models.Income;
+import com.tp.UserMoneyManager.models.IncomeCategory;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,4 +28,6 @@ public interface IncomeDao {
 
     int deleteIncome(Integer incomeId) throws InvalidIncomeIdException;
     int getIncomeReport(Integer userId) throws InvalidUserIdException;
-}
+    List<IncomeCategory> getIncomeByCategory(Integer userId) throws InvalidUserIdException;
+
+    }

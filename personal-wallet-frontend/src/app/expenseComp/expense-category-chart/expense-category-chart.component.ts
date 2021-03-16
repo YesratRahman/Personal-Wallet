@@ -45,11 +45,6 @@ export class ExpenseCategoryChartComponent implements OnInit {
                barPercentage: 0.7
                 
                        }
-   
-
-             
-             
-
            ]
 
          },

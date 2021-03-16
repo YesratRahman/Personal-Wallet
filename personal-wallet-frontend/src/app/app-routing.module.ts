@@ -43,7 +43,9 @@ const routes: Routes = [
    { path : "expenseIncomeChart", component: ExpenseMonthlySummaryComponent},
    { path : "incomeSum", component: IncomeSummaryComponent}, 
    { path : "userTransactionReport", component: OverallSavingComponent}, 
-   { path: "totalExpenseByCategory", component: ExpenseCategoryChartComponent}
+   { path: "totalExpenseByCategory", component: ExpenseCategoryChartComponent},
+   { path: "totalIncomeByCategory", component: ExpenseCategoryChartComponent}
+
 
 
 ];

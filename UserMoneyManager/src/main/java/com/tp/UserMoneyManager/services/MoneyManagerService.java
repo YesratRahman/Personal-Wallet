@@ -4,10 +4,7 @@ import com.tp.UserMoneyManager.daos.Interfaces.ExpenseDao;
 import com.tp.UserMoneyManager.daos.Interfaces.IncomeDao;
 import com.tp.UserMoneyManager.daos.Interfaces.UserDao;
 import com.tp.UserMoneyManager.exceptions.*;
-import com.tp.UserMoneyManager.models.Category;
-import com.tp.UserMoneyManager.models.Expense;
-import com.tp.UserMoneyManager.models.Income;
-import com.tp.UserMoneyManager.models.User;
+import com.tp.UserMoneyManager.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -418,11 +415,19 @@ public class MoneyManagerService {
         return userDao.getReport(userId);
     }
 
-    public List<Category> getExpenseByCategory(Integer userId) throws InvalidUserIdException{
+    public List<ExpenseCategory> getExpenseByCategory(Integer userId) throws InvalidUserIdException{
         if(userId == null){
             throw new InvalidUserIdException("User id can not be null!");
         }
         return expenseDao.getExpenseByCategory(userId);
+
+    }
+
+    public List<IncomeCategory> getIncomeByCategory(Integer userId) throws InvalidUserIdException{
+        if(userId == null){
+            throw new InvalidUserIdException("User id can not be null!");
+        }
+        return incomeDao.getIncomeByCategory(userId);
 
     }
 
