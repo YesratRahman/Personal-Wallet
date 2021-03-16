@@ -86,11 +86,11 @@ public class PostgresUserDaoTests {
 //        assertThrows(InvalidUserNameException.class, () ->toTest.addUser(user));
 //    }
 
-
-    @Test
-    public void getUserByNullName(){
-        assertThrows(InvalidUserNameException.class, ()->toTest.getUsersByUserName(null));
-    }
+//
+//    @Test
+//    public void getUserByNullName(){
+//        assertThrows(InvalidUserNameException.class, ()->toTest.getUsersByUserName(null));
+//    }
 
 //    @Test
 //    public void getUserByEmptyName(){

@@ -1,12 +1,14 @@
 package com.tp.UserMoneyManager.daos.postGresDaos;
 
 import com.tp.UserMoneyManager.daos.Interfaces.UserDao;
+import com.tp.UserMoneyManager.daos.mappers.ExpenseIncomeDateMapper;
 import com.tp.UserMoneyManager.daos.mappers.IntegerMapper;
 import com.tp.UserMoneyManager.daos.mappers.UserMapper;
 import com.tp.UserMoneyManager.daos.mappers.fullUserMapper;
 import com.tp.UserMoneyManager.exceptions.InvalidUserIdException;
 import com.tp.UserMoneyManager.exceptions.InvalidUserNameException;
 import com.tp.UserMoneyManager.exceptions.NullUserException;
+import com.tp.UserMoneyManager.models.ExpenseIncomeDate;
 import com.tp.UserMoneyManager.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -74,18 +76,18 @@ public class UserPostgresDao implements UserDao {
     }
 
 
-    @Override
-    public List<User> getUsersByUserName(String userName) throws InvalidUserNameException {
-        if(userName == null){
-            throw new InvalidUserNameException("User name can not be null");
-        }
-        List<User> users = template.query(
-                "SELECT \"userId\", \"userName\" FROM \"Users\" WHERE \"userName\" = ?;",
-                new UserMapper(), userName);
-
-        return users;
-    }
-
+//    @Override
+//    public List<User> getUsersByUserName(String userName) throws InvalidUserNameException {
+//        if(userName == null){
+//            throw new InvalidUserNameException("User name can not be null");
+//        }
+//        List<User> users = template.query(
+//                "SELECT \"userId\", \"userName\" FROM \"Users\" WHERE \"userName\" = ?;",
+//                new UserMapper(), userName);
+//
+//        return users;
+//    }
+//
 
     @Override
     public int updateUser( User user) throws InvalidUserIdException, NullUserException {
@@ -156,45 +158,68 @@ public class UserPostgresDao implements UserDao {
 
 
 
+//    @Override
+//    public List<User> getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+//        if (userId == null) {
+//            throw new InvalidUserIdException("User id can not be null!");
+//        }
+//        List<User> getUser;
+//        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
+//        if (userCount == 1) {
+//                        getUser = template.query("Select *  From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"= '" + userId + "' AND \"Incomes\".\"userId\"= '" + userId +"' ", new fullUserMapper());
+//        } else {
+//
+//            throw new InvalidUserIdException("User id does not exist or invalid");
+//        }
+//        return getUser;
+//    }
+
     @Override
-    public List<User> getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+    public List<ExpenseIncomeDate> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
         if (userId == null) {
             throw new InvalidUserIdException("User id can not be null!");
         }
-        List<User> getUser;
-        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
-        if (userCount == 1) {
-                        getUser = template.query("Select *  From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"= '" + userId + "' AND \"Incomes\".\"userId\"= '" + userId +"' ", new fullUserMapper());
-        } else {
+        List<ExpenseIncomeDate> getExpenseIncome;
 
-            throw new InvalidUserIdException("User id does not exist or invalid");
-        }
-        return getUser;
-    }
+//        getExpenseIncome = template.query("Select sum(\"incomeAmount\") as \"incomeSum\", sum(\"expenseAmount\") as \"expenseSum\", " +
+//                "\"spentDate\", \"earnedDate\" From \"Expenses\", \"Incomes\"  \n" +
+//                "where \"Expenses\".\"userId\"=? AND \"Incomes\".\"userId\"=? Group By " +
+//                "\"spentDate\", \"earnedDate\";", new ExpenseIncomeDateMapper(), userId, userId);
 
-    @Override
-    public List<User> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
-        if (userId == null) {
-            throw new InvalidUserIdException("User id can not be null!");
-        }
-        List<User> getUser;
-        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
-        if (userCount == 1) {
-            getUser = template.query(
 
-"Select sum(\"incomeAmount\") as \"incomeSum\", sum(\"expenseAmount\"), \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\n" +
-        "\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\n" +
-        "\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"\n" +
-        "From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"='"+userId+"' AND \"Incomes\".\"userId\"='"+userId+"' \n" +
-        "Group by \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\n" +
-        "\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"",
-                    new fullUserMapper());
-        } else {
+        getExpenseIncome = template.query("Select sum(\"incomeAmount\") as \"incomeSum\", sum(\"expenseAmount\") as \"expenseSum\", " +
+                "\"spentDate\", \"earnedDate\" From \"Expenses\", \"Incomes\"  \n" +
+                "where \"Expenses\".\"userId\"=? AND \"Incomes\".\"userId\"=? AND \"Expenses\"." +
+                "\"spentDate\"=\"Incomes\".\"earnedDate\" Group By \"spentDate\", \"earnedDate\";\n", new ExpenseIncomeDateMapper(), userId, userId);
 
-            throw new InvalidUserIdException("User id does not exist or invalid");
-        }
-        return getUser;
+        return getExpenseIncome;
     }
 
 
 }
+
+
+
+//    @Override
+//    public List<User> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+//        if (userId == null) {
+//            throw new InvalidUserIdException("User id can not be null!");
+//        }
+//        List<User> getUser;
+//        int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
+//        if (userCount == 1) {
+//            getUser = template.query(
+//
+//                    "Select sum(\"incomeAmount\") as \"incomeSum\", sum(\"expenseAmount\"), \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\n" +
+//                            "\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\n" +
+//                            "\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"\n" +
+//                            "From \"Expenses\", \"Incomes\"  where \"Expenses\".\"userId\"='"+userId+"' AND \"Incomes\".\"userId\"='"+userId+"' \n" +
+//                            "Group by \"Expenses\".\"spentDate\", \"Expenses\".\"userId\", \"Incomes\".\"userId\", \"Expenses\".\"expenseId\", \"Incomes\".\"incomeId\",\"Expenses\".\"spentDate\", \"Incomes\".\"earnedDate\",\n" +
+//                            "\"Expenses\".\"category\", \"Incomes\".\"category\", \"Expenses\".\"description\", \"Incomes\".\"description\",\"Expenses\".\"expenseAmount\", \"Incomes\".\"incomeAmount\"",
+//                    new fullUserMapper());
+//        } else {
+//
+//            throw new InvalidUserIdException("User id does not exist or invalid");
+//        }
+//        return getUser;
+//    }

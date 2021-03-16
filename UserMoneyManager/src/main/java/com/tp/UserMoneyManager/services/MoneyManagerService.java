@@ -46,12 +46,12 @@ public class MoneyManagerService {
 
     }
 
-    public List<User> getUsersByUserName(String userName) throws InvalidUserNameException {
-        if(userName == null || userName.isEmpty() || userName.isBlank()){
-            throw new InvalidUserNameException("UserName is invalid!");
-        }
-        return userDao.getUsersByUserName(userName);
-    }
+//    public List<User> getUsersByUserName(String userName) throws InvalidUserNameException {
+//        if(userName == null || userName.isEmpty() || userName.isBlank()){
+//            throw new InvalidUserNameException("UserName is invalid!");
+//        }
+//        return userDao.getUsersByUserName(userName);
+//    }
 
 
     public int updateUser( User user) throws InvalidUserIdException, NullUserException, InvalidUserNameException {
@@ -436,15 +436,15 @@ public class MoneyManagerService {
     }
 
 
-    public List<User> getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
-        if(userId == null){
-            throw new InvalidUserIdException("User Id can not be null!");
-        }
-        return userDao.getAllExpenseAndIncomeByUserId(userId);
+//    public List<User> getAllExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+//        if(userId == null){
+//            throw new InvalidUserIdException("User Id can not be null!");
+//        }
+//        return userDao.getAllExpenseAndIncomeByUserId(userId);
+//
+//    }
 
-    }
-
-    public List<User> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
+    public List<ExpenseIncomeDate> getTotalExpenseAndIncomeByUserId(Integer userId) throws InvalidUserIdException {
         if (userId == null) {
             throw new InvalidUserIdException("User Id can not be null!");
         }

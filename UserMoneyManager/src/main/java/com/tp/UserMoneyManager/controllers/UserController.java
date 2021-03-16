@@ -44,15 +44,15 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @GetMapping("/user/userName/{userName}")
-    public ResponseEntity getUsersByUserName(@PathVariable String userName)  {
-        try{
-            return ResponseEntity.ok(service.getUsersByUserName(userName));
-        }catch(InvalidUserNameException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+//
+//    @GetMapping("/user/userName/{userName}")
+//    public ResponseEntity getUsersByUserName(@PathVariable String userName)  {
+//        try{
+//            return ResponseEntity.ok(service.getUsersByUserName(userName));
+//        }catch(InvalidUserNameException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
     @PutMapping("/updateUser/{userId}")
     public ResponseEntity updateUser( @RequestBody User user){
@@ -90,14 +90,14 @@ public class UserController {
 
     }
 
-    @GetMapping("/expenseAndIncomeByUserId/{userId}")
-    public ResponseEntity getAllExpenseAndIncomeByUserId(@PathVariable Integer userId){
-        try{
-            return ResponseEntity.ok(service.getAllExpenseAndIncomeByUserId(userId));
-        }catch(InvalidUserIdException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+//    @GetMapping("/expenseAndIncomeByUserId/{userId}")
+//    public ResponseEntity getAllExpenseAndIncomeByUserId(@PathVariable Integer userId){
+//        try{
+//            return ResponseEntity.ok(service.getAllExpenseAndIncomeByUserId(userId));
+//        }catch(InvalidUserIdException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 
     @GetMapping("/totalExpenseAndIncomeByUserId/{userId}")
     public ResponseEntity getTotalExpenseAndIncomeByUserId(@PathVariable Integer userId){
@@ -107,4 +107,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
 }

@@ -9,6 +9,7 @@ import { Expense } from '../interfaces/Expense';
 import { Income } from '../interfaces/Income';
 import { ExpenseCategory } from '../interfaces/ExpenseCategory';
 import { IncomeCategory } from '../interfaces/IncomeCategory';
+import { ExpenseIncomeDate } from '../interfaces/ExpenseIncomeDate';
 
 
 @Injectable({
@@ -301,19 +302,19 @@ getUserExpenseAndIncome(): Observable<User[]> {
     );
 }
 
-getAllExpenseAndIncomeByUserId(userId : number): Observable<User[]> { 
-  return this.http.get<User[]>(this.baseURL + `/expenseAndIncomeByUserId/${userId}`, this.httpOptions)
-   .pipe(
-     tap(x => console.log(x)),
-     catchError(err => {
-       console.log(err);
-       return of(null);
-     })
-   );
-}
+// getAllExpenseAndIncomeByUserId(userId : number): Observable<User[]> { 
+//   return this.http.get<User[]>(this.baseURL + `/expenseAndIncomeByUserId/${userId}`, this.httpOptions)
+//    .pipe(
+//      tap(x => console.log(x)),
+//      catchError(err => {
+//        console.log(err);
+//        return of(null);
+//      })
+//    );
+// }
 
-getTotalExpenseAndIncomeByUserId(userId : number): Observable<User[]> { 
-  return this.http.get<User[]>(this.baseURL + `/expenseAndIncomeByUserId/${userId}`, this.httpOptions)
+getTotalExpenseAndIncomeByUserId(userId : number): Observable<ExpenseIncomeDate[]> { 
+  return this.http.get<ExpenseIncomeDate[]>(this.baseURL + `/totalExpenseAndIncomeByUserId/${userId}`, this.httpOptions)
    .pipe(
      tap(x => console.log(x)),
      catchError(err => {

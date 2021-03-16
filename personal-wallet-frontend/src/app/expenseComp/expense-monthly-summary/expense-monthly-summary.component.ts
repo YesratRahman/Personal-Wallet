@@ -26,22 +26,19 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
 
   ngOnInit() : void{
     
-    this.walletService.getAllExpenseAndIncomeByUserId(this.loginService.currentUser.userId).subscribe(
+    this.walletService.getTotalExpenseAndIncomeByUserId(this.loginService.currentUser.userId).subscribe(
       res=> {
-        // console.log(res); 
         
-         let temp_category = res.map(res => res.associatedExpense.category)
-         let expense_amount = res.map(res => res.associatedExpense.expenseAmount)
-         let income_amount = res.map(res => res.associatedIncome.incomeAmount)
+         let expense_sum = res.map(res => res.expenseSum)
+         let income_sum = res.map(res => res.incomeSum)
 
-         let alldates = res.map(res => res.associatedExpense.spentDate)
+         let alldates = res.map(res => res.spentDate)
 
          let dates = [] 
          alldates.forEach((res)=> {
             let justDate = new Date(res)
             dates.push(justDate.toLocaleDateString('en', {year: 'numeric', month : 'short'}))
          }) 
-         console.log(expense_amount ); 
          this.chart.push(new Chart('canvas',
          {
             type: 'bar', 
@@ -50,7 +47,7 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
               datasets: [
                 
                 {
-                  data: expense_amount, 
+                  data: expense_sum, 
                   borderColor: '#3cba9f',
                   backgroundColor: "rgba(10,150,132,1)",
                   fill: false,
@@ -59,7 +56,7 @@ export class ExpenseMonthlySummaryComponent implements OnInit {
                    
                           }, 
                 {
-                  data: income_amount, 
+                  data: income_sum, 
                   borderColor: '#ffcc00',
                   backgroundColor:'rgb(235, 104, 104)',
 
