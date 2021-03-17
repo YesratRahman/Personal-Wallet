@@ -1,11 +1,10 @@
-<div class="main-div">
-    <mat-card class="sty">
-        <br/>
-        <br/>
-        <mat-card-title>Delete User Profile </mat-card-title>
-        <mat-card-actions>
-            <button class="but" mat-raised-button (click)="deleteUser(userId)">Delete Profile</button>
-            <button class="but" mat-raised-button routerLink='/users'>Cancel Deleting</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
+<mat-card class="sty">
+    <br/>
+    <br/>
+    <mat-card-title>Delete User Profile </mat-card-title>
+    <mat-card-content>Hi {{currentUser.userName}}, are you sure to delete? </mat-card-content>
+    <mat-card-actions>
+        <button class="but" mat-raised-button mat-dialog-close (click)="deleteUser(currentUser.userId)">Delete Profile</button>
+        <button class="but" mat-raised-button mat-dialog-close routerLink='/wallet'>Cancel Deleting</button>
+    </mat-card-actions>
+</mat-card>

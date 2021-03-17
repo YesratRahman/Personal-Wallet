@@ -47,11 +47,7 @@ const routes: Routes = [
    { path: "totalExpenseByCategory", component: ExpenseCategoryChartComponent},
    { path: "totalIncomeByCategory", component: IncomeCategoryChartComponent}
 
-
-
 ];
-
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

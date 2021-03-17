@@ -116,6 +116,10 @@ public class UserPostgresDao implements UserDao {
         int userCount = template.queryForObject("select count(*) from \"Users\" Where \"userId\" = '" + userId + "'", new IntegerMapper("count"));
 
         if (userCount == 1) {
+
+            template.update("Delete from \"Reports\" Where \"userId\" = ?;", userId);
+            template.update("Delete from \"Expenses\" Where \"userId\" = ?;", userId);
+            template.update("Delete from \"Incomes\" Where \"userId\" = ?;", userId);
             delete = template.update("DELETE FROM \"Users\" WHERE \"userId\" = ?;", userId);
         }
         else {

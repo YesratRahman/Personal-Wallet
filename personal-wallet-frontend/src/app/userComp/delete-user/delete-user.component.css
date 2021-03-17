@@ -1,19 +1,12 @@
-.main-div {
-    background-color: rgb(222, 241, 235);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .sty {
-    background-color: #fff;
+    background-color: rgb(203, 240, 243);
     max-width: 100%;
     height: 250px;
     width: 450px;
+    text-align: center;
 }
 
 .but {
     color: black;
-    background-color: rgba(64, 155, 197, 0.418);
+    background-color: rgba(59, 156, 201, 0.418);
 }

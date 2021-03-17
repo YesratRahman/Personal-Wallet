@@ -120,6 +120,7 @@ import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DeleteUserComponent]
 })
 export class AppModule { }

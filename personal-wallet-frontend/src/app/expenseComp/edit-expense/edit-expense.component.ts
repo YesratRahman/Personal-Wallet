@@ -22,6 +22,7 @@ export class EditExpenseComponent implements OnInit {
   currentUser : User; 
   confirmDelete = false; 
 
+  
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: Expense,
 

@@ -24,5 +24,47 @@
 
 .mat-icon {
     width: inherit;
-    color: rgb(52, 62, 201);
+    color: #2196F3;
+}
+
+.but {
+    color: black;
+    background-color: rgba(155, 199, 219, 0.418);
+    font-size: 14px;
+}
+
+.but:hover {
+    background-color: rgba(60, 163, 211, 0.418);
+}
+
+.info-content {
+    font-size: 20px;
+}
+
+.mat-card>:first-child,
+.mat-card-content>:first-child {
+    margin-top: 0;
+    text-align: right;
+}
+
+.logButton:hover {
+    background-color: rgb(151, 190, 72);
+}
+
+.mat-button {
+    font-size: 15px;
+}
+
+.logButton {
+    background-color: rgb(208, 235, 181);
+}
+
+.userInfo {
+    height: 300px;
+    width: 300px;
+    display: inline-block;
+}
+
+.divider {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
