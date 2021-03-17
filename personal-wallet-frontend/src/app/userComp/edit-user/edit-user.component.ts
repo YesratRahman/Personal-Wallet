@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/Expense';
 import { Income } from 'src/app/interfaces/Income';
 import { User } from 'src/app/interfaces/User';
+import { LoginService } from 'src/app/service/login.service';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
@@ -18,29 +18,27 @@ export class EditUserComponent implements OnInit {
 
 associatedExpense : Expense; 
 associatedIncome : Income; 
+currentUser : User; 
+@Output() notifyEditUser : EventEmitter<string> = new EventEmitter<string>(); 
 
-  
-  constructor(private service : WalletService, private router : Router, private route : ActivatedRoute) { }
+constructor(private walletSer : WalletService, private router : Router, private route : ActivatedRoute, private loginService : LoginService){
+  this.currentUser = this.loginService.getUser(); 
+
+  }
 
   ngOnInit(): void {
     this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
-    this.service.getUserById(this.userId).subscribe(); 
+    console.log(this.loginService.currentUser.userId);
   }
 
   
   updateUser(){
-    let toUpdate : User = {userId : this.userId, userName : this.userName, associatedExpense: this.associatedExpense, associatedIncome: this.associatedIncome};
-    this.service.updateUser(toUpdate).subscribe(_ => {
+    let toUpdate : User = {userId : this.loginService.currentUser.userId, userName : this.userName, associatedExpense: this.associatedExpense, associatedIncome: this.associatedIncome};
+    this.walletSer.updateUser(toUpdate).subscribe(_ => {
       this.router.navigate(['users'])
     }); 
   }
 
+
 }
 
-
-// ngOnInit(): void {
-//   this.userId = parseInt(this.route.snapshot.paramMap.get('id')); 
-//   this.service.getUserById(this.userId).subscribe(newD => {
-//     this.userName = newD.userName; 
-//   });
-// }

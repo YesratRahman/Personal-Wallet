@@ -121,6 +121,6 @@ import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteUserComponent]
+  entryComponents: [DeleteUserComponent, EditUserComponent]
 })
 export class AppModule { }

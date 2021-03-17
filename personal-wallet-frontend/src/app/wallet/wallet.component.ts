@@ -5,6 +5,7 @@ import { WalletService } from '../service/wallet.service';
 import { LoginService } from '../service/login.service';
 import { DeleteUserComponent } from '../userComp/delete-user/delete-user.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog'
+import { EditUserComponent } from '../userComp/edit-user/edit-user.component';
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
@@ -18,6 +19,7 @@ export class WalletComponent implements OnInit {
 
   constructor(private walletSer: WalletService, private router: Router, private route: ActivatedRoute,
     private loginService: LoginService, public dialog : MatDialog) {
+      this.currentUser = this.loginService.getUser();
 
   }
   ngOnInit(): void {
@@ -31,5 +33,16 @@ export class WalletComponent implements OnInit {
     dialogRef.afterClosed().subscribe(()=> 
     this.currentUser = this.loginService.getUser()
     ); 
+  }
+
+  onEditUser(){
+    let dialogRef = this.dialog.open(EditUserComponent); 
+    dialogRef.afterClosed().subscribe(()=> 
+    this.currentUser = this.loginService.getUser()
+    ); 
+  }
+
+  onEditNotification(event : Event){
+    // this.currentUser.userName = userName; 
   }
 }
