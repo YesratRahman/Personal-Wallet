@@ -23,4 +23,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('/assets/ex1.jpg');
+    background-size: 100vw 100vh;
+}
+
+.button:hover {
+    background-color: rgb(86, 172, 221);
+}
+
+.button {
+    background-color: rgb(183, 219, 240);
+    color: red;
+}
+
+.resetButton {
+    background-color: rgb(183, 219, 240);
+}
+
+.resetButton:hover {
+    background-color: rgb(86, 172, 221);
+}
+
+.saveButton {
+    background-color: rgb(183, 219, 240);
 }

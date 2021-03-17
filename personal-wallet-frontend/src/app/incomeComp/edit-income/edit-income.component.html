@@ -112,7 +112,7 @@
 
         <span *ngIf="!confirmDelete"> 
 
-        <button type="button" *ngIf="!update" class="delete" mat-button color="warn" (click)="deleteIncome()">Delete
+        <button type="button" mat-dialog-close *ngIf="!update" class="delete" mat-button color="warn" (click)="deleteIncome()">Delete
             </button>
 
         </span>
@@ -122,7 +122,7 @@
 
 
         <button type="button" *ngIf="update" class="delete" mat-button color="primary" (click)="reset()">Reset</button>
-        <button *ngIf="update" type="submit" [disabled]="!f.form.valid || isIncomeUntouched()" mat-raised-button color="primary">Update
+        <button *ngIf="update" mat-dialog-close type="submit" [disabled]="!f.form.valid || isIncomeUntouched()" mat-raised-button color="primary">Update
         </button>
 
     </mat-dialog-actions>

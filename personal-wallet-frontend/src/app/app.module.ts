@@ -57,7 +57,7 @@ import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summa
 import { OverallSavingComponent } from './overall-saving/overall-saving.component';
 import { ExpenseCategoryChartComponent } from './expenseComp/expense-category-chart/expense-category-chart.component';
 import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart/income-category-chart.component';
-
+import { MatGridListModule } from '@angular/material/grid-list'
 
 @NgModule({
   declarations: [
@@ -112,7 +112,8 @@ import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart
     MatSortModule,
     MatDialogModule,
      ChartsModule,
-     ChartModule.forRoot(highcharts)
+     ChartModule.forRoot(highcharts),
+     MatGridListModule
         
 
 

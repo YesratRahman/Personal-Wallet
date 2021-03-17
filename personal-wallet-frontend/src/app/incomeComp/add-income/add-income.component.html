@@ -1,6 +1,10 @@
-<mat-card class="main-div">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
 
-    <div id="enter-income">
+<div class="main-div">
+
+    <div id="enter-expense">
         <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid, f)">
             <div *ngIf="isLoading">
             </div>
@@ -13,7 +17,6 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
-
 
                         <div class="col-sm-6">
                             <mat-form-field class="example-full-width">
@@ -72,14 +75,16 @@
 
                 <mat-card-actions>
                     <div class="d-flex justify-content-end">
-                        <button type="button" mat-button color="primary" (click)="clearForm(f)">Reset</button>
-                        <button type="button" mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.form.valid">
+                        <button type="button" mat-dialog-close mat-button color="primary" (click)="clearForm(f)">Reset</button>
+                        <button type="button" mat-dialog-close mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!f.form.valid">
                           <mat-icon>save</mat-icon>Save
                         </button>
+                        <button class="button" mat-button routerLink='/wallet'>Cancel</button>
                     </div>
                 </mat-card-actions>
 
             </mat-card>
+
         </form>
     </div>
-</mat-card>
+</div>
