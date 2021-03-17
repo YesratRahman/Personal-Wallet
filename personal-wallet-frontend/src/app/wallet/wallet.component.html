@@ -1,72 +1,88 @@
-<!-- <head>
+<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-</head> -->
-<br>
-<mat-card class="userInfo">
-    <div id="logout">
-        <button class="logButton" mat-button [routerLink]="['/users']"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
-    </div>
+</head>
+<div class="main-div ">
     <br>
-    <mat-card-title>User Profile</mat-card-title>
-    <mat-card-content>
-        <mat-icon class="account">account_circle</mat-icon>
-        <div class="justify-content-center">
-            <span class="info-content">{{currentUser.userName}}</span>
+    <mat-card class="userInfo">
+        <div id="logout">
+            <button class="logButton" mat-button [routerLink]="['/users']"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
         </div>
-    </mat-card-content>
-    <mat-card-actions>
-        <button class="but" mat-button [routerLink]="['/updateUser/',currentUser.userId]">
+        <br>
+        <mat-card-title>User Profile</mat-card-title>
+        <mat-card-content>
+            <mat-icon class="account">account_circle</mat-icon>
+            <div class="justify-content-center">
+                <span class="info-content">{{currentUser.userName}}</span>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="but" mat-button [routerLink]="['/updateUser/',currentUser.userId]">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit User</button>
-        <button class="but" mat-button (click)="onDelete()">
+            <button class="but" mat-button (click)="onDelete()">
             <i class="fa fa-trash-o" aria-hidden="true"></i>Delete Profile</button>
-    </mat-card-actions>
-</mat-card>
-<br>
-<br/>
-
-<!-- <div class="container-fluid" id="home"> -->
-<!-- <div class="row"> -->
-
-<!-- <div> -->
-<div id="expenseManager">
-
-    <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Expense Manager </mat-card-title>
-        <button mat-button routerLink='/addExpense' color="primary"> <i class="fa fa-plus" aria-hidden="true"></i>Add Expense</button>
-        <button mat-button routerLink="/expenseDashboard" color="primary"> <i class="fa fa-1x fa-fw fa-bar-chart"></i> View Expenses </button>
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
         </mat-card-actions>
     </mat-card>
-</div>
-<br/>
-<div class="col-12 col-md-6 offset-md-3">
-    <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Income Manager </mat-card-title>
-        <button mat-button routerLink='/addIncome' color="primary"> <i class="fa fa-plus" aria-hidden="true"></i>Add Income</button>
-        <button mat-button routerLink="/incomeDashboard" color="primary"> <i class="fa fa-1x fa-fw fa-bar-chart"></i> View Incomes</button>
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-    </mat-card>
+    <br>
     <br/>
-</div>
-<div class="col-12 col-md-6 offset-md-3">
-    <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;">Summary</mat-card-title>
-        <button mat-button routerLink='/expenseIncomeChart' color="primary">Get Report</button>
-        <button mat-button routerLink='/totalExpenseByCategory' color="primary">Get Report of Category</button>
-        <button mat-button routerLink='/totalIncomeByCategory' color="primary">Get Report of Income Category</button>
-        <mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-    </mat-card>
-</div>
+    <br/>
 
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
+
+    <div>
+
+        <mat-card class="expenseManager">
+            <br>
+            <mat-card-title style="font-size: 30px; text-align: center;">Expense Manager </mat-card-title>
+            <br>
+            <br>
+            <button style="font-size: 20px;" mat-button routerLink='/addExpense' color="primary"> <i class="fa fa-plus" aria-hidden="true"></i>Add Expense</button>
+            <button style="font-size: 20px;" mat-button routerLink="/expenseDashboard" color="primary"> <i class="fa fa-file-text" aria-hidden="true"></i>
+                View Expenses </button>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>
+        <br/>
+        <br/>
+
+        <mat-card class="report">
+            <br>
+            <mat-card-title style="font-size: 30px; text-align: center;">Savings Report</mat-card-title>
+            <br>
+            <br>
+
+
+            <button style="font-size: 25px;" mat-button routerLink='/expenseIncomeChart' color="primary"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                Get Report</button>
+            <!-- <button mat-button routerLink='/totalExpenseByCategory' color="primary">Get Report of Expense Category</button>
+            <button mat-button routerLink='/totalIncomeByCategory' color="primary">Get Report of Income Category</button> -->
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="incomeManager">
+            <br>
+            <mat-card-title style="font-size: 25px; text-align: right;">Income Manager </mat-card-title>
+            <br>
+            <mat-card-content>
+                <button style="font-size: 25px;" mat-button routerLink='/addIncome' color="primary"> <i class="fa fa-plus" aria-hidden="true"></i>Add Income</button>
+                <button style="font-size: 22px;" mat-button routerLink="/incomeDashboard" color="primary"> <i class="fa fa-file-text" aria-hidden="true"></i>
+                    View Incomes</button>
+            </mat-card-content>
+            <mat-card-actions style="font-size: 25px; text-align: center;">
+
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+    <br/>
+    <br/>
+    <div>
+        <button mat-fab class="primary" routerLink="/expenseIncomeChart">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+        </button>
+    </div>
+</div>

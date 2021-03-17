@@ -1,60 +1,55 @@
-<div class="container-fluid" id="view-expense">
-    <div class="row">
-        <div class="mb-5 col-md-6 col-sm-12">
-            <mat-card class="sty">
-                <mat-card-title style="font-size: 25px;">Expense Total</mat-card-title>
-                <app-expense-summary> </app-expense-summary>
-            </mat-card>
+<!-- <div class="container-fluid" id="view-expense"> -->
+<div class="row">
+    <div class="mb-5 col-md-6 col-sm-12">
+        <mat-card class="sty">
+            <mat-card-title style="font-size: 25px;">Expense Total</mat-card-title>
+            <app-expense-summary> </app-expense-summary>
+        </mat-card>
 
-        </div>
+    </div>
+
+
+
+    <div class="row">
 
 
         <div class="row">
-
-
-            <div class="row">
-                <div class="col-12">
-                    <mat-card>
-                        <mat-card-title>Detail summary
-                        </mat-card-title>
-                        <mat-card-subtitle style="text-align: center;">Click on row to edit expense</mat-card-subtitle>
-                        <mat-card-content>
-                            <app-expense> </app-expense>
-                        </mat-card-content>
-                        <mat-card-actions>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
+            <div class="col-12">
+                <mat-card>
+                    <mat-card-title>Detail summary
+                    </mat-card-title>
+                    <mat-card-subtitle style="text-align: center;">Click on row to edit expense</mat-card-subtitle>
+                    <mat-card-content>
+                        <app-expense> </app-expense>
+                    </mat-card-content>
+                    <mat-card-actions>
+                    </mat-card-actions>
+                </mat-card>
             </div>
         </div>
-        <ng-template #noData>
+    </div>
 
-            <ng-container *ngTemplateOutlet="isLoadingExpenses ? loading: noData"></ng-container>
 
-            <ng-template #loading>
-            </ng-template>
-            <ng-template #noData>
-                <div class="no-data">
-                    <div class="col-12 justify-content-center">
-                        <div class="icon justify-content-center">
-                            <mat-icon class="icon-alert">assessment</mat-icon>
-                        </div>
-                        <div>
-                            <h2>No expense data</h2>
-                            <h6>Please enter an expense.</h6>
-                            <div class="alert-action">
-                                <button mat-raised-button color="primary" routerLink="/home">Enter
-                    expense
-                  </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
 
-        </ng-template>
 
-        <button mat-fab class="fab" routerLink="/wallet">
+    <div class="row">
+        <div class="col-12">
+            <mat-card>
+                <mat-card-title>
+                </mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <mat-card-content>
+                    <app-expense-category-chart></app-expense-category-chart>
+                </mat-card-content>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+    <div>
+        <button mat-fab class="primary" routerLink="/wallet">
             <mat-icon>note_add</mat-icon>
         </button>
     </div>
+</div>

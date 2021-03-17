@@ -1,16 +1,36 @@
-.sty {
-    background-color: rgb(171, 241, 212);
-    max-width: 400px;
-    height: 250px;
-    width: 350px;
-}
-
 .main-div {
     background-color: rgb(222, 241, 235);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 150vh;
+}
+
+.expenseManager {
+    background-color: rgba(171, 241, 212, 0.5);
+    max-width: 400px;
+    height: 250px;
+    width: 400px;
+    display: inline-block;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.report {
+    background-color: rgba(171, 241, 212, 0.5);
+    max-width: 400px;
+    height: 250px;
+    width: 400px;
+    margin-left: 18%;
+    margin-right: 18%;
+    float: right;
+}
+
+.incomeManager {
+    background-color: rgba(171, 241, 212, 0.5);
+    max-width: 400px;
+    height: 250px;
+    width: 400px;
+    margin-left: 18%;
+    margin-right: 18%;
+    /* text-align: center; */
 }
 
 .account {
@@ -60,11 +80,19 @@
 }
 
 .userInfo {
-    height: 300px;
-    width: 300px;
+    height: 320px;
+    width: 600px;
     display: inline-block;
 }
 
 .divider {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.fa-trash-o:before {
+    font-size: 18px;
+}
+
+.primary {
+    background-color: rgb(64, 161, 218);
 }
