@@ -1,18 +1,35 @@
-<div class="main-div">
-    <mat-card class="sty">
-        <mat-card-title style="font-size: 25px;"> Registration Form </mat-card-title>
-        <h2> Enter Name </h2>
-        <mat-card-content>
-            <div [class.has-error]="userNameControl.invalid && userNameControl.touched" [class.has-success]="userNameControl.valid">
-                <input required id="userName" name="userName" type="text" class="form-control" placeholder="First name, Last name" [(ngModel)]="userName" #userNameControl="ngModel" />
-                <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched"> Name is required</span>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <div class="form-group">
-                <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="userNameControl.invalid">Submit</button>
-            </div>
-        </mat-card-actions>
-    </mat-card>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
+
+<div class="main-div">
+
+    <div>
+        <h1 class="display-3 text-center" style="font-size: 50px; font-family:Lucida Console;">Personal Wallet</h1>
+        <p class="lead text-center">Personal wallet is a simple application to help you keep track of your daily expenses and incomes. Charts and tables help you better track savings behaviors.</p>
+        <div class="form-group col-12">
+            <hr>
+        </div>
+
+
+        <div style="margin-left: 500px;">
+            <mat-card class="sty">
+                <br/> <br/>
+
+                <mat-card-title style="font-size: 25px;"> Registration Form </mat-card-title>
+                <h2> Enter Name </h2>
+                <mat-card-content>
+                    <div [class.has-error]="userNameControl.invalid && userNameControl.touched" [class.has-success]="userNameControl.valid">
+                        <input required id="userName" name="userName" type="text" class="form-control" placeholder="First name, Last name" [(ngModel)]="userName" #userNameControl="ngModel" />
+                        <span class="help-block" *ngIf="userNameControl.invalid && userNameControl.touched"> Name is required</span>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="userNameControl.invalid">Submit</button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+    </div>
 </div>

@@ -1,14 +1,22 @@
 .sty {
-    background-color: rgb(171, 241, 212);
-    max-width: 400px;
-    height: 250px;
-    width: 350px;
+    background-color: white;
+    max-width: 450px;
+    height: 300px;
+    width: 380px;
+    text-align: center;
 }
 
 .main-div {
+    padding: 16px;
     background-color: rgb(222, 241, 235);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('/assets/ex5.jpg');
+    background-size: 100vw 100vh;
+}
+
+hr {
+    border-top: 1px solid #2196f3;
 }

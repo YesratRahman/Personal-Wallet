@@ -1,6 +1,9 @@
 .main-div {
     background-color: rgb(222, 241, 235);
     height: 150vh;
+    background-image: url('/assets/ex6.jpg');
+    max-width: 1000vh;
+    background-size: 1000vw 1000vh;
 }
 
 .expenseManager {

@@ -1,20 +1,19 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
-<mat-card>
 
-    <mat-card-title>
-        <mat-card-content>
-            User Name : {{user.userName}} </mat-card-content>
-    </mat-card-title>
-    <mat-card-actions>
-        <button class="but" mat-raised-button (click)="login()" [routerLink]="['/wallet']">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-Login</button>
-        <!-- <button class="but" mat-raised-button [routerLink]="['/updateUser/',user.userId]">Edit User</button> -->
-        <!-- <button class="but" mat-raised-button [routerLink]="['/deleteUser/',user.userId]">Delete User</button> -->
+<div class="main-div">
 
+    <mat-card>
 
-    </mat-card-actions>
-</mat-card>
-<br />
+        <mat-card-title>
+            <mat-card-content>
+                User Name : {{user.userName}} </mat-card-content>
+        </mat-card-title>
+        <mat-card-actions>
+            <button class="but" mat-raised-button (click)="login()" [routerLink]="['/wallet']">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+        </mat-card-actions>
+    </mat-card>
+    <br />
+</div>
