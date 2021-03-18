@@ -5,3 +5,39 @@
 .primary {
     background-color: rgb(224, 102, 102);
 }
+
+.main-div {
+    /* background-color: rgb(222, 241, 235); */
+    height: 280vh;
+    background-image: url('/assets/ex2.jpg');
+    max-width: 1000vh;
+    background-size: 1000vw 800vh;
+    /* background-size: cover; */
+}
+
+.sty {
+    height: 200px;
+    width: 300px;
+    display: inline-block;
+}
+
+.title {
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.table {
+    height: 700px;
+    width: 1100px;
+    margin-left: 190px;
+}
+
+.summaryTable {
+    max-height: 120vh;
+}
+
+.barChart {
+    height: 700px;
+    width: 1100px;
+    margin-left: 190px;
+}

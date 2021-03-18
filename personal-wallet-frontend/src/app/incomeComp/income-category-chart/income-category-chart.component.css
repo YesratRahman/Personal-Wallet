@@ -1,0 +1,10 @@
+.chart {
+    height: 100%;
+    min-width: 500px;
+    background-color: rgb(196, 183, 241);
+}
+
+.legend {
+    height: 100%;
+    min-width: 100px;
+}

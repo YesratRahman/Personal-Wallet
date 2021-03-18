@@ -38,10 +38,11 @@ export class ExpenseCategoryChartComponent implements OnInit {
              
              {
                data: temp_totalExpenseAmount, 
-               backgroundColor: ['rgb(222, 184, 135)','rgb(197, 226, 151)', 'rgb(136, 203, 230)', 'rgb(197, 98, 58)'],
+               backgroundColor: ['rgb(222, 184, 135)','rgb(197, 226, 151)', 
+               'rgb(136, 203, 230)', 'rgb(197, 98, 58)', 'rgb(104, 214, 205)', 'rgb(226, 212, 133)', 'rgb(224, 120, 88)', 'rgb(243, 188, 236)'
+              ],
                
                fill: false,
-              //  label: 'Expense', 
                barPercentage: 0.7
                 
                        }
@@ -61,7 +62,7 @@ export class ExpenseCategoryChartComponent implements OnInit {
            },
            title: {
              display: true,
-             text: 'Expense Category Summary',
+             text: 'Expense Vs Category Bar Graph',
              position: 'bottom',
              fontSize: 22,
              fontColor: 'black'

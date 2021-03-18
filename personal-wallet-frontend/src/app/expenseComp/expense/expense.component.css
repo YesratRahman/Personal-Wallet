@@ -14,11 +14,7 @@ th.mat-header-cell {
 }
 
 .mat-paginator {
-    width: 100vw;
-}
-
-.mat-paginator {
-    width: 100vw;
+    width: 1000px;
 }
 
 td,

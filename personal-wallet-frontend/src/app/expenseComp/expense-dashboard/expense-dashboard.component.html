@@ -1,52 +1,52 @@
-<!-- <div class="container-fluid" id="view-expense"> -->
-<div class="row">
-    <div class="mb-5 col-md-6 col-sm-12">
-        <mat-card class="sty">
-            <mat-card-title style="font-size: 25px;">Expense Total</mat-card-title>
-            <app-expense-summary> </app-expense-summary>
-        </mat-card>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-    </div>
+</head>
+
+<div class="main-div">
+    <br/>
+    <br/>
+
+    <mat-card class="sty">
+        <br/>
+        <mat-card-title class="title">Expense Total</mat-card-title>
+        <br/>
+        <br/>
+        <app-expense-summary> </app-expense-summary>
+    </mat-card>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <mat-card class="table">
+        <br/>
+        <mat-card-title>Expense Detail summary
+        </mat-card-title>
+        <mat-card-subtitle style="text-align: center; font-size: 20px;">Click on row to edit expense</mat-card-subtitle>
+        <mat-card-content>
+            <app-expense> </app-expense>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
 
 
+    <mat-card class="barChart">
+        <mat-card-title>
+        </mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+        <mat-card-content>
+            <app-expense-category-chart></app-expense-category-chart>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
 
-    <div class="row">
+    <br/>
+    <br/>
+    <br/>
 
-
-        <div class="row">
-            <div class="col-12">
-                <mat-card>
-                    <mat-card-title>Detail summary
-                    </mat-card-title>
-                    <mat-card-subtitle style="text-align: center;">Click on row to edit expense</mat-card-subtitle>
-                    <mat-card-content>
-                        <app-expense> </app-expense>
-                    </mat-card-content>
-                    <mat-card-actions>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-12">
-            <mat-card>
-                <mat-card-title>
-                </mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
-                <mat-card-content>
-                    <app-expense-category-chart></app-expense-category-chart>
-                </mat-card-content>
-                <mat-card-actions>
-                </mat-card-actions>
-            </mat-card>
-
-        </div>
-    </div>
     <div>
         <button mat-fab class="primary" routerLink="/wallet">
             <mat-icon>note_add</mat-icon>

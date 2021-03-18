@@ -37,7 +37,8 @@ export class IncomeCategoryChartComponent implements OnInit {
              
              {
                data: temp_totalExpenseAmount, 
-               backgroundColor: ['rgb(222, 184, 135)','rgb(197, 226, 151)', 'rgb(136, 203, 230)', 'rgb(197, 98, 58)'],
+               backgroundColor: ['rgb(222, 184, 135)','rgb(197, 226, 151)', 'rgb(136, 203, 230)', 'rgb(197, 98, 58)',
+              'rgb(235, 88, 137)','rgb(151, 238, 177)','rgb(196, 183, 241)'],
                
                fill: false,
               //  label: 'Expense', 
@@ -60,7 +61,7 @@ export class IncomeCategoryChartComponent implements OnInit {
            },
            title: {
              display: true,
-             text: 'Expense Category Summary',
+             text: 'Income vs Category Bar Graph',
              position: 'bottom',
              fontSize: 22,
              fontColor: 'black'

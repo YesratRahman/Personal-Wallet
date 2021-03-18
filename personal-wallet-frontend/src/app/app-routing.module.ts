@@ -4,7 +4,6 @@ import { AddUserComponent } from './userComp/add-user/add-user.component';
 import { EditUserComponent } from './userComp/edit-user/edit-user.component';
 import { HomeComponent } from './home/home.component';
 import { IncomeComponent } from './incomeComp/income/income.component';
-import { UserComponent } from './userComp/user/user.component';
 import { AllUserComponent } from './userComp/all-user/all-user.component';
 import { AddExpenseComponent } from './expenseComp/add-expense/add-expense.component';
 import { ExpenseComponent } from './expenseComp/expense/expense.component';
@@ -17,7 +16,6 @@ import { AddIncomeComponent } from './incomeComp/add-income/add-income.component
 import { ExpenseSummaryComponent } from './expenseComp/expense-summary/expense-summary.component';
 import { ExpenseMonthlySummaryComponent } from './expenseComp/expense-monthly-summary/expense-monthly-summary.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
-import { ChartComponent } from 'angular2-highcharts';
 import { OverallSavingComponent } from './overall-saving/overall-saving.component';
 import { ExpenseCategoryChartComponent } from './expenseComp/expense-category-chart/expense-category-chart.component';
 import { IncomeCategoryChartComponent } from './incomeComp/income-category-chart/income-category-chart.component';

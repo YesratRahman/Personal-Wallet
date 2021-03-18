@@ -1,90 +1,52 @@
-<!-- <div class="container-fluid" id="view-income">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-    <div class="row">
-        <div class="mb-5 col-md-6 col-sm-12">
-            <mat-card class="sty">
-                <mat-card-title style="font-size: 25px;">Income Total</mat-card-title>
-                <app-income-summary> </app-income-summary>
-            </mat-card>
+</head>
 
-        </div>
+<div class="main-div">
+    <br/>
+    <br/>
 
+    <mat-card class="sty">
+        <br/>
+        <mat-card-title class="title">Income Total</mat-card-title>
+        <br/>
+        <br/>
+        <app-income-summary> </app-income-summary>
+    </mat-card>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 
-        <div class="row">
-
-
-            <div class="row">
-                <div class="col-12">
-                    <mat-card>
-                        <mat-card-title>Detail summary
-                        </mat-card-title>
-                        <mat-card-subtitle style="text-align: center;">Click on row to edit income</mat-card-subtitle>
-                        <mat-card-content>
-                            <app-income> </app-income>
-                        </mat-card-content>
-                        <mat-card-actions>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
-       
-
-        <button mat-fab class="fab" routerLink="/wallet">
-            <mat-icon>note_add</mat-icon>
-        </button>
-    </div> -->
+    <mat-card class="table">
+        <br/>
+        <mat-card-title>Income Detail summary
+        </mat-card-title>
+        <mat-card-subtitle style="text-align: center; font-size: 20px;">Click on row to edit income</mat-card-subtitle>
+        <mat-card-content>
+            <app-income> </app-income>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
 
 
-<!-- <div class="container-fluid" id="view-expense"> -->
-<div class="row">
-    <div class="mb-5 col-md-6 col-sm-12">
-        <mat-card class="sty">
-            <mat-card-title style="font-size: 25px;">Income Total</mat-card-title>
-            <app-income-summary> </app-income-summary>
-        </mat-card>
+    <mat-card class="barChart">
+        <mat-card-title>
+        </mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+        <mat-card-content>
+            <app-income-category-chart></app-income-category-chart>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
 
-    </div>
+    <br/>
+    <br/>
+    <br/>
 
-
-
-    <div class="row">
-
-
-        <div class="row">
-            <div class="col-12">
-                <mat-card>
-                    <mat-card-title>Detail summary
-                    </mat-card-title>
-                    <mat-card-subtitle style="text-align: center;">Click on row to edit income</mat-card-subtitle>
-                    <mat-card-content>
-                        <app-income> </app-income>
-                    </mat-card-content>
-                    <mat-card-actions>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-12">
-            <mat-card>
-                <mat-card-title>
-                </mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
-                <mat-card-content>
-                    <app-income-category-chart></app-income-category-chart>
-                </mat-card-content>
-                <mat-card-actions>
-                </mat-card-actions>
-            </mat-card>
-
-        </div>
-    </div>
     <div>
         <button mat-fab class="primary" routerLink="/wallet">
             <mat-icon>note_add</mat-icon>

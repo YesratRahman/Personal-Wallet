@@ -52,7 +52,6 @@ import { ExpenseMonthlySummaryComponent } from './expenseComp/expense-monthly-su
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'Highcharts';
 import { ExpenseSummaryComponent } from './expenseComp/expense-summary/expense-summary.component';
-import { ExpenseCategorySummaryChartComponent } from './expenseComp/expense-category-summary-chart/expense-category-summary-chart.component';
 import { IncomeSummaryComponent } from './incomeComp/income-summary/income-summary.component';
 import { OverallSavingComponent } from './overall-saving/overall-saving.component';
 import { ExpenseCategoryChartComponent } from './expenseComp/expense-category-chart/expense-category-chart.component';
@@ -79,7 +78,6 @@ import { MatGridListModule } from '@angular/material/grid-list'
     EditExpenseComponent,
     EditIncomeComponent,
     ExpenseMonthlySummaryComponent,
-    ExpenseCategorySummaryChartComponent,
     ExpenseSummaryComponent,
     IncomeSummaryComponent,
     OverallSavingComponent,
