@@ -1,9 +1,13 @@
 .main-div {
-    background-color: rgb(222, 241, 235);
+    /* background-color: rgb(222, 241, 235);
     height: 150vh;
     background-image: url('/assets/ex6.jpg');
     max-width: 1000vh;
-    background-size: 1000vw 800vh;
+    background-size: 1000vw 800vh; */
+    height: 150vh;
+    background-image: url('/assets/ex5.jpg');
+    max-width: 1000vh;
+    background-size: 100vw 200vh;
 }
 
 .expenseManager {

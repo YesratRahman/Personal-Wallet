@@ -1,6 +1,23 @@
-<div>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <mat-card>
+</head>
+
+<div class="main-div">
+    <br/>
+    <br/>
+    <div style="text-align: left;margin-left: 50px;">
+        <button class="logButton" mat-button routerLink='/wallet'>
+        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+
+        Back</button>
+
+
+    </div>
+    <br/>
+    <br/>
+    <mat-card class="sty">
         <br>
         <mat-card-title>Overall Savings</mat-card-title><br><br>
         <mat-card-content>
@@ -10,8 +27,11 @@
 
         </mat-card-actions>
     </mat-card>
-
-    <mat-card>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <mat-card class="table">
         <br>
         <mat-card-title>Expense and Income Report Chart</mat-card-title><br><br>
         <mat-card-content>
@@ -24,7 +44,15 @@
 
         </mat-card-actions>
     </mat-card>
+    <br/>
+    <br/>
+    <br/>
 
+    <div>
+        <button mat-fab class="primary" routerLink="/wallet">
+            <mat-icon>note_add</mat-icon>
+        </button>
+    </div>
 
 </div>
 

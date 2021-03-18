@@ -7,12 +7,10 @@
 }
 
 .main-div {
-    /* background-color: rgb(222, 241, 235); */
-    height: 280vh;
+    height: 260vh;
     background-image: url('/assets/ex2.jpg');
     max-width: 1000vh;
     background-size: 1000vw 800vh;
-    /* background-size: cover; */
 }
 
 .sty {
@@ -40,4 +38,12 @@
     height: 700px;
     width: 1100px;
     margin-left: 190px;
+}
+
+.logButton:hover {
+    background-color: rgb(66, 192, 209);
+}
+
+.logButton {
+    background-color: rgb(204, 223, 241);
 }

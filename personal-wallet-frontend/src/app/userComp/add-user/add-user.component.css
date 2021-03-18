@@ -20,3 +20,8 @@
 hr {
     border-top: 1px solid #2196f3;
 }
+
+.cancel {
+    color: black;
+    background-color: rgba(177, 151, 182, 0.418);
+}
