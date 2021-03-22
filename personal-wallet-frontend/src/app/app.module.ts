@@ -46,7 +46,6 @@ import { EditExpenseComponent } from './expenseComp/edit-expense/edit-expense.co
 import {MatDialogModule } from '@angular/material/dialog';
 import { EditIncomeComponent } from './incomeComp/edit-income/edit-income.component';
  import { ChartsModule } from 'ng2-charts';
-//  import { ChartModule } from 'angular2-highcharts';
 import { ExpenseMonthlySummaryComponent } from './expenseComp/expense-monthly-summary/expense-monthly-summary.component';
 
 import { ChartModule } from 'angular2-highcharts';
