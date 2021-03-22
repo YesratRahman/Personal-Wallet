@@ -1,1 +1,4 @@
 # Personal-Wallet
+
+A full-stack web application which will help users to keep track of their daily incomes and expenses along with showcasing charts and graphs to help them better understand their savings behavior. The technologies used for the backend are Spring Boot, Java, Maven dependencies, JDBC template with PostgreSQL for database. The frontend technologies are Angular, Typescript, HTML, CSS. Users can register and login to the system with their respective names. Upon logging in, the user gets the freedom to manage their user account. They can manage expenses and incomes by adding, modifying or deleting along with some other features like getting total expenses, total incomes, total savings, search, and filtering data. The application also generates different types of visualization such as expense amount vs category, pie chart, income and expense vs dates chart and so on.
+
